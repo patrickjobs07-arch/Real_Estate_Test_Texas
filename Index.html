@@ -763,6 +763,170 @@ a.tile:hover, button.tile:hover{ border-color:color-mix(in srgb, var(--ink) 25%,
 @media (prefers-color-scheme:dark){ :root:not([data-theme="light"]) .tabbar a[aria-current="page"]{ background:#f4f6f7; color:#111417 } :root:not([data-theme="light"]) .tabbar a[aria-current="page"] .ndot{ box-shadow:0 0 0 2px #f4f6f7 } }
 :root[data-theme="dark"] .tabbar a[aria-current="page"]{ background:#f4f6f7; color:#111417 }
 :root[data-theme="dark"] .tabbar a[aria-current="page"] .ndot{ box-shadow:0 0 0 2px #f4f6f7 }
+
+/* ===== spaced review ===== */
+.srs-steps{ list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:8px }
+.srs-steps li{ display:flex; flex-direction:column; align-items:center; text-align:center; gap:4px; padding:10px 4px; border-radius:18px; background:color-mix(in srgb, var(--k1) 9%, transparent); min-width:0 }
+.srs-steps li.srs-done{ background:var(--good-soft) }
+.srs-n{ font-family:var(--font-display); font-weight:900; font-size:1.35rem; line-height:1; font-variant-numeric:tabular-nums }
+.srs-l{ display:flex; flex-direction:column; gap:1px; min-width:0 }
+.srs-l b{ font-size:.82rem }
+.srs-l small{ font-size:.72rem; color:var(--muted); line-height:1.25 }
+@media (max-width:360px){ .srs-steps{ grid-template-columns:repeat(2, minmax(0,1fr)) } }
+/* ===== backup & sync ===== */
+.sync-st{ display:flex; align-items:center; gap:7px; font-size:.86rem; color:var(--muted); margin-top:2px }
+.sync-st i{ width:8px; height:8px; flex:none; border-radius:50%; background:color-mix(in srgb, var(--ink) 30%, transparent) }
+.sync-st.on{ color:var(--ink) } .sync-st.on i{ background:var(--good); box-shadow:0 0 0 3px var(--good-soft) }
+.bk-confirm{ display:flex; flex-direction:column; gap:10px; padding:12px 14px; border-radius:16px; background:color-mix(in srgb, var(--k3) 9%, transparent) }
+.card .btn svg{ width:18px; height:18px }
+/* ===== math drills ===== */
+.t-drill{ grid-column:span 2; padding-right:64px; background:linear-gradient(160deg, color-mix(in srgb, var(--h6) 16%, var(--glass)), var(--glass) 70%) }
+.t-drill .tile-go{ position:absolute; right:16px; top:50%; transform:translateY(-50%); width:40px; height:40px; border-radius:50%; display:grid; place-items:center; background:var(--ink); color:var(--surface) }
+.t-drill .tile-go svg{ width:20px; height:20px }
+.drill-tally{ display:flex; flex-direction:column; min-width:0; line-height:1.25 }
+.dchips{ display:flex; flex-wrap:wrap; gap:8px }
+.dchips::-webkit-scrollbar{ display:none }
+.dchip{ flex:none; min-height:40px; padding:0 14px; border-radius:999px; border:1.5px solid var(--line); background:var(--glass-strong); color:var(--ink); font:inherit; font-size:.88rem; font-weight:600; cursor:pointer }
+.dchip[aria-pressed="true"]{ background:var(--ink); border-color:var(--ink); color:var(--surface) }
+.btn-block svg{ width:18px; height:18px }
+#drills{ display:inline-flex; align-items:center; justify-content:center; gap:8px }
+
+.sync-form{ display:flex; gap:8px; flex-wrap:wrap }
+.sync-form .field{ flex:1 1 200px; min-width:0; min-height:44px; padding:0 14px; border-radius:14px; border:1.5px solid var(--line); background:var(--surface); color:var(--ink); font:inherit; font-size:1rem }
+.sync-form .field:focus-visible{ outline:3px solid color-mix(in srgb, var(--k1) 45%, transparent); outline-offset:1px; border-color:var(--k1) }
+.sync-form .btn{ min-height:44px }
+.sync-err{ color:var(--bad); font-weight:600 }
+.sep{ border:0; border-top:1px solid var(--line); margin:2px 0 }
+.sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; border:0 }
+
+/* ===== confidence check ===== */
+.sure{ display:flex; flex-wrap:wrap; align-items:center; gap:8px 12px; padding:10px 12px; border-radius:16px; background:color-mix(in srgb, var(--ink) 4%, transparent) }
+.sure-l{ font-size:.88rem; font-weight:600 }
+.sure-seg button{ min-height:40px }
+.sure-note{ flex-basis:100%; display:flex; gap:8px; align-items:flex-start; margin:0 }
+.sure-note svg{ width:16px; height:16px; flex:none; margin-top:3px; color:var(--k1) }
+/* ===== flashcards ===== */
+.fc-card{ display:flex; flex-direction:column; align-items:flex-start; gap:14px; width:100%; min-height:260px; padding:22px; text-align:left; font:inherit; color:var(--ink); cursor:pointer; position:relative; overflow:hidden }
+.fc-card::before{ content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(90% 70% at 100% 0%, color-mix(in srgb, var(--c) 14%, transparent), transparent 70%) }
+.fc-card > *{ position:relative }
+.fc-topic{ display:flex; align-items:center; gap:8px; font-size:.84rem; color:var(--muted); font-weight:600 }
+.fc-term{ font-family:var(--font-display); font-weight:900; font-size:clamp(1.6rem, 6vw, 2.2rem); line-height:1.15; letter-spacing:-0.01em; margin-top:auto }
+.fc-card:not(.is-back) .fc-term{ margin-bottom:auto }
+.fc-def{ font-size:1.08rem; line-height:1.55 }
+.fc-hint{ font-size:.88rem; color:var(--muted) }
+.fc-card.is-back{ cursor:default }
+.fc-rate{ display:grid; grid-template-columns:1fr 1fr; gap:10px }
+.fc-rate .btn{ display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:52px }
+.fc-rate .btn svg{ width:18px; height:18px }
+@media (hover:none){ .fc-keys{ display:none } }
+/* ===== study plan ===== */
+.field{ min-height:48px; padding:0 14px; border-radius:14px; border:1.5px solid var(--line); background:var(--surface); color:var(--ink); font:inherit; font-size:1rem; width:100%; max-width:320px }
+.field:focus-visible{ outline:3px solid color-mix(in srgb, var(--k1) 45%, transparent); outline-offset:1px; border-color:var(--k1) }
+.pdays .wday{ min-height:48px; justify-content:center }
+.pdays .wday[aria-pressed="true"]{ background:var(--ink); border-color:var(--ink); color:var(--surface) }
+.plist{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px }
+.pday{ display:grid; grid-template-columns:64px minmax(0,1fr); gap:12px; align-items:start; padding:12px; border-radius:20px; background:var(--glass); border:1px solid var(--glass-line) }
+.pday.today{ border-color:var(--ink); box-shadow:inset 0 0 0 1px var(--ink) }
+.pdate{ display:flex; flex-direction:column; gap:1px; padding-top:6px }
+.pdate b{ font-size:.92rem } .pdate span{ font-size:.8rem; color:var(--muted) }
+.ptasks{ display:flex; flex-direction:column; gap:6px; min-width:0 }
+.ptask{ display:flex; align-items:center; gap:10px; width:100%; min-height:52px; padding:8px 10px; border-radius:14px; border:0; background:color-mix(in srgb, var(--ink) 4%, transparent); color:var(--ink); font:inherit; text-align:left; cursor:pointer }
+.ptask:hover{ background:color-mix(in srgb, var(--ink) 8%, transparent) }
+.ptask .grow{ display:flex; flex-direction:column; min-width:0 }
+.ptask b{ font-size:.95rem; line-height:1.3 } .ptask small{ font-size:.8rem; color:var(--muted) }
+.ptask > svg{ width:16px; height:16px; flex:none; color:var(--muted) }
+.plan-note{ padding:10px 12px; border-radius:14px; background:color-mix(in srgb, var(--k4) 12%, transparent) }
+.t-week .tile-title{ margin-top:auto }
+
+/* lesson bodies and anything else marked hidden stay hidden */
+[hidden]{ display:none !important }
+/* previous-question review */
+.stickynext.two{ display:grid; grid-template-columns:auto minmax(0,1fr); gap:10px }
+.stickynext.two > span:empty{ display:none }
+.stickynext.two:has(> span:empty){ grid-template-columns:1fr }
+.stickynext .btn svg, .prevlink svg{ width:18px; height:18px }
+#pPrev svg{ transform:rotate(180deg) }
+.stickynext #pPrev{ display:inline-flex; align-items:center; gap:6px; padding-inline:16px }
+.prevlink{ display:inline-flex; align-items:center; gap:6px; align-self:flex-start; text-decoration:none }
+.peek-note{ display:flex; align-items:center; gap:8px; margin:0; padding:8px 12px; border-radius:12px; font-size:.86rem; font-weight:600; background:color-mix(in srgb, var(--k3) 10%, transparent); color:var(--ink) }
+.peek-note svg{ width:16px; height:16px; flex:none; color:var(--k3) }
+/* quiz header: invisible at rest, a full-width frosted strip only once content scrolls under it */
+.qtop{ background:transparent !important; box-shadow:none !important; -webkit-backdrop-filter:none !important; backdrop-filter:none !important; transition:background-color var(--dur), box-shadow var(--dur) }
+.qtop.stuck{ background:color-mix(in srgb, var(--bg) 94%, transparent) !important; box-shadow:0 0 0 100vmax color-mix(in srgb, var(--bg) 94%, transparent), 0 14px 14px -14px rgb(0 0 0 / .2) !important; clip-path:inset(0 -100vmax -20px) }
+
+/* ===== listen mode ===== */
+.listen-btn{ align-self:flex-start; display:inline-flex; align-items:center; gap:8px; min-height:40px; padding:0 14px 0 10px; border-radius:999px; border:1.5px solid var(--line); background:var(--glass-strong); color:var(--ink); font:inherit; font-size:.88rem; font-weight:700; cursor:pointer }
+.listen-btn svg{ width:18px; height:18px; color:var(--k1) }
+.listen-btn[aria-pressed="true"]{ background:var(--ink); border-color:var(--ink); color:var(--surface) }
+.listen-btn[aria-pressed="true"] svg{ color:currentColor }
+.lbody > p.speaking{ background:color-mix(in srgb, var(--k1) 12%, transparent); box-shadow:0 0 0 6px color-mix(in srgb, var(--k1) 12%, transparent); border-radius:6px }
+.ttsbar{ position:fixed; left:50%; transform:translateX(-50%); bottom:calc(106px + env(safe-area-inset-bottom,0px)); z-index:40; width:min(560px, calc(100vw - 24px)); display:flex; align-items:center; gap:4px; padding:8px 8px 8px 14px; border-radius:22px; background:#111417; color:#fff; box-shadow:0 12px 32px -8px rgb(0 0 0 / .45) }
+.tts-t{ display:flex; flex-direction:column; min-width:0; margin-right:4px }
+.tts-t small{ font-size:.72rem; opacity:.7; font-weight:600; white-space:nowrap }
+.tts-t b{ font-size:.88rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.tts-b{ flex:none; width:40px; height:40px; display:grid; place-items:center; border-radius:50%; border:0; background:transparent; color:#fff; font:inherit; font-weight:700; font-size:.82rem; cursor:pointer }
+.tts-b:hover{ background:rgb(255 255 255 / .1) }
+.tts-b svg{ width:20px; height:20px }
+.tts-main{ background:#fff; color:#111417 } .tts-main:hover{ background:#e9ecee }
+.tts-b:focus-visible{ outline:3px solid #fff; outline-offset:1px }
+.tts-wave{ display:flex; align-items:flex-end; gap:2px; height:16px; flex:none; margin-right:6px }
+.tts-wave i{ width:3px; border-radius:2px; background:#5fd3c6; height:6px; animation:ttsw 1s ease-in-out infinite }
+.tts-wave i:nth-child(2){ animation-delay:.2s } .tts-wave i:nth-child(3){ animation-delay:.4s }
+.tts-wave.paused i{ animation:none }
+@keyframes ttsw{ 0%,100%{ height:5px } 50%{ height:15px } }
+.reduce .tts-wave i{ animation:none; height:10px }
+@media (prefers-reduced-motion:reduce){ .tts-wave i{ animation:none; height:10px } }
+body.tts-on main{ padding-bottom:110px }
+@media (max-width:380px){ .tts-wave{ display:none } .tts-b{ width:36px; height:36px } .ttsbar{ padding-left:12px } }
+/* ===== exam-day checklist ===== */
+.linkrow-card{ display:flex; align-items:center; gap:12px; padding:12px 14px; border-radius:18px; border:1px solid var(--line); background:var(--glass-strong); color:var(--ink); text-decoration:none }
+.linkrow-card .grow{ display:flex; flex-direction:column; min-width:0 } .linkrow-card > svg{ width:18px; height:18px; color:var(--muted); flex:none }
+.ed-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:6px }
+.ed-check{ display:flex; gap:12px; align-items:flex-start; padding:10px; border-radius:14px; cursor:pointer; position:relative }
+.ed-check:hover{ background:color-mix(in srgb, var(--ink) 4%, transparent) }
+.ed-check input{ position:absolute; opacity:0; width:28px; height:28px; margin:0; left:10px; top:10px; cursor:pointer }
+.ed-box{ flex:none; width:26px; height:26px; border-radius:8px; border:2px solid #7d868d; display:grid; place-items:center; color:transparent; background:var(--surface); margin-top:1px }
+.ed-box svg{ width:16px; height:16px }
+.ed-check input:checked + .ed-box{ background:var(--good); border-color:var(--good); color:#fff }
+.ed-check input:focus-visible + .ed-box{ outline:3px solid color-mix(in srgb, var(--k1) 50%, transparent); outline-offset:2px }
+.ed-check > span:last-child, .ed-info > span:last-child{ display:flex; flex-direction:column; gap:2px; min-width:0 }
+.ed-check b, .ed-info b{ font-size:.97rem; line-height:1.35 }
+.ed-check small, .ed-info small{ font-size:.86rem; color:var(--muted); line-height:1.45 }
+.ed-check input:checked ~ span:last-child b{ text-decoration:line-through; text-decoration-color:color-mix(in srgb, var(--ink) 40%, transparent); color:var(--muted) }
+.ed-info{ display:flex; gap:12px; padding:8px 10px }
+.ed-dot{ flex:none; width:8px; height:8px; border-radius:50%; background:var(--k2); margin:8px 9px 0 }
+
+/* ===== course books ===== */
+.src-link{ cursor:pointer; text-decoration:none; transition:background var(--dur) }
+.src-link:hover{ background:color-mix(in srgb, var(--k1) 14%, var(--sunk)) }
+.src-link > span{ text-decoration:underline; text-decoration-color:color-mix(in srgb, currentColor 35%, transparent); text-underline-offset:2px }
+.src-link:focus-visible{ outline:3px solid color-mix(in srgb, var(--k1) 50%, transparent); outline-offset:2px }
+.books{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:10px }
+.book{ display:flex; align-items:center; gap:10px; padding:12px 10px 12px 14px; border-radius:20px; background:var(--glass); border:1px solid var(--glass-line); min-width:0 }
+.book .grow{ display:flex; flex-direction:column; min-width:0; flex:1 1 0 }
+.book .btn{ flex:none }
+@media (max-width:360px){ .book > .ticon, .book > .itile, .book > span:first-child:not(.grow){ display:none } }
+.book b{ font-size:.97rem; line-height:1.3 } .book small{ font-size:.82rem; color:var(--muted) }
+.book.has small{ color:var(--good); font-weight:600 }
+.bk-x{ width:40px; height:40px }
+.bk-confirm-row{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between; padding:12px 14px; border-radius:16px; background:color-mix(in srgb, var(--bad) 8%, transparent) }
+.bk-ok{ display:flex; gap:8px; align-items:center; color:var(--good); font-weight:600 } .bk-ok svg{ width:18px; height:18px }
+.reader .rd-title{ white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.rd-stage{ overflow:auto; border-radius:14px; background:#fff; box-shadow:0 6px 24px -10px rgb(0 0 0 / .3); min-height:50vh; display:block; -webkit-overflow-scrolling:touch; touch-action:pan-x pan-y pinch-zoom }
+.rd-stage canvas{ display:block; margin:0 auto }
+.rd-wait{ padding:40px 16px; text-align:center; color:#56606a }
+.rd-stage:has(.rd-empty){ background:none; box-shadow:none; min-height:0 }
+.rd-nav{ display:grid; grid-template-columns:56px minmax(0,1fr) 56px; gap:10px; align-items:center }
+.rd-nav .btn{ min-height:48px; padding:0; display:grid; place-items:center }
+.rd-nav .btn svg{ width:20px; height:20px } #rdPrev svg{ transform:rotate(180deg) }
+.rd-go{ display:flex; align-items:center; justify-content:center; gap:8px }
+.rd-go .field{ width:76px; text-align:center; padding:0 8px; min-height:46px }
+.reader .qtop .iconbtn svg{ width:20px; height:20px }
+.listen-btn.unsupported{ opacity:.75 }
+
+.reader .iconbtn[aria-pressed="true"]{ background:var(--ink); color:var(--surface) }
+body.tts-on .rd-nav{ bottom:calc(170px + env(safe-area-inset-bottom,0px)) }
+body.tts-on .reader{ padding-bottom:70px }
 </style>
 </head>
 <body>
@@ -962,8 +1126,8 @@ const TOPICS = [
       { h: "The T formula", s: "POR2 p. 283, 286",
         b: ["Most percentage problems use the <b>T formula</b>. Cover the value you want to find:<span class=\"fgrid\"><span class=\"formula\">Total × Percent = Part</span><span class=\"formula\">Part ÷ Percent = Total</span><span class=\"formula\">Part ÷ Total = Percent</span></span>",
             "Key formulas from the course:<span class=\"fgrid\"><span class=\"formula\">Commission = rate × price</span><span class=\"formula\">Tax = rate × assessed value</span><span class=\"formula\">Net income = cap rate × value</span><span class=\"formula\">Area of a rectangle = length × width</span><span class=\"formula\">Area of a triangle = ½ × base × height</span></span>"] },
-      { h: "Exam calculators", s: "POR2 p. 284", tx: true, flag: "Check current testing-center rules before exam day.",
-        b: ["The course says a calculator for the state exam must be <b>silent</b>, <b>battery operated</b>, have <b>no paper tape</b>, and have <b>no alphabet keyboard</b>."] }
+      { h: "Exam calculators", s: "POR2 p. 284", tx: true,
+        b: ["The course says a calculator for the state exam must be <b>silent</b>, <b>battery operated</b>, have <b>no paper tape</b>, and have <b>no alphabet keyboard</b>.", "Pearson VUE's current Texas candidate handbook (September 2026) agrees: a <b>hand-held, battery or solar financial calculator</b> with <b>no letter keys</b> is allowed, and the test center <b>doesn't provide one</b>. See the exam-day checklist on the Practice Exam page."] }
     ] },
 
   /* ---------------- TEXAS-SPECIFIC ---------------- */
@@ -1495,12 +1659,12 @@ const QUESTIONS = [
   { id: "tp1", t: "txproperty", s: "POR1 p. 30", tx: true,
     q: "In Texas, how long does an owner have to redeem a homestead sold at a tax auction?",
     c: ["Two years", "Six months", "One year", "Ninety days"],
-    n: ["", "Six months applies to non-homestead property.", "This isn't the period the course gives.", "This isn't the period the course gives."],
+    n: ["", "Six months applies to non-homestead property.", "One year isn't a Texas redemption period. Homesteads get two years; other property gets six months.", "Ninety days is too short. Remember: homestead two years, everything else six months."],
     w: "Homestead property sold at a tax auction has a two-year right of redemption. Other property has six months." },
   { id: "tp2", t: "txproperty", s: "POR1 p. 30", tx: true,
     q: "A rental lot that isn't a homestead is sold at a Texas tax sale. The redemption period is:",
     c: ["Six months", "Two years", "Five years", "None"],
-    n: ["", "Two years is for homesteads.", "This isn't the period the course gives.", "A redemption right exists."],
+    n: ["", "Two years is for homesteads.", "Five years isn't a redemption period. Non-homestead property gets six months; homesteads get two years.", "A redemption right exists."],
     w: "The course says non-homestead property has only a six-month right of redemption." },
   { id: "tp3", t: "txproperty", s: "POR1 p. 65", tx: true,
     q: "During her marriage, Ana inherits a house from her grandmother. In Texas, the house is:",
@@ -1777,7 +1941,7 @@ QUESTIONS.push(
   { id: "lg3", t: "legal", s: "POR1 p. 54", q: "A township contains how many sections?", c: ["36", "640", "16", "24"], n: ["", "640 is the acres in a section.", "This isn't the number.", "This isn't the number."], w: "Each township has 36 one-square-mile sections." },
   { id: "lg4", t: "legal", s: "POR1 p. 49", q: "A metes and bounds description starts and ends at the:", c: ["Point of beginning", "Principal meridian", "Recorded plat", "Section corner"], n: ["", "Meridians are part of the government survey system.", "Plats are used for lot and block.", "Section corners are part of the government survey system."], w: "Metes and bounds uses calls from a point of beginning around the boundary and back to it." },
   { id: "lg5", t: "legal", s: "POR1 p. 52", tx: true, q: "According to the course, which land description method is used in Texas?", c: ["Metes and bounds", "The rectangular survey only", "Street address only", "Township and range only"], n: ["", "The course lists Texas with the metes and bounds states.", "A street address isn't a legal description.", "Township and range belongs to the rectangular survey."], w: "The course lists Texas among the states that use the metes and bounds method." },
-  { id: "lg6", t: "legal", s: "POR1 p. 142", q: "Which would NOT be an acceptable legal description in a deed?", c: ["The street address", "Metes and bounds", "Lot and block in a recorded subdivision", "A government survey description"], n: ["", "This is acceptable.", "This is acceptable.", "This is acceptable."], w: "A legal description must let someone locate the land on the ground. A street address isn't sufficient." },
+  { id: "lg6", t: "legal", s: "POR1 p. 142", q: "Which would NOT be an acceptable legal description in a deed?", c: ["The street address", "Metes and bounds", "Lot and block in a recorded subdivision", "A government survey description"], n: ["", "Metes and bounds is an accepted method. It traces the boundaries from a point of beginning.", "Lot and block, tied to a recorded plat, is an accepted method.", "The government survey system is an accepted method of legal description."], w: "A legal description must let someone locate the land on the ground. A street address isn't sufficient." },
   { id: "lg7", t: "legal", s: "POR1 p. 49", q: "How many square feet are in 3 acres?", c: ["130,680", "43,560", "87,120", "1,920"], n: ["", "That's one acre.", "That's two acres.", "That's 3 × 640."], w: "3 × 43,560 = 130,680 square feet." },
   { id: "lg8", t: "legal", s: "POR1 p. 56", tx: true, q: "By default, a Texas title policy does NOT protect against:", c: ["Boundary discrepancies and encroachments", "Forged deeds in the chain of title", "Any recorded liens", "Unknown heirs' claims"], n: ["", "Forgery is a typical title risk.", "This isn't the default exclusion described.", "This isn't the exclusion the course describes."], w: "Texas title policies don't cover boundary discrepancies, shortages in area, or encroachments by default. Extra coverage is available for a fee." },
   { id: "lg9", t: "legal", s: "POR1 p. 52", q: "The Government Survey System, used after the Land Ordinance of 1785, is also called the:", c: ["Rectangular Survey System", "Metes and bounds system", "Lot and block system", "Torrens system"], n: ["", "Metes and bounds predates it.", "Lot and block uses recorded plats.", "Torrens is a title registration system."], w: "Surveyors used the Government (Rectangular) Survey System for lands west of the Appalachians after 1785." },
@@ -1785,7 +1949,7 @@ QUESTIONS.push(
   /* landuse */
   { id: "lu6", t: "landuse", s: "POR1 p. 29", q: "The required space between the lot line and the building line is the:", c: ["Setback", "Buffer zone", "Easement", "Variance"], n: ["", "A buffer zone separates land uses.", "An easement is a right of use.", "A variance is a permitted exception."], w: "A setback is the required distance between the lot line and the building line, set by zoning or deed restrictions." },
   { id: "lu7", t: "landuse", s: "POR1 p. 29", q: "Apartments placed between single-family homes and a shopping center serve as a:", c: ["Buffer zone", "Setback", "Nonconforming use", "Spot zone"], n: ["", "A setback is distance from the lot line.", "A nonconforming use predates rezoning.", "That isn't what the course describes."], w: "A buffer zone is a transitional use between incompatible land uses." },
-  { id: "lu8", t: "landuse", s: "POR2 p. 99", q: "A lead-based paint disclosure is required for residential properties built before:", c: ["1978", "1968", "1988", "2000"], n: ["", "1968 is the year of the Fair Housing Act.", "This isn't the cutoff.", "This isn't the cutoff."], w: "Use the lead paint disclosure for properties built before 1978. The seller provides it." },
+  { id: "lu8", t: "landuse", s: "POR2 p. 99", q: "A lead-based paint disclosure is required for residential properties built before:", c: ["1978", "1968", "1988", "2000"], n: ["", "1968 is the year of the Fair Housing Act.", "Too late. The cutoff is homes built before 1978.", "Too late. Only homes built before 1978 need the disclosure."], w: "Use the lead paint disclosure for properties built before 1978. The seller provides it." },
   { id: "lu9", t: "landuse", s: "POR2 p. 99", q: "A colorless, odorless gas from decaying radioactive material that enters homes through the foundation is:", c: ["Radon", "Asbestos", "Carbon monoxide", "Urea-formaldehyde"], n: ["", "Asbestos is a fibrous material.", "The course describes radon here.", "That's an insulation material."], w: "Radon is a naturally occurring, colorless, odorless gas that enters through foundations." },
   { id: "lu10", t: "landuse", s: "POR2 p. 99", q: "Asbestos is most hazardous when:", c: ["It is disturbed or removed, releasing dust", "It is painted over", "It is left undisturbed in good condition", "Humidity is low"], n: ["", "Painting over it doesn't release dust.", "Undisturbed material is less of a problem.", "Humidity isn't the issue."], w: "Problems arise during removal because asbestos dust can be extremely hazardous." },
   { id: "lu11", t: "landuse", s: "POR2 p. 102", q: "CERCLA (the Superfund law, 1980) was designed to:", c: ["Clean up sites contaminated with hazardous substances", "Require lead paint disclosures", "Regulate fair housing advertising", "Set appraisal standards"], n: ["", "That's a separate disclosure rule.", "That's fair housing law.", "That's FIRREA and appraisal rules."], w: "CERCLA was designed to clean up contaminated sites and recover damages." },
@@ -1816,7 +1980,7 @@ QUESTIONS.push(
   { id: "ti11", t: "title", s: "POR1 p. 134", q: "A list of all recorded owners back to the sovereignty of the soil is the:", c: ["Chain of title", "Title commitment", "Abstract of judgment", "Survey"], n: ["", "A commitment is a title insurer's promise to insure.", "An abstract of judgment is a lien filing.", "A survey shows boundaries."], w: "The chain of title is a history of all recorded owners." },
   { id: "ti12", t: "title", s: "POR1 p. 142", q: "The \"to have and to hold\" clause of a deed is the:", c: ["Habendum clause", "Granting clause", "Acceleration clause", "Reservation"], n: ["", "The granting clause holds the words of conveyance.", "That's a loan clause.", "A reservation keeps rights for the grantor."], w: "The habendum clause states the extent of the estate granted. It's rarely used today." },
   { id: "ti13", t: "title", s: "POR1 p. 137", tx: true, q: "A will written entirely in the testator's own handwriting, with no witnesses, is valid in Texas as a:", c: ["Holographic will", "Formal will", "Nuncupative will", "Codicil"], n: ["", "A formal will needs two witnesses.", "The course doesn't discuss oral wills here.", "A codicil amends a will."], w: "Texas accepts holographic wills written and signed in the testator's own hand." },
-  { id: "ti14", t: "title", s: "POR1 p. 136", tx: true, q: "Texas has several adverse possession periods. Which is applied most often in successful cases?", c: ["10 years", "3 years", "5 years", "25 years"], n: ["", "This is one of the periods, but not the one most often applied.", "This is one of the periods, but not the one most often applied.", "This is one of the periods, but not the one most often applied."], w: "Texas has 3-, 5-, 10-, and 25-year periods. The 10-year period is applied most often." },
+  { id: "ti14", t: "title", s: "POR1 p. 136", tx: true, q: "Texas has several adverse possession periods. Which is applied most often in successful cases?", c: ["10 years", "3 years", "5 years", "25 years"], n: ["", "Three years is the shortest Texas period, but it isn't the one most claims rely on.", "Five years is a Texas period too, but the 10-year period is applied most often.", "Twenty-five years is the longest Texas period. Most successful claims use 10 years."], w: "Texas has 3-, 5-, 10-, and 25-year periods. The 10-year period is applied most often." },
   { id: "ti15", t: "title", s: "POR1 p. 136", q: "Adverse possession requires occupation that is:", c: ["Hostile, actual, and continuous for the statutory period", "Permitted by the owner", "Occasional and secret", "Recorded with TREC"], n: ["", "Permission defeats a hostile claim.", "It must be continuous.", "TREC isn't involved."], w: "Title is acquired through hostile, actual, and continuous occupation for the statutory period." },
   { id: "ti16", t: "title", s: "POR1 p. 145", q: "A deed says nothing about mineral rights. Who owns the grantor's minerals after the sale?", c: ["The grantee", "The grantor", "The State of Texas", "The title company"], n: ["", "Without a reservation, the grantor keeps nothing.", "The state isn't involved.", "The title company never owns them."], w: "If a deed contains no mineral reservation, all minerals the grantor owned pass to the grantee." },
 
@@ -1853,9 +2017,9 @@ QUESTIONS.push(
   { id: "ap16", t: "appraisal", s: "POR2 p. 26", q: "FIRREA, passed in 1989, affected appraisers by:", c: ["Giving regulation of appraisers to the individual states", "Abolishing appraisal licensing", "Requiring all appraisals to use the cost approach", "Creating TREC"], n: ["", "It led to state licensing.", "No such requirement exists.", "TREC was established in 1949."], w: "FIRREA, enacted after the savings and loan crisis, gave appraiser regulation to the states." },
 
   /* leases */
-  { id: "le7", t: "leases", s: "POR2 p. 198", tx: true, q: "Under Texas law, a landlord returning a security deposit must:", c: ["Mail it, with any accounting, postmarked within 30 days after the lease ends", "Make sure the tenant receives it within 10 days", "Return it at move-out inspection", "Hold it for 60 days"], n: ["", "The rule is about the postmark, not receipt.", "This isn't the rule.", "This isn't the rule."], w: "The letter must be postmarked by the end of the 30-day period. It doesn't have to be received within 30 days." },
+  { id: "le7", t: "leases", s: "POR2 p. 198", tx: true, q: "Under Texas law, a landlord returning a security deposit must:", c: ["Mail it, with any accounting, postmarked within 30 days after the lease ends", "Make sure the tenant receives it within 10 days", "Return it at move-out inspection", "Hold it for 60 days"], n: ["", "The rule is about the postmark, not receipt.", "Nothing requires a refund at the move-out inspection. The landlord has 30 days, measured by the postmark.", "Sixty days is too long. The refund and accounting must be postmarked within 30 days."], w: "The letter must be postmarked by the end of the 30-day period. It doesn't have to be received within 30 days." },
   { id: "le8", t: "leases", s: "POR2 p. 198", tx: true, q: "Texas law requires a residential landlord to install at least one smoke alarm:", c: ["In each separate bedroom", "Only in the kitchen", "Only if the tenant asks", "Only in multi-level units"], n: ["", "Bedrooms are required.", "It's required regardless.", "Each level also needs one, but bedrooms always do."], w: "A landlord must install at least one smoke alarm in each separate bedroom, plus one on each level." },
-  { id: "le9", t: "leases", s: "POR2 p. 198", tx: true, q: "Under Texas rules, fire extinguishers in a rental unit:", c: ["Aren't required, but if provided the landlord must inspect and repair them", "Are required in every room", "Are the tenant's responsibility", "Are required only in apartments"], n: ["", "This isn't the rule.", "The landlord is responsible if they're provided.", "This isn't the rule."], w: "Fire extinguishers aren't required. If provided, the landlord is responsible for inspecting and repairing them." },
+  { id: "le9", t: "leases", s: "POR2 p. 198", tx: true, q: "Under Texas rules, fire extinguishers in a rental unit:", c: ["Aren't required, but if provided the landlord must inspect and repair them", "Are required in every room", "Are the tenant's responsibility", "Are required only in apartments"], n: ["", "Texas doesn't require fire extinguishers at all. The rule only applies if the landlord provides them.", "The landlord is responsible if they're provided.", "There's no apartment-only requirement. Extinguishers are optional; if provided, the landlord maintains them."], w: "Fire extinguishers aren't required. If provided, the landlord is responsible for inspecting and repairing them." },
   { id: "le10", t: "leases", s: "POR2 p. 227", q: "A property manager with broad authority over an owner's building is usually the owner's:", c: ["General agent", "Special agent", "Subagent", "Customer"], n: ["", "A special agent handles one specific task.", "A subagent works through another broker.", "A customer isn't represented."], w: "A property manager is either an employee or a general agent of the owner, with broad responsibility." },
   { id: "le11", t: "leases", s: "POR2 p. 227", q: "A property manager's employment contract is the:", c: ["Management agreement", "Listing agreement", "Lease", "Bill of sale"], n: ["", "A listing is for selling property.", "A lease is with tenants.", "A bill of sale transfers personal property."], w: "The role of a property manager is established by a written management agreement." },
   { id: "le12", t: "leases", s: "POR2 p. 227", q: "In most cases, a property manager's primary duty is to:", c: ["Maximize income while preserving the property's value", "Minimize vacancies at any cost", "Sell the property", "Lower rents"], n: ["", "Value must be preserved too.", "That isn't the manager's role.", "That isn't the goal."], w: "The primary duty is to maximize income while preserving the value of the asset." },
@@ -1868,9 +2032,9 @@ QUESTIONS.push(
   { id: "fh7", t: "fairhousing", s: "POR2 p. 248", q: "A tenant with a disability needs grab bars installed. Under fair housing law:", c: ["The landlord must allow reasonable modifications at the tenant's expense", "The landlord must pay for all modifications", "The landlord may refuse any changes", "Only owner-occupied buildings must allow them"], n: ["", "The tenant pays for the modification.", "Refusing isn't allowed.", "This isn't limited to owner-occupied buildings."], w: "A landlord may not refuse reasonable modifications at the tenant's expense, and may require restoration when reasonable." },
   { id: "fh8", t: "fairhousing", s: "POR2 p. 250", q: "Housing for older persons may qualify for an exemption if at least one person aged 55 or older lives in at least what share of occupied units?", c: ["80%", "50%", "100%", "62%"], n: ["", "This is too low.", "That's the 62-and-older test.", "62 is an age, not a percentage."], w: "The 55-and-older test requires at least one person aged 55+ in at least 80% of occupied units, plus a policy showing that intent." },
   { id: "fh9", t: "fairhousing", s: "POR2 p. 250", q: "A complaint to HUD must be filed within:", c: ["One year after the alleged discrimination", "30 days", "Two years", "Five years"], n: ["", "This is too short.", "That's the deadline for a private lawsuit.", "This is too long."], w: "A HUD complaint must be filed within one year after the last discriminatory act." },
-  { id: "fh10", t: "fairhousing", s: "POR2 p. 250", q: "A private fair housing lawsuit must be filed in court within:", c: ["Two years of the alleged act", "One year", "180 days", "Ten years"], n: ["", "That's the HUD deadline.", "This isn't the deadline.", "This isn't the deadline."], w: "A private enforcement action must be brought within two years of the alleged act." },
+  { id: "fh10", t: "fairhousing", s: "POR2 p. 250", q: "A private fair housing lawsuit must be filed in court within:", c: ["Two years of the alleged act", "One year", "180 days", "Ten years"], n: ["", "That's the HUD deadline.", "180 days isn't a fair housing deadline in the course. HUD complaints: one year. Private lawsuits: two years.", "Ten years is far too long. A private lawsuit must be filed within two years."], w: "A private enforcement action must be brought within two years of the alleged act." },
   { id: "fh11", t: "fairhousing", s: "POR2 p. 251", tx: true, q: "The Texas Fair Housing Act, passed in 1989:", c: ["Recognizes the same protected classes as federal law", "Adds age as a protected class", "Applies only to rentals", "Replaced the federal law in Texas"], n: ["", "The course says the classes are the same.", "It covers sales and rentals.", "Federal law still applies."], w: "Texas passed its Fair Housing Act in 1989. It closely parallels federal law with the same protected classes." },
-  { id: "fh12", t: "fairhousing", s: "POR2 p. 250", tx: true, q: "In Texas, a fair housing complaint can be filed with the Texas Workforce Commission Civil Rights Division within:", c: ["365 days of the alleged harm", "90 days", "Two years", "30 days"], n: ["", "This isn't the deadline.", "Two years is for a court action.", "This isn't the deadline."], w: "A complaint can be filed with the TWC Civil Rights Division within 365 calendar days." },
+  { id: "fh12", t: "fairhousing", s: "POR2 p. 250", tx: true, q: "In Texas, a fair housing complaint can be filed with the Texas Workforce Commission Civil Rights Division within:", c: ["365 days of the alleged harm", "90 days", "Two years", "30 days"], n: ["", "Ninety days is too short. The TWC Civil Rights Division accepts complaints for 365 days.", "Two years is for a court action.", "Thirty days is too short. The TWC deadline is 365 days."], w: "A complaint can be filed with the TWC Civil Rights Division within 365 calendar days." },
   { id: "fh13", t: "fairhousing", s: "POR2 p. 250", q: "What penalties apply to fair housing violations, according to the course?", c: ["Civil remedies only, with no criminal penalties", "Mandatory jail time", "Criminal fines only", "License revocation only"], n: ["", "Violations are civil offenses.", "There are no criminal penalties.", "Remedies include actual and punitive damages."], w: "A violation is a civil offense, so there are no criminal penalties. Remedies include actual and punitive damages." },
   { id: "fh14", t: "fairhousing", s: "POR2 p. 245", q: "Which protected classes were added to the federal Fair Housing Act in 1988?", c: ["Handicap and familial status", "Sex and religion", "Race and color", "Age and marital status"], n: ["", "Sex was added in 1974, and religion was in the 1968 Act.", "These were in the 1968 Act.", "Neither is protected under this law."], w: "Sex was added in 1974. Handicap and familial status were added in 1988." },
   { id: "fh15", t: "fairhousing", s: "POR2 p. 245", q: "Which case confirmed that the Civil Rights Act of 1866 bars racial discrimination with no exceptions?", c: ["Jones v. Alfred H. Mayer Co.", "Kelo v. City of New London", "Brown v. Board of Education", "Shelley v. Kraemer"], n: ["", "Kelo is an eminent domain case.", "That's a school case, not the one the course cites.", "That isn't the case the course cites."], w: "In 1968, Jones v. Alfred H. Mayer Co. held that the 1866 law prohibits racial discrimination without exception." },
@@ -1895,7 +2059,7 @@ QUESTIONS.push(
   { id: "tr11", t: "trela", s: "POR2 p. 113", q: "Someone who, for compensation, locates apartment units for prospective tenants is a:", c: ["Residential rental locator", "Property manager", "Easement or right-of-way agent", "Inspector"], n: ["", "A property manager manages for an owner.", "That agent deals in easements.", "Inspectors examine property."], w: "TRELA defines a residential rental locator as someone who, for consideration, locates apartment units for tenants. It doesn't include an owner locating units in their own complex." },
   { id: "tr12", t: "trela", s: "POR2 p. 113", q: "A person who buys or sells easements for a pipeline company for compensation must hold:", c: ["A certificate of registration as an easement or right-of-way agent", "A broker license", "An inspector license", "Nothing"], n: ["", "TRELA creates a separate certificate for this.", "This isn't the credential.", "Registration is required."], w: "Easement or right-of-way agents are certificate holders registered under Subchapter K." },
   { id: "tr13", t: "trela", s: "POR2 p. 150", q: "A Texas broker applicant needs:", c: ["900 education hours and 4 years of active sales agent experience in the last 5", "180 hours and 1 year of experience", "270 hours and no experience", "A college degree"], n: ["", "That's the sales agent education level.", "270 hours is part of the 900.", "No degree is required."], w: "The broker requirement is 900 hours, 270 of them in qualifying real estate courses, plus 4 years active in the 5 years before applying." },
-  { id: "tr14", t: "trela", s: "POR2 p. 151", q: "After filing a license application, the applicant must pass the exam within:", c: ["One year", "Six months", "Two years", "90 days"], n: ["", "This isn't the deadline.", "This isn't the deadline.", "This isn't the deadline."], w: "§1101.355(f) requires the exam to be passed within one year after the application is filed." },
+  { id: "tr14", t: "trela", s: "POR2 p. 151", q: "After filing a license application, the applicant must pass the exam within:", c: ["One year", "Six months", "Two years", "90 days"], n: ["", "Six months is too short. Applicants have one year from filing to pass.", "Two years is too long. The exam must be passed within one year of filing.", "Ninety days is too short. The deadline is one year after the application is filed."], w: "§1101.355(f) requires the exam to be passed within one year after the application is filed." },
   { id: "tr15", t: "trela", s: "POR2 p. 120", q: "Under TRELA, TREC is subject to:", c: ["The Texas Sunset Act", "The federal Administrative Procedure Act only", "Oversight by the State Bar", "Approval by HUD"], n: ["", "TRELA names the Sunset Act.", "The State Bar doesn't oversee TREC.", "HUD has no role here."], w: "TREC is subject to the Texas Sunset Act and is abolished unless continued." },
   { id: "tr16", t: "trela", s: "POR2 p. 168", q: "A Texas broker may share a commission with:", c: ["A broker licensed in another state who doesn't negotiate in Texas", "An unlicensed friend who referred the buyer", "The buyer's attorney as a referral fee", "Any person the seller approves"], n: ["", "An unlicensed person can't be paid for brokerage.", "This isn't permitted under §1101.651.", "Approval doesn't make it legal."], w: "A broker may pay only license holders or out-of-state brokers who don't negotiate in Texas." },
   { id: "tr17", t: "trela", s: "POR2 p. 173", q: "If a license holder who isn't an attorney engages in the unauthorized practice of law, TREC:", c: ["Shall suspend or revoke the license", "May only issue a warning", "Has no authority", "Must refer it to HUD"], n: ["", "The statute requires discipline.", "§1101.654 gives TREC the authority.", "HUD isn't involved."], w: "§1101.654 directs TREC to suspend or revoke the license for the unauthorized practice of law." },
@@ -1909,9 +2073,9 @@ QUESTIONS.push(
   { id: "ag13", t: "agency", s: "AG p. 84", q: "Which listing type most often leads to procuring cause lawsuits between brokers?", c: ["Open listing", "Exclusive right to sell", "Exclusive agency", "Buyer representation"], n: ["", "It avoids such disputes because only one broker can sell.", "There's only one broker.", "That's a buyer agreement."], w: "With several brokers competing, open listings often produce disputes over who was the procuring cause." },
   { id: "ag14", t: "agency", s: "AG p. 85", q: "Under TREC rules, a broker should take a net listing only when:", c: ["The principal insists and appears familiar with current market values", "The broker is sure of a high profit", "The property is commercial", "Never. Net listings are illegal in Texas"], n: ["", "That puts the broker's interest first.", "Property type isn't the test.", "They're legal in Texas but discouraged."], w: "Net listings are legal in Texas, but TREC says to take one only when the principal insists and knows market values." },
   { id: "ag15", t: "agency", s: "AG p. 57", q: "In a sales agent's advertisement, the broker's name must appear:", c: ["At least half the size of the largest agent or team contact information", "In the same font as the agent's name", "Only on yard signs", "Only if the broker asks"], n: ["", "Size, not font, is the rule.", "It applies to all advertisements.", "It's required."], w: "TREC Rule 535.155 requires the broker's name in at least half the size of the largest contact information." },
-  { id: "ag16", t: "agency", s: "AG p. 58", q: "Which team name would violate TREC advertising rules?", c: ["\"The Garcia Group Company\"", "\"The Garcia Team\"", "\"Garcia Home Group\"", "\"Team Garcia\""], n: ["", "This doesn't imply an independent brokerage.", "This doesn't imply an independent brokerage.", "This doesn't imply an independent brokerage."], w: "Team names can't use terms like \"company,\" \"brokerage,\" or \"associates\" that imply independence from the sponsoring broker." },
-  { id: "ag17", t: "agency", s: "AG p. 66", q: "Where must a license holder display the IABS and the Consumer Protection Notice (CN 1-5)?", c: ["On their business website, not necessarily in every social post", "In every social media post", "Only in the office", "Only on yard signs"], n: ["", "Links aren't required in every post.", "The website requirement applies.", "This isn't the rule."], w: "Completed versions of both notices must be on the business website. They don't have to be in each social media ad." },
-  { id: "ag18", t: "agency", s: "AG p. 176", q: "Which task may an unlicensed assistant NOT perform?", c: ["Showing a broker's listing to prospective buyers", "Filing paperwork", "Scheduling the agent's calendar", "Ordering yard signs"], n: ["", "Administrative tasks are fine.", "Administrative tasks are fine.", "Administrative tasks are fine."], w: "TREC Rule 535.4(c) requires a license to show a broker's listings. Soliciting must also be done by license holders." },
+  { id: "ag16", t: "agency", s: "AG p. 58", q: "Which team name would violate TREC advertising rules?", c: ["\"The Garcia Group Company\"", "\"The Garcia Team\"", "\"Garcia Home Group\"", "\"Team Garcia\""], n: ["", "\"Team\" is allowed. The problem words are ones like company, brokerage, or associates.", "\"Group\" on its own is fine. Adding \"Company\" is what breaks the rule.", "\"Team\" is allowed. It doesn't suggest a separate brokerage."], w: "Team names can't use terms like \"company,\" \"brokerage,\" or \"associates\" that imply independence from the sponsoring broker." },
+  { id: "ag17", t: "agency", s: "AG p. 66", q: "Where must a license holder display the IABS and the Consumer Protection Notice (CN 1-5)?", c: ["On their business website, not necessarily in every social post", "In every social media post", "Only in the office", "Only on yard signs"], n: ["", "Links aren't required in every post.", "The website requirement applies.", "Yard signs don't carry these notices. They belong on the business website."], w: "Completed versions of both notices must be on the business website. They don't have to be in each social media ad." },
+  { id: "ag18", t: "agency", s: "AG p. 176", q: "Which task may an unlicensed assistant NOT perform?", c: ["Showing a broker's listing to prospective buyers", "Filing paperwork", "Scheduling the agent's calendar", "Ordering yard signs"], n: ["", "Filing paperwork is administrative work an unlicensed assistant may do.", "Managing a calendar is administrative and doesn't need a license.", "Ordering signs is administrative. Showing listings is what needs a license."], w: "TREC Rule 535.4(c) requires a license to show a broker's listings. Soliciting must also be done by license holders." },
   { id: "ag19", t: "agency", s: "AG p. 20", q: "Who owns a listing taken by a sales agent?", c: ["The sponsoring broker", "The sales agent", "The seller's attorney", "The MLS"], n: ["", "The agent acts for the broker.", "The attorney isn't a party.", "The MLS shares listing data; it doesn't own listings."], w: "Paperwork is in the broker's name, and the broker owns all of the firm's listings." },
 
   /* forms */
@@ -1926,15 +2090,15 @@ QUESTIONS.push(
   { id: "fo16", t: "forms", s: "CON p. 16", q: "Under TREC rules, a license holder may NOT:", c: ["Discourage a principal from hiring a lawyer", "Explain the choices on a TREC form", "Fill in blanks on a TREC form", "Strike text as the parties direct in writing"], n: ["", "Explaining the choices is allowed.", "Filling in blanks is allowed.", "Striking text as directed is allowed."], w: "Rule 537.11 prohibits attempting to prevent or discourage a principal from employing a lawyer." },
   { id: "fo17", t: "forms", s: "PCF p. 14", q: "After the inspection, the seller agrees to make repairs. The parties should:", c: ["Sign an amendment to the contract", "Write the repairs into the original Paragraph 11", "Rely on a verbal agreement", "Start a new contract"], n: ["", "Changes after signing call for an amendment.", "Oral changes aren't binding.", "That isn't necessary."], w: "When a seller agrees to repairs or a financial adjustment, an amendment to the contract is needed." },
   { id: "fo18", t: "forms", s: "PCF p. 210", q: "Which TREC form lets the buyer check one of several reasons for terminating?", c: ["Notice of Buyer's Termination of Contract", "Third Party Financing Addendum", "Amendment to Contract", "Seller's Disclosure Notice"], n: ["", "That covers financing terms.", "That changes terms.", "That's a disclosure."], w: "The Notice of Buyer's Termination of Contract is a multipurpose form listing specific reasons to terminate." },
-  { id: "fo19", t: "forms", s: "PCF p. 59", q: "Federal law requires the lead-based paint addendum for a residential dwelling built:", c: ["Before 1978", "Before 1990", "After 1978", "In any year"], n: ["", "This isn't the cutoff.", "It's the reverse.", "Only older homes."], w: "The seller's lead-based paint disclosure is required by federal law for housing built before 1978." },
+  { id: "fo19", t: "forms", s: "PCF p. 59", q: "Federal law requires the lead-based paint addendum for a residential dwelling built:", c: ["Before 1978", "Before 1990", "After 1978", "In any year"], n: ["", "1990 is too late. The cutoff is homes built before 1978.", "It's the reverse.", "Only older homes."], w: "The seller's lead-based paint disclosure is required by federal law for housing built before 1978." },
 
   /* txproperty */
   { id: "tp8", t: "txproperty", s: "POR1 p. 34", q: "An urban homestead in Texas is limited to:", c: ["10 contiguous acres", "1 acre", "100 acres", "200 acres"], n: ["", "This is too small.", "That's the rural limit for an individual.", "That's the rural limit for a family."], w: "An urban homestead is limited to 10 acres of land, which must be contiguous, plus improvements." },
   { id: "tp9", t: "txproperty", s: "POR1 p. 34", q: "A married couple's rural homestead can include up to:", c: ["200 acres, which may be non-contiguous", "100 acres, which must be contiguous", "10 acres", "Unlimited acres"], n: ["", "100 acres is the limit for an individual.", "That's the urban limit.", "There's an acreage cap."], w: "A rural homestead can be up to 200 acres for a family (100 for an individual), and the tracts may be non-contiguous." },
-  { id: "tp10", t: "txproperty", s: "POR1 p. 34", q: "Is there an upper limit on the value of a Texas homestead?", c: ["No. There is no value limit", "Yes, $500,000", "Yes, $1 million", "Yes, it's set by each county"], n: ["", "The limits are on acreage, not value.", "The limits are on acreage, not value.", "This isn't the rule."], w: "Texas places no upper limit on the value of a homestead. Only acreage is limited." },
+  { id: "tp10", t: "txproperty", s: "POR1 p. 34", q: "Is there an upper limit on the value of a Texas homestead?", c: ["No. There is no value limit", "Yes, $500,000", "Yes, $1 million", "Yes, it's set by each county"], n: ["", "The limits are on acreage, not value.", "The limits are on acreage, not value.", "Counties don't set a homestead value cap. Texas limits only acreage, not value."], w: "Texas places no upper limit on the value of a homestead. Only acreage is limited." },
   { id: "tp11", t: "txproperty", s: "POR1 p. 34", q: "A Texas homeowner wants to waive homestead protection in a contract. Can she?", c: ["No. Protection is automatic and can't be waived", "Yes, in writing", "Yes, with a lender's consent", "Only if she's single"], n: ["", "A written waiver doesn't work.", "Lender consent doesn't work.", "Marital status doesn't matter."], w: "Homestead protection is automatic and can't be waived by contract or other written agreement." },
   { id: "tp12", t: "txproperty", s: "POR1 p. 34", q: "Selling or encumbering a married couple's Texas homestead requires:", c: ["The signatures of both spouses", "Only the spouse named on the deed", "A court order", "TREC approval"], n: ["", "Both spouses must sign.", "No court order is needed.", "TREC isn't involved."], w: "For a married couple, both spouses' signatures are required to sell or encumber the homestead." },
-  { id: "tp13", t: "txproperty", s: "FIN p. 55", q: "The Texas home equity consumer disclosure must be given at least how long before closing?", c: ["12 days", "3 business days", "30 days", "1 day"], n: ["", "That's the TRID Closing Disclosure timing.", "This isn't the rule.", "This isn't the rule."], w: "The equity loan consumer disclosure must be given at least 12 days before closing." },
+  { id: "tp13", t: "txproperty", s: "FIN p. 55", q: "The Texas home equity consumer disclosure must be given at least how long before closing?", c: ["12 days", "3 business days", "30 days", "1 day"], n: ["", "That's the TRID Closing Disclosure timing.", "Thirty days isn't the rule. The equity loan disclosure must come at least 12 days before closing.", "One day is far too short. The disclosure must come at least 12 days before closing."], w: "The equity loan consumer disclosure must be given at least 12 days before closing." },
   { id: "tp14", t: "txproperty", s: "FIN p. 56", q: "A Texas home equity line of credit can't exceed:", c: ["80% of the home's market value minus other loans on it", "100% of market value", "50% of the purchase price", "The county appraised value"], n: ["", "This exceeds the cap.", "50% relates to the advance limits, not the maximum line.", "This isn't the measure."], w: "The maximum line of credit is 80% of market value minus any loans secured by the home." },
   { id: "tp15", t: "txproperty", s: "POR1 p. 136", q: "In Texas, the power of eminent domain is commonly granted to:", c: ["Private parties such as utility companies", "Only the federal government", "Real estate brokers", "Homeowners' associations"], n: ["", "Others hold it too.", "Brokers don't have this power.", "HOAs don't have this power."], w: "In Texas, eminent domain is commonly granted to private parties, including utility companies acquiring easements." },
 
@@ -2287,6 +2451,15 @@ const IC = {
   check:P_('<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>'),
   sliders:P_('<path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/>'),
   calendar:P_('<rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/>'),
+  refresh:P_('<path d="M20 11a8 8 0 0 0-14.5-4.5L4 8"/><path d="M4 3.5V8h4.5"/><path d="M4 13a8 8 0 0 0 14.5 4.5L20 16"/><path d="M20 20.5V16h-4.5"/>'),
+  cloud:P_('<path d="M7 18.5h10.5a4 4 0 0 0 .6-7.95A6 6 0 0 0 6.6 9.1 4.75 4.75 0 0 0 7 18.5z"/><path d="M9.5 13.5l2 2 3.5-3.5"/>'),
+  download:P_('<path d="M12 4v11M7.5 10.5 12 15l4.5-4.5M5 19.5h14"/>'),
+  upload:P_('<path d="M12 15.5v-11M7.5 9 12 4.5 16.5 9M5 19.5h14"/>'),
+  minus:P_('<path d="M5 12h14"/>'),
+  plus:P_('<path d="M12 5v14M5 12h14"/>'),
+  pause:P_('<rect x="7" y="5" width="3.5" height="14" rx="1"/><rect x="13.5" y="5" width="3.5" height="14" rx="1"/>'),
+  skipBack:P_('<path d="M18 6l-8 6 8 6z"/><path d="M6 6v12"/>'),
+  skipFwd:P_('<path d="M6 6l8 6-8 6z"/><path d="M18 6v12"/>'),
   chevUp:P_('<path d="M6 15l6-6 6 6"/>'),
   search:P_('<circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/>'),
   sun:P_('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
@@ -2368,7 +2541,7 @@ const KEY = "aurely-trec-study-v1";
 const fresh = () => ({ read:{}, stats:{}, bookmarks:{}, reviewTopics:{}, lastTopic:null, days:{}, prefs:{ sound:false, motion:"system", timed:false, text:"md" }, session:null, lastResult:null, exam:null, examHistory:[], lastExam:null });
 let S = fresh();
 try { const raw = localStorage.getItem(KEY); if (raw) S = Object.assign(fresh(), JSON.parse(raw)); S.prefs = Object.assign(fresh().prefs, S.prefs); if (!S.prefs.theme) S.prefs.theme = "system"; } catch(e) {}
-const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} };
+const save = quiet => { if (quiet !== true) S.savedAt = Date.now(); try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {} if (typeof syncSoon === "function") syncSoon(); };
 
 /* ---------- prefs ---------- */
 function setTB(){ const tb = document.querySelector(".topbar"); document.documentElement.style.setProperty("--tb", (tb ? tb.offsetHeight : 0) + "px"); }
@@ -2428,6 +2601,8 @@ function placeToast(t){
   let bottom = 16;
   const nav = document.querySelector(".tabbar nav");
   if (nav){ const r = nav.getBoundingClientRect(); if (r.height) bottom = Math.max(bottom, innerHeight - r.top + 12); }
+  const tb = document.getElementById("ttsbar");
+  if (tb){ const r = tb.getBoundingClientRect(); if (r.height) bottom = Math.max(bottom, innerHeight - r.top + 10); }
   const sn = document.querySelector(".stickynext");
   if (sn){ const r = sn.getBoundingClientRect(); if (r.height && r.top < innerHeight) bottom = Math.max(bottom, innerHeight - r.top + 10); }
   t.style.bottom = bottom + "px";
@@ -2449,11 +2624,11 @@ function toast(msg, action){
 window.addEventListener("resize", () => { const t = document.querySelector(".toast"); if (t) placeToast(t); });
 function srcLabel(s){ return s.replace(/\b(POR1|POR2|AG|CON|PCF|FIN)\b( ·)?/g, (m, c) => SOURCES[c].name + " ·"); }
 function srcFile(s){ const src = SOURCES[s.split(" ")[0]]; return src ? src.file : ""; }
-function srcChip(s){ return `<span class="src" title="${esc(srcFile(s))}">${I.book}<span>${esc(srcLabel(s))}</span></span>`; }
+function srcChip(s){ return srcChipLinked(s); }
 const topicQs = id => QUESTIONS.filter(q => q.t === id);
 function topicStats(id){
   const qs = topicQs(id), t = TOPIC[id];
-  const right = qs.filter(q => S.stats[q.id] && S.stats[q.id].last).length;
+  const right = qs.filter(q => isMastered(S.stats[q.id])).length;
   const seen = qs.filter(q => S.stats[q.id]).length;
   const read = t.lessons.filter((_, i) => S.read[id + ":" + i]).length;
   return { total: qs.length, right, seen, read, lessons: t.lessons.length, pct: qs.length ? Math.round(right / qs.length * 100) : 0 };
@@ -2468,7 +2643,8 @@ let CUR = (location.hash || "#home").slice(1) || "home";
 function route(){
   const h = CUR;
   if (h.startsWith("topic-")) return { name:"topic", id:h.slice(6) };
-  return { name: ["home","topics","review","prefs","sources","quiz","results","exam","exam-run","exam-results","glossary","search"].includes(h) ? h : "home" };
+  if (h.startsWith("read-")){ const rr = readRoute(h); if (rr) return rr; }
+  return { name: ["home","topics","review","prefs","sources","quiz","results","exam","exam-run","exam-results","glossary","search","drill","cards","plan","examday","books"].includes(h) ? h : "home" };
 }
 function go(h){
   h = h || "home"; CUR = h;
@@ -2488,15 +2664,15 @@ document.addEventListener("click", e => {
 
 function render(){
   const r = route();
-  const tab = r.name === "topic" ? "topics" : (r.name === "quiz" || r.name === "results" || r.name === "search") ? "" : r.name === "sources" ? "prefs" : r.name === "glossary" ? "topics" : r.name.startsWith("exam") ? "exam" : r.name;
+  const tab = r.name === "topic" ? "topics" : (r.name === "quiz" || r.name === "results" || r.name === "search" || r.name === "drill" || r.name === "cards") ? "" : r.name === "sources" ? "prefs" : (r.name === "glossary" || r.name === "books" || r.name === "read") ? "topics" : r.name.startsWith("exam") ? "exam" : r.name;
   document.querySelectorAll("[data-tab]").forEach(a => { if (a.dataset.tab === tab) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
   stopTimer(); stopExamTimer();
   setTimeout(setTB, 0);
   const isWide = ["home","topics","glossary"].includes(r.name);
   view.classList.toggle("wide", isWide);
-  const rd = $("#revdot"); if (rd) rd.hidden = !QUESTIONS.some(q => S.stats[q.id] && !S.stats[q.id].last);
-  ({ search:renderSearch, glossary:renderGlossary, "exam":renderExam, "exam-run":renderExamRun, "exam-results":renderExamResults, home:renderHome, topics:renderTopics, topic:renderTopic, quiz:renderQuiz, results:renderResults, review:renderReview, prefs:renderPrefs, sources:renderSources })[r.name](r);
-  applyTheme(); syncMute();
+  srsInit(); const rd = $("#revdot"); if (rd) rd.hidden = !srsDue().length;
+  ({ search:renderSearch, glossary:renderGlossary, "exam":renderExam, "exam-run":renderExamRun, "exam-results":renderExamResults, home:renderHome, topics:renderTopics, topic:renderTopic, quiz:renderQuiz, drill:renderDrill, cards:renderCards, plan:renderPlan, examday:renderExamday, books:renderBooks, read:renderRead, results:renderResults, review:renderReview, prefs:renderPrefs, sources:renderSources })[r.name](r);
+  applyTheme(); syncMute(); syncAfterRender(r.name); markStuck(); ttsAfterRender(r);
 }
 
 /* ---------- home ---------- */
@@ -2526,7 +2702,7 @@ function tipOfDay(){
 }
 function renderHome(){
   const ns = nextStep(); ensureLog();
-  const mastered = QUESTIONS.filter(q => S.stats[q.id] && S.stats[q.id].last).length;
+  const mastered = QUESTIONS.filter(q => isMastered(S.stats[q.id])).length;
   const pct = Math.round(mastered / QUESTIONS.length * 100);
   const groups = [["gen","General real estate"],["tx","Texas-specific"]];
   const tip = tipOfDay(), dc = dailyChallenge(), wk = weekDots();
@@ -2569,7 +2745,7 @@ function renderHome(){
       <a class="tile t-exam" href="#exam">
         <span class="tile-head">${iconTile("target", 2, "sm")}</span>
         <span class="tile-big">${S.exam ? "Resume<br>exam" : "Practice<br>exam"}</span>
-        <span class="tile-text small">National 85 + State 40, timed like test day</span>
+        <span class="tile-text small">National 85 + State 50, timed like test day</span>
       </a>
       <div class="tile t-mastery" role="img" aria-label="${pct} percent of questions mastered">
         <svg viewBox="0 0 72 72" class="tring" aria-hidden="true"><circle cx="36" cy="36" r="${r}" class="bg"/><circle cx="36" cy="36" r="${r}" class="fg" stroke-dasharray="${circ.toFixed(1)}" stroke-dashoffset="${(circ * (1 - pct / 100)).toFixed(1)}" transform="rotate(-90 36 36)"/></svg>
@@ -2584,20 +2760,21 @@ function renderHome(){
       <a class="tile t-review" href="#review">
         <span class="tile-head">${iconTile("bookmark", 7, "sm")}</span>
         <b class="tile-title">Review</b>
-        <span class="tile-text small">${missed ? `${missed} missed question${missed > 1 ? "s" : ""}` : "Missed and saved questions"}</span>
+        <span class="tile-text small">${srsDueText() || (missed ? `${missed} missed question${missed > 1 ? "s" : ""}` : "Missed and saved questions")}</span>
       </a>
-      <div class="tile t-week">
-        <span class="tile-head">${iconTile("calendar", 1, "sm")}</span>
-        <span class="tile-big num">${wk.count}</span>
-        <span class="tile-text small">questions in the last 7 days</span>
-      </div>
+      ${planTileHTML()}
+      <button type="button" class="tile t-drill" id="drillGo">
+        <span class="tile-head">${iconTile("calc", 6, "sm")}<b>Math drills</b></span>
+        <span class="tile-text">Unlimited practice with new numbers every time</span>
+        <span class="tile-go" aria-hidden="true">${IC.arrow}</span>
+      </button>
       ${last ? `<div class="tile t-last receipt">
         <div class="receipt-top"><b>${esc(last.label)}</b><span>${esc(last.score)}</span></div>
         <dl><dt>Type</dt><dd>${mkr(last.type)}${esc(LOGT[last.type].name)}</dd>
           ${last.t ? `<dt>Topic</dt><dd><a href="#topic-${last.t}">${esc(TOPIC[last.t].title)}</a></dd>` : ""}
           <dt>Date</dt><dd>${new Date(last.at).toLocaleDateString(undefined,{ weekday:"short", month:"short", day:"numeric" })}</dd></dl>
       </div>` : ""}
-      ${tip ? `<a class="tile t-tip ${last ? "" : "solo"}" href="#topic-${tip.t.id}">
+      ${tip ? `<a class="tile t-tip ${last ? "solo" : ""}" href="#topic-${tip.t.id}">
         <span class="tile-head">${iconTile("bulb", 5, "sm")}<span class="mh-text"><b>Tip of the day</b><small>${esc(tip.t.title)}</small></span></span>
         <span class="tile-text">${esc(tip.txt)}</span>
       </a>` : ""}
@@ -2614,7 +2791,7 @@ function renderHome(){
     <p class="disclaimer">Practice questions are written from Aurely's course PDFs. They are not official exam questions, and a practice score doesn't predict exam results.</p>
   </div>`;
   $("#cont").onclick = ns.act; $("#cont2").onclick = ns.act;
-  $("#mixed").onclick = startMixed;
+  $("#mixed").onclick = startMixed; $("#drillGo").onclick = startDrills;
   $("#dcGo").onclick = () => startDaily(dc);
 }
 function topicCard(t){
@@ -2631,7 +2808,7 @@ function topicCard(t){
 function renderTopics(){
   view.innerHTML = `<div class="stack-lg">
     <header class="stack" style="gap:6px"><h1>Topics</h1><p class="muted">${TOPICS.length} topics from six course books. Texas-specific topics are marked.</p></header>
-    <div class="linkrow"><a href="#glossary">${iconTile("books", 3, "sm")}Key terms (${GLOSSARY.length})</a><a href="#search">${iconTile("search", 2, "sm")}Search</a></div>
+    <div class="linkrow"><a href="#glossary">${iconTile("books", 3, "sm")}Key terms (${GLOSSARY.length})</a><a href="#search">${iconTile("search", 2, "sm")}Search</a><a href="#books">${iconTile("layers", 6, "sm")}Course books</a></div>
     <div class="stack-lg" id="tlists">
     ${[["gen","General real estate concepts","Ideas tested across most states."],["tx","Texas-specific","Texas law, TREC rules, and promulgated forms."]].map(([g,h,d]) => `
       <section class="stack" style="gap:10px"><div><h2>${h}</h2><p class="small muted">${d}</p></div>
@@ -2676,6 +2853,7 @@ function renderTopic(r){
       <h2>Practice this topic</h2>
       <p class="small muted">${st.total} questions, one at a time, with an explanation after each answer.</p>
       <button class="btn btn-primary btn-block" id="practice">Start practice</button>
+      ${t.id === "math" ? `<button class="btn btn-quiet btn-block" id="drills">${IC.calc}<span>Unlimited math drills</span></button>` : ""}
       <div class="row" style="flex-wrap:wrap;justify-content:space-between">
         <button class="linkbtn" id="timed">Start timed practice instead</button>
         <button class="linkbtn" id="markrev" aria-pressed="${!!S.reviewTopics[t.id]}">${S.reviewTopics[t.id] ? "Unmark for review" : "Mark topic for review"}</button>
@@ -2693,6 +2871,7 @@ function renderTopic(r){
     if (!open && S.dailyLesson && S.dailyLesson.key === todayKey() && S.dailyLesson.t === t.id && S.dailyLesson.i === +box.dataset.i && !(S.daily || {})[todayKey()]) markDaily({ score:"lesson read" });
     if (!open){ const k = t.id + ":" + box.dataset.i; if (!S.read[k]){ S.read[k] = true; save(); box.classList.add("read"); box.querySelector(".lnum").innerHTML = I.check.replace('aria-hidden="true"','aria-hidden="true" width="16" height="16"'); const st2 = topicStats(t.id); if (st2.read === st2.lessons){ toast("All lessons read. Ready to practice?", { label:"Practice", fn:() => startRound(topicQs(t.id).map(q => q.id), t.id, S.prefs.timed) }); tone("done"); } } }
   });
+  if ($("#drills")) $("#drills").onclick = startDrills;
   $("#practice").onclick = () => startRound(topicQs(t.id).map(q => q.id), t.id, S.prefs.timed);
   $("#timed").onclick = () => startRound(topicQs(t.id).map(q => q.id), t.id, true);
   $("#markrev").onclick = () => { if (S.reviewTopics[t.id]) delete S.reviewTopics[t.id]; else S.reviewTopics[t.id] = true; save(); render(); };
@@ -2702,6 +2881,7 @@ function lessonHTML(t, l, i, open){
   return `<article class="lesson ${read ? "read" : ""}" data-i="${i}" data-open="${open ? 1 : 0}">
     <button type="button" aria-expanded="${open}" aria-controls="lb-${t.id}-${i}"><span class="lnum">${read ? I.check.replace('aria-hidden="true"','aria-hidden="true" width="16" height="16"') : i + 1}</span><span class="grow"><h3>${esc(l.h)}</h3>${l.tx && t.group !== "tx" ? '<span class="small" style="color:var(--warm);font-weight:600">Texas-specific</span>' : ""}</span>${I.chev}</button>
     <div class="lbody" id="lb-${t.id}-${i}" ${open ? "" : "hidden"}>
+      ${listenBtnHTML(t, i)}
       ${l.b.map(p => `<p>${p}</p>`).join("")}
       ${l.flag ? `<div class="flag">${I.flag}<span><b>Verify:</b> ${esc(l.flag)}</span></div>` : ""}
       ${srcChip(l.s)}
@@ -2717,17 +2897,26 @@ function startRound(ids, topicId, timed){
   save(); go("quiz");
 }
 function startMixed(){
-  const weight = q => { const s = S.stats[q.id]; return !s ? 3 : s.last ? 1 : 4; };
+  const weight = q => { const s = S.stats[q.id]; return !s ? 3 : s.guess ? 3 : s.last ? 1 : 4; };
   const pool = shuffle(QUESTIONS).sort((a, b) => weight(b) - weight(a)).slice(0, 18);
   startRound(shuffle(pool).slice(0, 10).map(q => q.id), null, S.prefs.timed);
 }
 let timerId = null;
 function stopTimer(){ if (timerId){ clearInterval(timerId); timerId = null; } }
 function fmt(s){ s = Math.max(0, Math.round(s)); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+let PEEK = null;
+let stuckRaf = 0;
+function markStuck(){ stuckRaf = 0; document.querySelectorAll(".qtop").forEach(el => el.classList.toggle("stuck", window.scrollY > 8)); }
+window.addEventListener("scroll", () => { if (!stuckRaf) stuckRaf = requestAnimationFrame(markStuck); }, { passive:true });
+try { new MutationObserver(() => { if (!stuckRaf) stuckRaf = requestAnimationFrame(markStuck); }).observe(document.getElementById("view"), { childList:true }); } catch(e) {}
+function peekTo(n){ const ss = S.session; PEEK = (n === null || n >= ss.i) ? null : Math.max(0, n); renderQuiz(); window.scrollTo(0, 0); const f = $(PEEK === null ? "#next, .choice" : "#pNext"); if (f) f.focus(); announce(PEEK === null ? "Back to question " + (ss.i + 1) : "Question " + (PEEK + 1) + ", view only"); }
 function renderQuiz(){
   const ss = S.session;
   if (!ss || ss.i >= ss.ids.length) return go("home");
-  const q = QBY[ss.ids[ss.i]], ord = ss.order[ss.i], ans = ss.answers[q.id];
+  stopTimer();
+  if (PEEK !== null && PEEK >= ss.i) PEEK = null;
+  const cur = PEEK !== null ? PEEK : ss.i, peeking = PEEK !== null;
+  const q = QBY[ss.ids[cur]], ord = ss.order[cur], ans = ss.answers[q.id];
   const t = TOPIC[q.t];
   const done = ans !== undefined;
   const pct = Math.round((ss.i + (done ? 1 : 0)) / ss.ids.length * 100);
@@ -2735,12 +2924,13 @@ function renderQuiz(){
     <div class="qtop">
         <button class="iconbtn" id="quit" aria-label="Leave practice round" title="Leave round">${I.x}</button>
         <div class="bar" role="progressbar" aria-label="Round progress" aria-valuemin="0" aria-valuemax="${ss.ids.length}" aria-valuenow="${ss.i + (done ? 1 : 0)}"><span style="width:${pct}%"></span></div>
-        <span class="small muted num" style="white-space:nowrap">${ss.i + 1} / ${ss.ids.length}</span>
+        <span class="small muted num" style="white-space:nowrap">${cur + 1} / ${ss.ids.length}</span>
         ${muteBtnHTML()}
         ${ss.timed ? timerChip("timer", ss.limit - ss.elapsed, ss.limit - ss.elapsed <= 0) : ""}
       </div>
     <div class="stack" style="gap:10px">
       <div class="row small muted" style="flex-wrap:wrap;gap:8px"><span class="tchip" style="${tc(t.id)}">${IC[TSTYLE[t.id][1]]}${esc(t.title)}</span>${t.group === "tx" || q.tx ? '<span class="chip tx">Texas</span>' : ""}<span>Practice question</span></div>
+      ${peeking ? `<p class="peek-note">${I.check}<span>Your earlier answer. View only, it can't be changed.</span></p>` : ""}
     </div>
     <h1 class="qtext" id="qtext" style="font-family:var(--font-body)">${esc(q.q)}</h1>
     <ul class="choices" aria-labelledby="qtext">
@@ -2750,19 +2940,23 @@ function renderQuiz(){
         return `<li><button class="choice ${cls}" data-k="${k}" ${done ? "disabled" : ""} aria-label="${KEYS[pos]}. ${esc(q.c[k])}${done ? (k === 0 ? ". Correct answer" : k === ans ? ". Your answer, incorrect" : "") : ""}"><span class="key">${KEYS[pos]}</span><span class="ctext">${esc(q.c[k])}</span>${verdict ? `<span class="verdict">${verdict}</span>` : ""}</button></li>`;
       }).join("")}
     </ul>
-    ${done ? feedbackHTML(q, ans, ord) : `<p class="small muted">Choose an answer. You can also press ${ord.map((_, p) => KEYS[p]).join(", ")} on a keyboard.</p>`}
-    ${done ? `<div class="stickynext"><button class="btn btn-primary btn-block" id="next">${ss.i + 1 < ss.ids.length ? "Next question" : "See results"}</button></div>` : ""}
+    ${done ? feedbackHTML(q, ans, ord) : `<p class="small muted">Choose an answer. You can also press ${ord.map((_, p) => KEYS[p]).join(", ")} on a keyboard.</p>${cur > 0 ? `<button type="button" class="linkbtn prevlink" id="pPrev">${IC.arrow}<span>Previous question</span></button>` : ""}`}
+    ${peeking ? `<div class="stickynext two">${cur > 0 ? `<button class="btn btn-quiet" id="pPrev" aria-label="Previous question">${IC.arrow}<span>Previous</span></button>` : `<span></span>`}<button class="btn btn-primary" id="pNext">${cur + 1 < ss.i ? "Next answered" : `Back to question ${ss.i + 1}`}</button></div>`
+      : done ? `<div class="stickynext ${cur > 0 ? "two" : ""}">${cur > 0 ? `<button class="btn btn-quiet" id="pPrev" aria-label="Previous question">${IC.arrow}<span>Previous</span></button>` : ""}<button class="btn btn-primary ${cur > 0 ? "" : "btn-block"}" id="next">${ss.i + 1 < ss.ids.length ? "Next question" : "See results"}</button></div>` : ""}
   </div>`;
   view.querySelectorAll(".choice:not([disabled])").forEach(b => b.onclick = () => answer(+b.dataset.k));
   $("#quit").onclick = () => { stopTimer(); go("home"); };
+  const pp = $("#pPrev"); if (pp) pp.onclick = () => peekTo(cur - 1);
+  const pn = $("#pNext"); if (pn) pn.onclick = () => peekTo(cur + 1 < ss.i ? cur + 1 : null);
   if (done){
     emphasize(view.querySelectorAll(".feedback > p, .others li"));
     linkTerms(view.querySelectorAll(".feedback > p, .others li"), 2);
-    $("#next").onclick = nextQ;
+    if ($("#next")) $("#next").onclick = nextQ;
+    view.querySelectorAll("[data-sure]").forEach(b => b.onclick = () => setSure(q, b.dataset.sure === "1"));
     $("#bm").onclick = () => { if (S.bookmarks[q.id]) delete S.bookmarks[q.id]; else S.bookmarks[q.id] = true; save(); const on = !!S.bookmarks[q.id]; $("#bm").setAttribute("aria-pressed", on); $("#bm").lastChild.textContent = on ? "Bookmarked" : "Bookmark"; announce(on ? "Question bookmarked" : "Bookmark removed"); };
     $("#rv").onclick = () => { if (S.reviewTopics[q.t]) delete S.reviewTopics[q.t]; else S.reviewTopics[q.t] = true; save(); const on = !!S.reviewTopics[q.t]; $("#rv").setAttribute("aria-pressed", on); $("#rv").lastChild.textContent = on ? "Topic marked for review" : "Mark topic for review"; announce(on ? "Topic marked for review" : "Topic unmarked"); };
   }
-  if (ss.timed && !done) startTimer();
+  if (ss.timed && !done && !peeking) startTimer();
 }
 function startTimer(){
   const ss = S.session; let last = Date.now();
@@ -2779,6 +2973,7 @@ function feedbackHTML(q, ans, ord){
   const others = ord.filter(k => k !== 0 && q.n[k]);
   return `<section class="feedback ${good ? "fb-good" : "fb-bad"}" aria-live="polite">
     <div class="fb-head">${good ? I.check : I.x}<span>${good ? ["Correct!", "Nice work!", "Exactly right!", "You got it!"][q.id.length % 4] : "Not quite. Here's why"}</span>${good && (S.session.combo || 0) >= 3 ? `<span class="combo">${IC.flame}${S.session.combo} in a row</span>` : ""}</div>
+    ${good && PEEK === null ? sureHTML(q) : ""}
     <p>${esc(q.w)}</p>
     ${calcHTML(q)}
     ${others.length ? `<div class="stack" style="gap:6px"><p class="eyebrow">Why the other choices don't fit</p><ul class="others">${others.map(k => `<li><b>${esc(q.c[k])}</b>: ${esc(q.n[k])}</li>`).join("")}</ul></div>` : ""}
@@ -2797,7 +2992,7 @@ function answer(k){
   ss.answers[q.id] = k;
   const st = S.stats[q.id] || { seen:0, correct:0 };
   const before = topicStats(q.t).pct;
-  st.seen++; if (k === 0) st.correct++; st.last = k === 0; S.stats[q.id] = st;
+  st.seen++; if (k === 0) st.correct++; st.last = k === 0; st.guess = false; S.stats[q.id] = st; srsRecord(q.id, k === 0);
   const dk = todayKey(); S.days[dk] = (S.days[dk] || 0) + 1;
   save();
   ss.combo = k === 0 ? (ss.combo || 0) + 1 : 0;
@@ -2809,7 +3004,7 @@ function answer(k){
   if (before < 100 && topicStats(q.t).pct === 100){ toast(TOPIC[q.t].title + ": every question correct"); tone("done"); }
 }
 function nextQ(){
-  const ss = S.session;
+  const ss = S.session; PEEK = null;
   ss.i++;
   if (ss.i >= ss.ids.length){ finishRound(); return; }
   save(); renderQuiz(); window.scrollTo(0, 0); $(".choice") && $(".choice").focus();
@@ -2826,6 +3021,8 @@ document.addEventListener("keydown", e => {
   if (route().name !== "quiz" || e.metaKey || e.ctrlKey || e.altKey) return;
   const tag = (e.target.tagName || "").toLowerCase(); if (tag === "input" || tag === "textarea") return;
   const ss = S.session; if (!ss) return;
+  if (e.key === "ArrowLeft" && (PEEK !== null ? PEEK : ss.i) > 0 && !(e.target.closest && e.target.closest("input, [role=progressbar]"))){ e.preventDefault(); peekTo((PEEK !== null ? PEEK : ss.i) - 1); return; }
+  if (PEEK !== null){ if (e.key === "ArrowRight" || e.key === "Escape"){ e.preventDefault(); peekTo(e.key === "Escape" ? null : PEEK + 1); } return; }
   const q = QBY[ss.ids[ss.i]], done = ss.answers[q.id] !== undefined;
   const key = e.key.toUpperCase();
   let pos = KEYS.indexOf(key); if (pos === -1 && /^[1-5]$/.test(key)) pos = +key - 1;
@@ -2885,7 +3082,8 @@ function renderReview(){
   const revT = TOPICS.filter(t => S.reviewTopics[t.id]);
   const qrow = q => `<div class="missed"><p style="font-weight:600">${esc(q.q)}</p><p class="ans good">${I.check}<span>${esc(q.c[0])}</span></p><div class="row" style="flex-wrap:wrap;gap:10px">${srcChip(q.s)}<a class="small" style="font-weight:600" href="#topic-${q.t}">${esc(TOPIC[q.t].title)}</a></div></div>`;
   view.innerHTML = `<div class="stack-lg">
-    <header class="stack" style="gap:6px"><h1>Review</h1><p class="muted">Missed questions, bookmarks, and topics you've flagged, all in one place.</p></header>
+    <header class="stack" style="gap:6px"><h1>Review</h1><p class="muted">Your review schedule, missed questions, bookmarks, and flagged topics.</p></header>
+    ${srsCardHTML()}
     <section class="card stack" style="gap:10px">
       <div class="row" style="flex-wrap:wrap"><h2 class="grow">Missed questions</h2>${missed.length ? `<button class="btn btn-primary btn-sm" id="pm">Practice ${missed.length}</button>` : ""}</div>
       ${missed.length ? `<p class="small muted">Questions you got wrong the last time you answered them.</p>` : `<p class="empty">No missed questions right now. They'll appear here after a practice round.</p>`}
@@ -2899,6 +3097,7 @@ function renderReview(){
       ${revT.length ? `<div class="tlist">${revT.map(topicCard).join("")}</div>` : `<div class="card empty">Use "Mark topic for review" on a topic or after a question.</div>`}
     </section>
   </div>`;
+  const sg = $("#srsGo"); if (sg) sg.onclick = startSrs;
   if (missed.length) $("#pm").onclick = () => startRound(missed.map(q => q.id), null, S.prefs.timed);
   if (bms.length) $("#pb").onclick = () => startRound(bms.map(q => q.id), null, S.prefs.timed);
 }
@@ -2918,9 +3117,10 @@ function renderPrefs(){
       <div class="setting wrapline">${iconTile("motion", 1, "sm")}<div class="grow" style="min-width:160px"><h3>Motion</h3><p class="small muted">"System" follows your device's reduced-motion setting.</p></div>${seg("motion", [["system","System"],["reduce","Reduced"],["full","Full"]], P.motion, "Motion")}</div>
       <div class="setting wrapline">${iconTile("text", 3, "sm")}<div class="grow" style="min-width:160px"><h3>Text size</h3><p class="small muted">Larger text for easier reading on a phone.</p></div>${seg("text", [["md","Standard"],["lg","Large"]], P.text, "Text size")}</div>
     </section>
+    ${backupCardHTML()}
     <a class="card row" href="#sources" style="text-decoration:none;color:var(--ink)">${iconTile("books", 6, "sm")}<div class="grow"><h3>Sources & content notes</h3><p class="small muted">The six course books and items to verify with TREC.</p></div><span aria-hidden="true">→</span></a>
     <section class="card stack" style="gap:10px">
-      <h3>Reset progress</h3><p class="small muted">Clears lessons read, answers, bookmarks, and review marks on this device.</p>
+      <h3>Reset progress</h3><p class="small muted">Clears lessons read, answers, bookmarks, and review marks. If sync is on, your other devices reset too.</p>
       <div id="resetArea"><button class="btn btn-quiet btn-sm" id="reset">Reset progress…</button></div>
     </section>
   </div>`;
@@ -2928,6 +3128,7 @@ function renderPrefs(){
   $("#s-timed").onclick = () => { P.timed = !P.timed; save(); renderPrefs(); $("#s-timed").focus(); };
   $("#s-showtimer").onclick = () => { P.timerHidden = !P.timerHidden; save(); renderPrefs(); $("#s-showtimer").focus(); };
   view.querySelectorAll("[data-seg]").forEach(b => b.onclick = () => { P[b.dataset.seg] = b.dataset.v; save(); applyPrefs(); renderPrefs(); view.querySelector(`[data-seg="${b.dataset.seg}"][data-v="${b.dataset.v}"]`).focus(); });
+  wireBackup();
   $("#reset").onclick = () => {
     $("#resetArea").innerHTML = `<div class="row" style="flex-wrap:wrap;gap:8px"><span class="small" style="font-weight:600">This can't be undone.</span><button class="btn btn-sm" style="background:var(--bad);color:var(--surface)" id="resetYes">Yes, reset everything</button><button class="btn btn-quiet btn-sm" id="resetNo">Cancel</button></div>`;
     $("#resetYes").focus();
@@ -2954,10 +3155,10 @@ function renderSources(){
 
 /* ---------- practice exam ---------- */
 const EXAM_FORMATS = {
-  full:     { label:"Full practice exam", sections:[["National", 85, 150], ["State", 40, 90]] },
-  short:    { label:"Short practice exam", sections:[["National", 25, 45], ["State", 15, 35]] },
+  full:     { label:"Full practice exam", sections:[["National", 85, 150], ["State", 50, 90]] },
+  short:    { label:"Short practice exam", sections:[["National", 25, 45], ["State", 15, 27]] },
   national: { label:"National section only", sections:[["National", 85, 150]] },
-  state:    { label:"State section only", sections:[["State", 40, 90]] }
+  state:    { label:"State section only", sections:[["State", 50, 90]] }
 };
 const PASS_PCT = 70;
 const isState = q => TOPIC[q.t].group === "tx" || q.tx;
@@ -3003,7 +3204,8 @@ function renderExam(){
       </div>
       <div class="setting" style="padding-bottom:0"><div class="grow"><h3>Timer</h3><p class="small muted">Counts down for each section. It pauses if you leave the exam screen.</p></div><button class="switch" role="switch" id="ex-timed" aria-checked="true" aria-label="Show timer"></button></div>
       <button class="btn btn-primary btn-block" id="startExam">${ex ? "Start a new exam" : "Start practice exam"}</button>
-      <p class="small muted">The real exam's question counts, time limits, and passing scores should be confirmed in the official Pearson VUE Texas candidate handbook. Scores here use a ${PASS_PCT}% reference mark.</p>
+      <p class="small muted">Counts and times follow Pearson VUE's Texas candidate handbook (September 2026): National 85 questions in 150 minutes, State 50 in 90. On test day, 5 National and 10 State questions are unscored trial items you can't spot, and passing means 56 of 80 scored National and 28 of 40 scored State. Here every question counts, with a ${PASS_PCT}% reference mark.</p>
+      <a class="linkrow-card" href="#examday">${iconTile("check", 3, "sm")}<span class="grow"><b>Exam-day checklist</b><span class="small muted">ID, arrival, calculator, room rules</span></span>${IC.arrow}</a>
     </section>
     ${historyCardHTML()}
     <section class="card stack" style="gap:4px"><h2>Past exams</h2>
@@ -3128,7 +3330,7 @@ function finishExam(){
     sec.ids.forEach(id => {
       const a = sec.answers[id], ok = a === 0;
       if (ok) right++;
-      if (a !== undefined){ const st = S.stats[id] || { seen:0, correct:0 }; st.seen++; if (ok) st.correct++; st.last = ok; S.stats[id] = st; S.days[dk] = (S.days[dk] || 0) + 1; }
+      if (a !== undefined){ const st = S.stats[id] || { seen:0, correct:0 }; st.seen++; if (ok) st.correct++; st.last = ok; S.stats[id] = st; srsRecord(id, ok); S.days[dk] = (S.days[dk] || 0) + 1; }
     });
     return { name:sec.name, ids:sec.ids, answers:sec.answers, right, total:sec.ids.length, elapsed:Math.round(sec.elapsed) };
   }) };
@@ -3281,10 +3483,12 @@ function renderGlossary(){
   const list = GLOSSARY.slice().sort((a, b) => a.term.localeCompare(b.term));
   view.innerHTML = `<div class="stack-lg">
     <header class="stack" style="gap:8px"><a href="#topics" class="small" style="font-weight:600">← Topics</a>
-      <div class="topichead">${iconTile("books", 3, "lg")}<div><h1>Key terms</h1><p class="muted">${GLOSSARY.length} terms from the course. Tap one for its definition and source.</p></div></div></header>
+      <div class="topichead">${iconTile("books", 3, "lg")}<div><h1>Key terms</h1><p class="muted">${GLOSSARY.length} terms from the course. Tap one for its definition and source.</p></div></div>
+      <button class="btn btn-primary btn-block" id="fcStart" style="display:inline-flex;align-items:center;justify-content:center;gap:8px">${IC.sparkles}<span>Practice with flashcards</span></button></header>
     <label class="searchbox"><span class="sr">Filter key terms</span>${IC.search}<input id="gfilter" type="search" placeholder="Filter terms" autocomplete="off"></label>
     <div class="glist" id="glist">${list.map(g => `<button type="button" class="gitem" data-term="${g.id}" data-name="${esc(g.term.toLowerCase() + " " + g.alt.join(" ").toLowerCase())}"><span class="gdot" style="${tc(g.t)}"></span><span class="grow"><b>${esc(g.term)}</b><span class="small muted">${esc(TOPIC[g.t].title)}</span></span><span aria-hidden="true" class="muted">›</span></button>`).join("")}</div>
   </div>`;
+  $("#fcStart").onclick = () => startCards();
   $("#gfilter").addEventListener("input", e => { const q = e.target.value.trim().toLowerCase(); view.querySelectorAll(".gitem").forEach(b => b.hidden = q && !b.dataset.name.includes(q)); });
 }
 
@@ -3352,7 +3556,7 @@ function logActivity(entry){ S.log = (S.log || []).concat([entry]).slice(-500); 
 function ensureLog(){
   if ((S.log && S.log.length) || !(S.examHistory || []).length) return;
   S.log = S.examHistory.map(h => ({ at:h.at, type: h.fmt === "full" ? "full" : "short", label: EXAM_FORMATS[h.fmt].label, t:null, score: h.sections.map(s => s.name + " " + Math.round(s.right / s.total * 100) + "%").join(" · ") }));
-  save();
+  save(true);
 }
 const dk = ts => { const d = new Date(ts); return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); };
 let CAL = null;
@@ -3454,6 +3658,1074 @@ document.addEventListener("click", e => {
   const t = e.target.closest && e.target.closest("#calToggle");
   if (t){ CAL_OPEN = !CAL_OPEN; refreshWeek(); const nb = $("#calToggle"); if (nb) nb.focus(); if (CAL_OPEN){ const c = $("#calcard"); if (c && c.getBoundingClientRect().bottom > innerHeight) c.scrollIntoView({ block:"nearest", behavior:"smooth" }); } }
 });
+
+/* =====================================================================
+   1. SPACED REVIEW
+   A missed question comes back after 1 day, then 3, then 7.
+   Answering it right each time it is due moves it up a step;
+   after the third step it is mastered and leaves the list.
+   A wrong answer at any point sends it back to step 1.
+   ===================================================================== */
+const SRS_GAP = [1, 3, 7];
+const dnum = (d = new Date()) => Math.floor((d.getTime() - d.getTimezoneOffset() * 6e4) / 864e5);
+function srsInit(){
+  S.srs = S.srs || {};
+  if (!S.srsSeeded){
+    QUESTIONS.forEach(q => { const st = S.stats[q.id]; if (st && !st.last && !S.srs[q.id]) S.srs[q.id] = { box:0, due:dnum() }; });
+    S.srsSeeded = true; save(true);
+  }
+}
+function srsRecord(id, ok){
+  S.srs = S.srs || {};
+  const it = S.srs[id], today = dnum();
+  if (!ok){ S.srs[id] = { box:0, due:today + SRS_GAP[0] }; return; }
+  if (!it || it.due > today) return;            // only a due review moves it up
+  const box = it.box + 1;
+  if (box >= SRS_GAP.length){ delete S.srs[id]; S.srsDone = (S.srsDone || 0) + 1; }
+  else S.srs[id] = { box, due:today + SRS_GAP[box] };
+}
+function srsDue(){ const t = dnum(); return Object.keys(S.srs || {}).filter(id => QBY[id] && S.srs[id].due <= t); }
+function srsNext(){
+  const t = dnum(); let best = null, n = 0;
+  Object.values(S.srs || {}).forEach(x => { if (x.due > t){ if (best === null || x.due < best){ best = x.due; n = 1; } else if (x.due === best) n++; } });
+  return best === null ? null : { days:best - t, n };
+}
+function srsDueText(){ const d = srsDue().length; return d ? `${d} due today` : ""; }
+function dayWord(n){ return n === 1 ? "tomorrow" : `in ${n} days`; }
+function srsCardHTML(){
+  const due = srsDue(), nx = srsNext(), all = Object.values(S.srs || {});
+  const steps = SRS_GAP.map((g, i) => all.filter(x => x.box === i).length);
+  return `<section class="card stack srs-card" style="gap:14px" aria-labelledby="srsT">
+    <div class="row" style="gap:12px;align-items:center">${iconTile("refresh", 1, "sm")}<div class="grow" style="min-width:0"><h2 id="srsT">Due today</h2><p class="small muted">${due.length ? `${due.length} question${due.length > 1 ? "s" : ""} ready for review` : nx ? `Nothing due. Next review ${dayWord(nx.days)} (${nx.n} question${nx.n > 1 ? "s" : ""}).` : "Nothing to review yet. Missed questions will be scheduled here."}</p></div></div>
+    ${due.length ? `<button class="btn btn-primary btn-block" id="srsGo">Start review${due.length > 20 ? " (20 at a time)" : ""}</button>` : ""}
+    <ol class="srs-steps" aria-label="Review steps">${SRS_GAP.map((g, i) => `<li><span class="srs-n">${steps[i]}</span><span class="srs-l"><b>Step ${i + 1}</b><small>back after ${g} day${g > 1 ? "s" : ""}</small></span></li>`).join("")}<li class="srs-done"><span class="srs-n">${S.srsDone || 0}</span><span class="srs-l"><b>Mastered</b><small>3 right in a row</small></span></li></ol>
+    <p class="small muted">Missed questions come back after 1 day, then 3, then 7. Get one right each time it's due and it's mastered. A miss sends it back to step 1.</p>
+  </section>`;
+}
+function startSrs(){ const ids = shuffle(srsDue()).slice(0, 20); if (ids.length) startRound(ids, null, S.prefs.timed); }
+
+/* =====================================================================
+   2. BACKUP & SYNC
+   Progress lives in this browser. When the page runs inside Claude and
+   the viewer is signed in, it is also saved to their private storage
+   on the artifact (only they can read it), so phone and laptop agree.
+   ===================================================================== */
+/* ---------------------------------------------------------------------
+   SYNC SETTINGS — paste the two values from Supabase
+   (Project Settings → API). Both are safe to publish: the database
+   rules only let each signed-in person read and write their own row.
+   Leave them empty and the app simply saves on this device only.
+   --------------------------------------------------------------------- */
+const SUPABASE_URL = "";   // e.g. "https://abcdefgh.supabase.co"
+const SUPABASE_KEY = "";   // the "anon" or "publishable" key
+const SB_CDN = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.79.0/dist/umd/supabase.js";
+
+const SYNC = { mode:null, state:"local", ref:null, at:null, writing:false, dirty:false, timer:null, pending:null, sb:null, uid:null, email:"", first:false, msg:"" };
+function syncLabel(){
+  if (SYNC.state === "on") return { on:true, txt: SYNC.at ? `Synced ${ago(SYNC.at)}` : "Sync is on" };
+  if (SYNC.state === "connecting") return { on:false, txt:"Connecting…" };
+  if (SYNC.state === "signedout" || SYNC.state === "codesent") return { on:false, txt:"Saved on this device only. Sign in to sync." };
+  if (SYNC.state === "readonly") return { on:false, txt:"Saved on this device only. Ask for edit access to sync." };
+  if (SYNC.state === "error") return { on:false, txt:"Can't reach sync right now. Progress is still saved on this device." };
+  return { on:false, txt:"Saved on this device only" };
+}
+function ago(t){ const s = Math.round((Date.now() - t) / 1000); return s < 60 ? "just now" : s < 3600 ? `${Math.round(s / 60)} min ago` : s < 86400 ? `${Math.round(s / 3600)} h ago` : new Date(t).toLocaleDateString(); }
+function syncStatusRefresh(){ const el = document.getElementById("syncStatus"); if (!el) return; const l = syncLabel(); el.className = "sync-st " + (l.on ? "on" : ""); el.lastChild.textContent = l.txt; }
+function syncPayload(){ return { v:1, savedAt:S.savedAt || Date.now(), state:JSON.stringify(S) }; }
+function syncSoon(){ if (!SYNC.ref) return; clearTimeout(SYNC.timer); SYNC.timer = setTimeout(syncPush, 2500); }
+async function syncPush(){
+  if (!SYNC.ref) return;
+  if (SYNC.writing){ SYNC.dirty = true; return; }
+  const p = syncPayload(); if (p.state.length > 900000) return;
+  SYNC.writing = true;
+  try { await SYNC.ref.set(p); SYNC.at = Date.now(); SYNC.state = "on"; }
+  catch(e){ if (e && e.code === "invalid_argument"){ SYNC.state = "readonly"; SYNC.ref = null; } else if (e && e.code === "unavailable"){ SYNC.dirty = true; } else SYNC.state = "error"; }
+  SYNC.writing = false; syncStatusRefresh();
+  if (SYNC.dirty && SYNC.ref){ SYNC.dirty = false; setTimeout(syncPush, 4000 + Math.random() * 2000); }
+}
+function isEmptyState(st){ return !Object.keys(st.stats || {}).length && !Object.keys(st.read || {}).length && !(st.log || []).length && !(st.examHistory || []).length && !(st.drill && st.drill.seen); }
+const BUSY_ROUTES = ["quiz", "exam-run", "drill"];
+function adoptRemote(remote, msg){
+  const prefs = S.prefs;
+  S = Object.assign(fresh(), remote); S.prefs = prefs;
+  try { localStorage.setItem(KEY, JSON.stringify(S)); } catch(e) {}
+  render(); toast(msg || "Progress updated from your other device");
+}
+/* combine two devices' progress the first time a device signs in */
+function mergeStates(a, b){
+  const m = Object.assign(fresh(), b, a), byAt = (x, y, key) => { const seen = new Set(), out = []; (x || []).concat(y || []).forEach(e => { const k = e.at + "|" + (e[key] || ""); if (!seen.has(k)){ seen.add(k); out.push(e); } }); return out.sort((p, q) => p.at - q.at); };
+  m.stats = Object.assign({}, b.stats); const from = {};
+  Object.keys(b.stats || {}).forEach(k => from[k] = "b");
+  Object.entries(a.stats || {}).forEach(([k, v]) => { if (!m.stats[k] || (v.seen || 0) >= (m.stats[k].seen || 0)){ m.stats[k] = v; from[k] = "a"; } });
+  ["read", "bookmarks", "reviewTopics", "daily"].forEach(f => m[f] = Object.assign({}, b[f], a[f]));
+  m.days = Object.assign({}, b.days); Object.entries(a.days || {}).forEach(([k, v]) => m.days[k] = Math.max(v, m.days[k] || 0));
+  m.log = byAt(a.log, b.log, "label").slice(-500);
+  m.examHistory = byAt(a.examHistory, b.examHistory, "fmt");
+  m.srs = {}; Object.keys(from).forEach(k => { const src = from[k] === "a" ? a.srs : b.srs; if (src && src[k]) m.srs[k] = src[k]; });
+  m.srsDone = Math.max(a.srsDone || 0, b.srsDone || 0); m.srsSeeded = !!(a.srsSeeded || b.srsSeeded);
+  const da = a.drill || {}, db_ = b.drill || {}; m.drill = { seen:Math.max(da.seen || 0, db_.seen || 0), correct:Math.max(da.correct || 0, db_.correct || 0) };
+  m.prefs = a.prefs;
+  return m;
+}
+async function syncPull(){
+  if (!SYNC.ref) return;
+  try {
+    const snap = await SYNC.ref.get();
+    SYNC.state = "on";
+    const first = SYNC.first; SYNC.first = false;
+    if (snap.exists){
+      const d = snap.data(); let remote = null; try { remote = JSON.parse(d.state); } catch(e) {}
+      const rAt = (remote && remote.savedAt) || 0, lAt = S.savedAt || 0;
+      if (first && remote && !isEmptyState(remote) && !isEmptyState(S) && Math.abs(rAt - lAt) > 1000){
+        S = mergeStates(S, remote); save(); render(); toast("Progress from both devices combined");
+      } else if (remote && isEmptyState(S) && !isEmptyState(remote)){
+        if (BUSY_ROUTES.includes(route().name)) SYNC.pending = remote; else adoptRemote(remote, "Your progress is here");
+      } else if (remote && rAt > lAt + 1000){
+        if (BUSY_ROUTES.includes(route().name)) SYNC.pending = remote; else adoptRemote(remote);
+      } else if (lAt > rAt + 1000 && !isEmptyState(S)) syncPush();
+      SYNC.at = Date.now();
+    } else if (!isEmptyState(S)) syncPush();
+  } catch(e){ SYNC.state = e && e.code === "unavailable" ? SYNC.state : "error"; }
+  syncStatusRefresh();
+}
+function syncAfterRender(name){ if (SYNC.pending && !BUSY_ROUTES.includes(name)){ const r = SYNC.pending; SYNC.pending = null; setTimeout(() => adoptRemote(r), 0); } }
+document.addEventListener("visibilitychange", () => { if (!SYNC.ref) return; if (document.visibilityState === "visible") syncPull(); else if (SYNC.timer){ clearTimeout(SYNC.timer); syncPush(); } });
+try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => {}); } catch(e) {}
+
+/* --- Supabase (the published website) --- */
+const sbErr = e => ({ code: e && /fetch|network|timeout|load failed/i.test(String(e.message || e)) ? "unavailable" : "error", message: e && e.message });
+function sbRef(uid){ return {
+  async get(){ const { data, error } = await SYNC.sb.from("progress").select("state,saved_at").eq("user_id", uid).maybeSingle(); if (error) throw sbErr(error); return { exists:!!data, data:() => ({ state:JSON.stringify(data.state), savedAt:data.saved_at }) }; },
+  async set(p){ const { error } = await SYNC.sb.from("progress").upsert({ user_id:uid, state:JSON.parse(p.state), saved_at:p.savedAt, updated_at:new Date().toISOString() }); if (error) throw sbErr(error); }
+}; }
+function loadScript(src){ return new Promise((ok, no) => { const s = document.createElement("script"); s.src = src; s.async = true; s.onload = ok; s.onerror = no; document.head.appendChild(s); setTimeout(no, 15000); }); }
+function sbSession(session){
+  const u = session && session.user;
+  if (u && SYNC.uid !== u.id){ SYNC.uid = u.id; SYNC.email = u.email || ""; SYNC.ref = sbRef(u.id); SYNC.first = true; SYNC.state = "on"; SYNC.msg = ""; refreshSyncBox(); syncPull(); }
+  else if (!u && SYNC.uid !== null || (!u && SYNC.state === "connecting")){ SYNC.uid = null; SYNC.ref = null; if (SYNC.state !== "codesent") SYNC.state = "signedout"; refreshSyncBox(); }
+}
+async function sbInit(){
+  SYNC.mode = "supabase"; SYNC.state = "connecting"; refreshSyncBox();
+  try { if (!window.supabase) await loadScript(SB_CDN); } catch(e) {}
+  if (!window.supabase || !window.supabase.createClient){ SYNC.state = "error"; refreshSyncBox(); return; }
+  SYNC.sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, { auth:{ flowType:"pkce", detectSessionInUrl:true, persistSession:true, autoRefreshToken:true, storageKey:"aurely-sync-auth" } });
+  SYNC.sb.auth.onAuthStateChange((ev, session) => { setTimeout(() => sbSession(session), 0); });
+  try { const { data } = await SYNC.sb.auth.getSession(); sbSession(data && data.session); } catch(e){ SYNC.state = "signedout"; refreshSyncBox(); }
+  try { const u = new URL(location.href); if (u.searchParams.has("code") || u.searchParams.has("error_description")){ u.searchParams.delete("code"); u.searchParams.delete("error"); u.searchParams.delete("error_code"); u.searchParams.delete("error_description"); history.replaceState(null, "", u.pathname + u.search + location.hash); } } catch(e) {}
+}
+async function sbSendCode(email){
+  SYNC.msg = ""; SYNC.email = email;
+  const { error } = await SYNC.sb.auth.signInWithOtp({ email, options:{ emailRedirectTo: location.origin + location.pathname, shouldCreateUser:true } });
+  if (error){ SYNC.msg = /rate|security purposes|seconds/i.test(error.message) ? "Too many emails in a short time. Wait a minute and try again." : /signups not allowed|not allowed/i.test(error.message) ? "This email isn't set up for sync." : /fetch|network|load failed/i.test(error.message) ? "Can't connect right now. Check your internet and try again." : "Couldn't send the email. Check the address and try again."; refreshSyncBox(); return; }
+  SYNC.state = "codesent"; refreshSyncBox();
+}
+async function sbVerify(code){
+  SYNC.msg = "";
+  const { data, error } = await SYNC.sb.auth.verifyOtp({ email:SYNC.email, token:code, type:"email" });
+  if (error){ SYNC.msg = /fetch|network|load failed/i.test(error.message) ? "Can't connect right now. Check your internet and try again." : "That code didn't work or has expired. Check it, or send a new one."; refreshSyncBox(); return; }
+  sbSession(data && data.session);
+}
+async function sbSignOut(){ try { await SYNC.sb.auth.signOut(); } catch(e) {} SYNC.uid = null; SYNC.ref = null; SYNC.state = "signedout"; refreshSyncBox(); toast("Signed out. Progress stays on this device."); }
+
+/* --- Claude-hosted copy (the artifact) --- */
+async function claudeInit(){
+  SYNC.mode = "claude"; SYNC.state = "connecting"; syncStatusRefresh();
+  try {
+    const [db, user] = await Promise.all([claude.use("db"), claude.use("user")]);
+    const id = user ? await user.id() : null;
+    if (!db || !id){ SYNC.state = "local"; SYNC.mode = null; refreshSyncBox(); return; }
+    if (user.can){ const w = await user.can("data.write").catch(() => null); if (w === false){ SYNC.state = "readonly"; refreshSyncBox(); return; } }
+    SYNC.ref = db.doc("data/users/" + id + "/progress");
+    await syncPull(); refreshSyncBox();
+  } catch(e){ SYNC.state = "local"; SYNC.mode = null; refreshSyncBox(); }
+}
+if (SUPABASE_URL && SUPABASE_KEY) sbInit();
+else if (window.claude && typeof window.claude.use === "function") claudeInit();
+
+/* --- the sync panel inside Settings --- */
+function syncBoxHTML(){
+  const l = syncLabel(), err = SYNC.msg ? `<p class="small sync-err" role="alert">${esc(SYNC.msg)}</p>` : "";
+  const status = `<p class="sync-st ${l.on ? "on" : ""}" id="syncStatus" role="status"><i aria-hidden="true"></i><span>${esc(l.txt)}</span></p>`;
+  if (SYNC.mode === "supabase" && SYNC.state === "signedout") return `${status}
+    <p class="small muted">Sign in with your email to keep your progress in step on your phone and computer. No password: you'll get a sign-in code by email.</p>
+    <form class="sync-form" id="sfEmail" novalidate><label class="sr-only" for="sEmail">Email address</label><input class="field" id="sEmail" type="email" inputmode="email" autocomplete="email" placeholder="you@example.com" value="${esc(SYNC.email)}" required><button class="btn btn-primary btn-sm" type="submit">Email me a code</button></form>${err}`;
+  if (SYNC.mode === "supabase" && SYNC.state === "codesent") return `${status}
+    <p class="small">We sent an email to <b>${esc(SYNC.email)}</b>. Enter the code from it, or tap the link in the email on this device.</p>
+    <form class="sync-form" id="sfCode" novalidate><label class="sr-only" for="sCode">Sign-in code</label><input class="field num" id="sCode" inputmode="numeric" autocomplete="one-time-code" pattern="[0-9]*" maxlength="10" placeholder="Code from the email" required><button class="btn btn-primary btn-sm" type="submit">Sign in</button></form>${err}
+    <button class="linkbtn" id="sRestart" type="button">Use a different email</button>`;
+  if (SYNC.mode === "supabase" && SYNC.state === "on") return `${status}
+    <p class="small muted">Signed in as <b>${esc(SYNC.email)}</b>. Your progress syncs automatically between your devices.</p>
+    <div class="row" style="flex-wrap:wrap;gap:8px"><button class="btn btn-quiet btn-sm" id="sOut" type="button">Sign out</button></div>`;
+  if (SYNC.mode === "claude") return `${status}<p class="small muted">Your progress syncs between your devices automatically.</p>`;
+  if (SYNC.mode === "supabase") return `${status}${err}`;
+  return `${status}<p class="small muted">Progress is saved in this browser. Download a backup now and then to keep it safe.</p>`;
+}
+function refreshSyncBox(){ const box = document.getElementById("syncBox"); if (!box) return syncStatusRefresh(); box.innerHTML = syncBoxHTML(); wireSyncBox(); }
+function wireSyncBox(){
+  const fe = $("#sfEmail"), fc = $("#sfCode"), busy = (f, on) => { const b = f.querySelector("button"); b.disabled = on; b.setAttribute("aria-busy", on); };
+  if (fe) fe.onsubmit = async e => { e.preventDefault(); const v = $("#sEmail").value.trim(); if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){ SYNC.msg = "Enter a valid email address."; refreshSyncBox(); $("#sEmail").focus(); return; } busy(fe, true); await sbSendCode(v); const c = $("#sCode"); if (c) c.focus(); };
+  if (fc) fc.onsubmit = async e => { e.preventDefault(); const v = $("#sCode").value.replace(/\D/g, ""); if (v.length < 6){ SYNC.msg = "Enter the code from the email."; refreshSyncBox(); $("#sCode").focus(); return; } busy(fc, true); await sbVerify(v); };
+  const r = $("#sRestart"); if (r) r.onclick = () => { SYNC.state = "signedout"; SYNC.msg = ""; refreshSyncBox(); const i = $("#sEmail"); if (i) i.focus(); };
+  const o = $("#sOut"); if (o) o.onclick = sbSignOut;
+}
+
+/* backup file */
+function backupData(){ return JSON.stringify({ app:"aurely-trec-study", v:1, exportedAt:new Date().toISOString(), state:S }, null, 1); }
+async function downloadBackup(){
+  const name = "aurely-study-backup-" + new Date().toISOString().slice(0, 10) + ".json", data = backupData();
+  try {
+    const dl = window.claude && window.claude.use ? await claude.use("downloads") : null;
+    if (dl){ await dl.save({ filename:name, data }); toast("Backup saved"); return; }
+  } catch(e){ if (e && e.code === "declined") return; }
+  try {
+    const url = URL.createObjectURL(new Blob([data], { type:"application/json" }));
+    const a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000); toast("Backup downloaded");
+  } catch(e){ toast("Couldn't create the backup file here"); }
+}
+function readBackup(file, done){
+  const fr = new FileReader();
+  fr.onload = () => {
+    try {
+      const o = JSON.parse(fr.result);
+      if (!o || o.app !== "aurely-trec-study" || !o.state || typeof o.state.stats !== "object") throw 0;
+      done(o);
+    } catch(e){ done(null); }
+  };
+  fr.onerror = () => done(null);
+  fr.readAsText(file);
+}
+function backupCardHTML(){
+  return `<section class="card stack" style="gap:14px" aria-labelledby="bkT">
+    <div class="row" style="gap:12px;align-items:center">${iconTile("cloud", 3, "sm")}<h3 id="bkT" class="grow">Sync & backup</h3></div>
+    <div class="stack" style="gap:10px" id="syncBox">${syncBoxHTML()}</div>
+    <hr class="sep">
+    <p class="small muted">A backup file is a second safety net. You can restore it on any device.</p>
+    <div class="row" style="flex-wrap:wrap;gap:8px"><button class="btn btn-quiet btn-sm" id="bkDown">${IC.download}<span>Download backup</span></button><button class="btn btn-quiet btn-sm" id="bkUp">${IC.upload}<span>Restore from backup</span></button><input type="file" id="bkFile" accept=".json,application/json" hidden></div>
+    <div id="bkArea" aria-live="polite"></div>
+  </section>`;
+}
+function wireBackup(){
+  wireSyncBox();
+  const f = $("#bkFile");
+  $("#bkDown").onclick = downloadBackup;
+  $("#bkUp").onclick = () => f.click();
+  f.onchange = () => {
+    const file = f.files && f.files[0]; if (!file) return;
+    readBackup(file, o => {
+      const area = $("#bkArea"); f.value = "";
+      if (!o){ area.innerHTML = `<p class="small" style="color:var(--bad);font-weight:600">That file isn't a backup from this app.</p>`; return; }
+      const st = o.state, answers = Object.values(st.stats || {}).reduce((a, x) => a + (x.seen || 0), 0), lessons = Object.keys(st.read || {}).length;
+      const when = o.exportedAt ? new Date(o.exportedAt).toLocaleDateString(undefined, { month:"short", day:"numeric", year:"numeric" }) : "an earlier date";
+      area.innerHTML = `<div class="bk-confirm"><p class="small"><b>Backup from ${esc(when)}</b>: ${answers} answers, ${lessons} lessons read. Restoring replaces the progress on this device.</p><div class="row" style="flex-wrap:wrap;gap:8px"><button class="btn btn-primary btn-sm" id="bkYes">Restore this backup</button><button class="btn btn-quiet btn-sm" id="bkNo">Cancel</button></div></div>`;
+      $("#bkYes").focus();
+      $("#bkNo").onclick = () => { area.innerHTML = ""; };
+      $("#bkYes").onclick = () => { const prefs = S.prefs; S = Object.assign(fresh(), st); S.prefs = prefs; save(); toast("Backup restored"); renderPrefs(); };
+    });
+  };
+}
+
+/* =====================================================================
+   3. MATH DRILLS
+   Fresh numbers every time. Formulas follow the course's math chapter
+   (POR2 Ch. 9 and the pages cited on each problem type).
+   ===================================================================== */
+const ri = (a, b, step = 1) => a + Math.floor(Math.random() * (Math.floor((b - a) / step) + 1)) * step;
+const pk = a => a[Math.floor(Math.random() * a.length)];
+const r2 = n => Math.round(n * 100) / 100;
+const money = n => "$" + r2(n).toLocaleString("en-US", { minimumFractionDigits: Math.abs(r2(n) % 1) > 0 ? 2 : 0, maximumFractionDigits:2 });
+const num = n => r2(n).toLocaleString("en-US", { maximumFractionDigits:2 });
+const pc = n => num(n) + "%";
+const an = n => /^(8|11|18)/.test(String(n)) ? "an" : "a";
+const sqft = n => num(n) + " square feet";
+const DRILL_CATS = { comm:"Commission", area:"Area", tax:"Tax & interest", fin:"Financing", inv:"Investment" };
+const DRILLS = [
+  { cat:"comm", src:"POR2 p. 283", make(){
+    const price = ri(150000, 600000, 5000), rate = pk([5, 5.5, 6, 7]), a = price * rate / 100;
+    return { q:`A home sells for ${money(price)} with ${an(rate)} ${pc(rate)} commission. What is the total commission?`, a, f:money,
+      d:[[a / 10, "Check the decimal: move the % two places."], [a / 2, "That's half. No split was mentioned."], [price * (rate + 1) / 100, "Recheck the rate."]],
+      steps:[`${money(price)} × ${pc(rate)} = ${money(a)}`], w:"Commission = rate × price." }; } },
+  { cat:"comm", src:"POR2 p. 283", make(){
+    const price = ri(200000, 500000, 10000), rate = 6, sh = pk([50, 60, 70, 75, 80]), tot = price * rate / 100, side = tot / 2, a = side * sh / 100;
+    return { q:`A ${money(price)} sale pays ${pc(rate)}, split equally between two brokerages. The listing agent gets ${pc(sh)} of her broker's share. How much does she earn?`, a, f:money,
+      d:[[tot * sh / 100, `That's ${pc(sh)} of the full commission, before the brokerage split.`], [side, "That's the whole brokerage side before her split."], [side * (100 - sh) / 100, "That's the broker's part, not hers."]],
+      steps:[`${money(price)} × ${pc(rate)} = ${money(tot)}`, `${money(tot)} ÷ 2 = ${money(side)}`, `${money(side)} × ${pc(sh)} = ${money(a)}`], w:"Find the total commission, split it between the brokerages, then take her share." }; } },
+  { cat:"comm", src:"POR2 p. 283", make(){
+    const price = ri(220000, 480000, 5000), rate = pk([5, 6, 7]), pay = ri(90000, 200000, 5000), cost = ri(2000, 9000, 100), c = price * rate / 100, a = price - c - pay - cost;
+    return { q:`A home sells for ${money(price)}. The commission is ${pc(rate)}, the loan payoff is ${money(pay)}, and other seller costs are ${money(cost)}. What are the seller's net proceeds?`, a, f:money,
+      d:[[a + c, "That leaves out the commission."], [a + cost, "That leaves out the other costs."], [a + pay, "That leaves out the loan payoff."]],
+      steps:[`${money(price)} × ${pc(rate)} = ${money(c)}`, `${money(price)} − ${money(c)} − ${money(pay)} − ${money(cost)} = ${money(a)}`], w:"Net proceeds = price − commission − loan payoff − other costs." }; } },
+  { cat:"comm", src:"POR2 p. 286", make(){
+    const rate = pk([5, 6, 7, 8]), a = ri(200000, 450000, 10000), net = a * (100 - rate) / 100;
+    return { q:`A seller wants to net ${money(net)} after paying ${an(rate)} ${pc(rate)} commission (ignore other costs). What sales price is needed?`, a, f:money,
+      d:[[net * (1 + rate / 100), `That adds ${pc(rate)} of the net instead of dividing.`], [net * (1 - rate / 100), "That subtracts the commission from the net."], [net / (1 + rate / 100), `That divides by ${num(1 + rate / 100)} instead of ${num(1 - rate / 100)}.`]],
+      steps:[`100% − ${pc(rate)} = ${pc(100 - rate)}`, `${money(net)} ÷ ${num((100 - rate) / 100)} = ${money(a)}`], w:"The net is what's left after the commission, so divide the net by (100% − commission rate)." }; } },
+  { cat:"area", src:"POR2 p. 283", make(){
+    const l = ri(60, 220, 5), w = ri(80, 300, 5), a = l * w;
+    return { q:`A rectangular lot measures ${num(l)} feet by ${num(w)} feet. What is its area?`, a, f:sqft,
+      d:[[2 * (l + w), "That's the perimeter (distance around), not the area."], [a / 2, "Taking half is only for a triangle."], [a * 10, "Check the multiplication."]],
+      steps:[`${num(l)} × ${num(w)} = ${sqft(a)}`], w:"Area of a rectangle = length × width." }; } },
+  { cat:"area", src:"POR2 p. 283", make(){
+    const b = ri(80, 300, 10), h = ri(60, 240, 10), a = b * h / 2;
+    return { q:`A triangular lot has a ${num(b)}-foot base and a ${num(h)}-foot height. What is its area?`, a, f:sqft,
+      d:[[b * h, "You forgot to take half."], [b + h, "That adds the sides instead of multiplying."], [b * h / 4, "You took half twice."]],
+      steps:[`½ × ${num(b)} × ${num(h)} = ${sqft(a)}`], w:"Area of a triangle = ½ × base × height." }; } },
+  { cat:"area", src:"POR1 p. 49", make(){
+    const a = pk([0.5, 1.5, 2, 2.5, 3, 4, 5, 6, 8]), s = a * 43560;
+    return { q:`A tract contains ${num(s)} square feet. How many acres is it?`, a, f:n => num(n) + (n === 1 ? " acre" : " acres"),
+      d:[[a * 10, "Check the decimal."], [a / 2, "One acre is 43,560 square feet. Recheck the division."], [a * 2, "Recheck the division."]],
+      steps:[`${num(s)} ÷ 43,560 = ${num(a)} acres`], w:"One acre = 43,560 square feet." }; } },
+  { cat:"area", src:"POR2 p. 283", make(){
+    const s = ri(1200, 3400, 50), p = ri(90, 260), price = s * p;
+    return { q:`A ${num(s)}-square-foot home sells for ${money(price)}. What is the price per square foot?`, a:p, f:money,
+      d:[[p * 10, "Check the decimal."], [p / 10, "Check the decimal."], [Math.round(price / (s + 500)), "Recheck the division: price ÷ square feet."]],
+      steps:[`${money(price)} ÷ ${num(s)} = ${money(p)} per square foot`], w:"Price per square foot = price ÷ square feet." }; } },
+  { cat:"tax", src:"POR1 p. 30", make(){
+    const v = ri(100000, 500000, 10000), m = ri(15, 35), a = v / 1000 * m;
+    return { q:`A property is assessed at ${money(v)}, and the tax rate is ${m} mills. What is the annual tax?`, a, f:money,
+      d:[[v / 100 * m, "A mill is per $1,000, not per $100."], [a / 10, "Check the decimal."], [a / 12, "That's a monthly amount. The question asks for the year."]],
+      steps:[`${m} mills = $${m} per $1,000`, `${money(v)} ÷ 1,000 × $${m} = ${money(a)}`], w:"Tax = rate × assessed value. A mill is $1 per $1,000 (0.001)." }; } },
+  { cat:"tax", src:"POR2 p. 283", make(){
+    const L = ri(100000, 400000, 10000), r = pk([4, 4.5, 5, 5.5, 6, 6.5, 7]), y = L * r / 100, a = y / 12;
+    return { q:`A ${money(L)} loan carries ${pc(r)} annual interest. How much interest is in the first monthly payment?`, a, f:money,
+      d:[[y, "That's a full year of interest."], [a * 10, "Check the decimal."], [L / 12 * r / 1000, "Recheck the order: yearly interest first, then ÷ 12."]],
+      steps:[`${money(L)} × ${pc(r)} = ${money(y)} per year`, `${money(y)} ÷ 12 = ${money(a)}`], w:"Yearly interest = loan × rate. Divide by 12 for one month." }; } },
+  { cat:"fin", src:"FIN p. 168", make(){
+    const p = ri(150000, 500000, 10000), ltv = pk([75, 80, 85, 90, 95]), loan = p * ltv / 100, a = p - loan;
+    return { q:`A buyer gets ${an(ltv)} ${pc(ltv)} LTV loan on a ${money(p)} home (price and appraisal match). What is the down payment?`, a, f:money,
+      d:[[loan, "That's the loan amount."], [a / 10, "Check the decimal."], [p * (100 - ltv + 5) / 100, `Recheck 100% − ${pc(ltv)}.`]],
+      steps:[`100% − ${pc(ltv)} = ${pc(100 - ltv)} down`, `${money(p)} × ${pc(100 - ltv)} = ${money(a)}`], w:"Loan-to-value: the loan covers the LTV %, the buyer pays the rest." }; } },
+  { cat:"fin", src:"FIN p. 168", make(){
+    const p = ri(150000, 500000, 10000), ltv = pk([75, 80, 85, 90, 95]), a = p * ltv / 100;
+    return { q:`A lender offers ${an(ltv)} ${pc(ltv)} LTV loan on a home that sells and appraises for ${money(p)}. What is the loan amount?`, a, f:money,
+      d:[[p - a, "That's the down payment."], [a / 10, "Check the decimal."], [p * (ltv - 10) / 100, `Recheck the ${pc(ltv)}.`]],
+      steps:[`${money(p)} × ${pc(ltv)} = ${money(a)}`], w:"Loan amount = value × LTV %." }; } },
+  { cat:"inv", src:"POR2 p. 283", make(){
+    const v = ri(300000, 1500000, 50000), r = pk([5, 6, 7, 8, 9, 10]), noi = v * r / 100;
+    return { q:`An investor pays ${money(v)} for a property that nets ${money(noi)} a year. What is the cap rate?`, a:r, f:pc,
+      d:[[r * 2, "Recheck the division."], [r / 10, "Check the decimal."], [r * 10, "Check the decimal."]],
+      steps:[`${money(noi)} ÷ ${money(v)} = ${pc(r)}`], w:"Cap rate = net income ÷ value." }; } },
+  { cat:"inv", src:"POR2 p. 283", make(){
+    const r = pk([5, 6, 7, 8, 9, 10]), a = ri(300000, 1200000, 50000), noi = a * r / 100;
+    return { q:`A property nets ${money(noi)} a year. Investors expect ${an(r)} ${pc(r)} cap rate. What is its value?`, a, f:money,
+      d:[[noi * r / 100, "That multiplies instead of dividing."], [a / 10, "Check the decimal."], [a * 10, "Check the decimal."]],
+      steps:[`${money(noi)} ÷ ${pc(r)} = ${money(a)}`], w:"Value = net income ÷ cap rate." }; } },
+  { cat:"inv", src:"POR2 p. 286", make(){
+    const o = ri(150000, 400000, 10000), r = pk([5, 8, 10, 12, 15, 20, 25]), s = o * (1 + r / 100), g = s - o;
+    return { q:`A home bought for ${money(o)} sells for ${money(s)}. What is the percentage of appreciation?`, a:r, f:pc,
+      d:[[Math.round(g / s * 1000) / 10, "That divides by the sale price instead of the original price."], [r * 10, "Check the decimal."], [r / 10, "Check the decimal."]],
+      steps:[`${money(s)} − ${money(o)} = ${money(g)} gain`, `${money(g)} ÷ ${money(o)} = ${pc(r)}`], w:"Percent change = gain ÷ original price." }; } }
+];
+const DR = { cats:new Set(Object.keys(DRILL_CATS)), cur:null, ans:null, n:0, right:0, streak:0 };
+function newDrill(){
+  const pool = DRILLS.filter(d => DR.cats.has(d.cat));
+  const g = pk(pool.length ? pool : DRILLS), p = g.make();
+  const seen = new Set([p.f(p.a)]), opts = [{ v:p.a, ok:true }];
+  p.d.forEach(([v, why]) => { let x = r2(v); if (!(x > 0)) x = r2(p.a * 1.25); let t = p.f(x), k = 1; while (seen.has(t) && k < 6){ x = r2(p.a * (1 + 0.15 * k)); t = p.f(x); k++; } if (!seen.has(t)){ seen.add(t); opts.push({ v:x, why }); } });
+  DR.cur = Object.assign(p, { src:g.src, cat:g.cat, opts:shuffle(opts) }); DR.ans = null;
+}
+function startDrills(){ DR.n = 0; DR.right = 0; DR.streak = 0; DR.cur = null; go("drill"); }
+function finishDrills(){
+  if (DR.n){ logActivity({ at:Date.now(), type:"topic", label:"Math drills", t:"math", score:`${DR.right} / ${DR.n}` }); S.drill = S.drill || { seen:0, correct:0 }; save(); toast(`Math drills: ${DR.right} of ${DR.n} correct`); }
+  DR.cur = null; go("topic-math");
+}
+function renderDrill(){
+  if (!DR.cur) newDrill();
+  const p = DR.cur, done = DR.ans !== null, picked = done ? p.opts[DR.ans] : null;
+  view.innerHTML = `<div class="stack-lg drill" style="${tc("math")}">
+    <div class="qtop">
+      <button class="iconbtn" id="dQuit" aria-label="Finish math drills" title="Finish">${I.x}</button>
+      <div class="grow drill-tally"><b>Math drills</b><span class="small muted num">${DR.n ? `${DR.right} of ${DR.n} correct` : "New numbers every time"}</span></div>
+      ${muteBtnHTML()}
+    </div>
+    <div class="dchips" role="group" aria-label="Problem types">${Object.entries(DRILL_CATS).map(([k, l]) => `<button type="button" class="dchip" data-dcat="${k}" aria-pressed="${DR.cats.has(k)}">${esc(l)}</button>`).join("")}</div>
+    <div class="row small muted" style="flex-wrap:wrap;gap:8px"><span class="tchip">${IC.calc}${esc(DRILL_CATS[p.cat])}</span><span>Problem ${DR.n + (done ? 0 : 1)}</span></div>
+    <h1 class="qtext" id="qtext" style="font-family:var(--font-body)">${esc(p.q)}</h1>
+    <ul class="choices" aria-labelledby="qtext">${p.opts.map((o, i) => {
+      let cls = "", verdict = "";
+      if (done){ if (o.ok){ cls = "is-correct"; verdict = `${I.check}<span>Correct answer</span>`; } else if (i === DR.ans){ cls = "is-wrong"; verdict = `${I.x}<span>Your answer</span>`; } else cls = "dim"; }
+      return `<li><button class="choice ${cls}" data-i="${i}" ${done ? "disabled" : ""} aria-label="${KEYS[i]}. ${esc(p.f(o.v))}${done ? (o.ok ? ". Correct answer" : i === DR.ans ? ". Your answer, incorrect" : "") : ""}"><span class="key">${KEYS[i]}</span><span class="ctext num">${esc(p.f(o.v))}</span>${verdict ? `<span class="verdict">${verdict}</span>` : ""}</button></li>`; }).join("")}</ul>
+    ${done ? `<section class="feedback ${picked.ok ? "fb-good" : "fb-bad"}" aria-live="polite">
+      <div class="fb-head">${picked.ok ? I.check : I.x}<span>${picked.ok ? pk(["Correct!", "Nice work!", "Exactly right!"]) : "Not quite. Here's the working"}</span>${picked.ok && DR.streak >= 3 ? `<span class="combo">${IC.flame}${DR.streak} in a row</span>` : ""}</div>
+      ${!picked.ok && picked.why ? `<p><b>${esc(p.f(picked.v))}</b>: ${esc(picked.why)}</p>` : ""}
+      <p>${esc(p.w)}</p>
+      ${calcHTML({ f:p.steps })}
+      <div class="row" style="flex-wrap:wrap;gap:10px">${srcChip(p.src)}<a class="small" style="font-weight:600" href="#topic-math">Review the math lesson</a></div>
+    </section>
+    <div class="stickynext"><button class="btn btn-primary btn-block" id="dNext">Next problem</button></div>`
+    : `<p class="small muted">Choose an answer. Numbers are generated for practice; the formulas follow the course book.</p>`}
+  </div>`;
+  view.querySelectorAll(".choice:not([disabled])").forEach(b => b.onclick = () => drillAnswer(+b.dataset.i));
+  view.querySelectorAll("[data-dcat]").forEach(b => b.onclick = () => {
+    const k = b.dataset.dcat;
+    if (DR.cats.has(k) && DR.cats.size === 1) return announce("Keep at least one type selected");
+    DR.cats.has(k) ? DR.cats.delete(k) : DR.cats.add(k);
+    if (!done && !DR.cats.has(p.cat)) DR.cur = null;
+    renderDrill(); const nb = view.querySelector(`[data-dcat="${k}"]`); if (nb) nb.focus();
+  });
+  $("#dQuit").onclick = finishDrills;
+  if (done){ $("#dNext").onclick = nextDrill; emphasize(view.querySelectorAll(".feedback > p")); }
+}
+function drillAnswer(i){
+  if (DR.ans !== null) return;
+  const ok = !!DR.cur.opts[i].ok;
+  DR.ans = i; DR.n++; if (ok){ DR.right++; DR.streak++; } else DR.streak = 0;
+  S.drill = S.drill || { seen:0, correct:0 }; S.drill.seen++; if (ok) S.drill.correct++;
+  const dkk = todayKey(); S.days[dkk] = (S.days[dkk] || 0) + 1; save();
+  tone(ok ? "good" : "bad"); renderDrill();
+  if (ok) confetti($(".fb-head"));
+  announce(ok ? "Correct." : "Incorrect. The correct answer is " + DR.cur.f(DR.cur.a));
+  const fb = $(".feedback"); if (fb && fb.getBoundingClientRect().top > innerHeight * 0.6) fb.scrollIntoView({ behavior: document.documentElement.classList.contains("reduce") ? "auto" : "smooth", block:"start" });
+}
+function nextDrill(){ DR.cur = null; renderDrill(); window.scrollTo(0, 0); const c = $(".choice"); if (c) c.focus(); }
+document.addEventListener("keydown", e => {
+  if (route().name !== "drill" || e.metaKey || e.ctrlKey || e.altKey || !DR.cur) return;
+  const tag = (e.target.tagName || "").toLowerCase(); if (tag === "input" || tag === "textarea") return;
+  const key = e.key.toUpperCase(); let pos = KEYS.indexOf(key); if (pos === -1 && /^[1-4]$/.test(key)) pos = +key - 1;
+  if (DR.ans === null && pos > -1 && pos < DR.cur.opts.length){ e.preventDefault(); drillAnswer(pos); }
+  else if (DR.ans !== null && e.key === "Enter" && e.target.tagName !== "BUTTON" && e.target.tagName !== "A"){ e.preventDefault(); nextDrill(); }
+});
+
+/* =====================================================================
+   4. CONFIDENCE CHECK
+   After a correct answer she can say "I guessed". A guessed answer
+   doesn't count as mastered and comes back tomorrow in Review.
+   ===================================================================== */
+function isMastered(st){ return !!(st && st.last && !st.guess); }
+function sureHTML(q){
+  const st = S.stats[q.id] || {}, g = !!st.guess;
+  return `<div class="sure" role="group" aria-labelledby="sureL">
+    <span class="sure-l" id="sureL">How sure were you?</span>
+    <div class="seg sure-seg"><button type="button" data-sure="1" aria-pressed="${!g}">I knew it</button><button type="button" data-sure="0" aria-pressed="${g}">I guessed</button></div>
+    ${g ? `<p class="small sure-note">${IC.refresh}<span>Good call. It won't count as mastered yet and will come back in Review tomorrow.</span></p>` : ""}
+  </div>`;
+}
+function setSure(q, knew){
+  const ss = S.session, st = S.stats[q.id]; if (!st) return;
+  ss.srsPrev = ss.srsPrev || {};
+  if (!knew && !st.guess){
+    ss.srsPrev[q.id] = S.srs && S.srs[q.id] ? Object.assign({}, S.srs[q.id]) : null;
+    st.guess = true; S.srs = S.srs || {}; S.srs[q.id] = { box:0, due:dnum() + SRS_GAP[0] };
+  } else if (knew && st.guess){
+    st.guess = false;
+    if (q.id in ss.srsPrev){ const p = ss.srsPrev[q.id]; if (p) S.srs[q.id] = p; else delete S.srs[q.id]; }
+  }
+  save(); renderQuiz();
+  const b = view.querySelector(`[data-sure="${knew ? 1 : 0}"]`); if (b) b.focus();
+  announce(knew ? "Marked as known." : "Marked as a guess. It will come back tomorrow.");
+}
+
+/* =====================================================================
+   5. GLOSSARY FLASHCARDS
+   Same step system as Review: "Got it" moves a card along
+   (back in 1, 3, then 7 days); "Again" sends it back to the start
+   and shows it once more before the set ends.
+   ===================================================================== */
+const CARD_GAP = [1, 3, 7];
+const FC = { deck:"all", q:[], i:0, flipped:false, got:0, again:0, done:false, re:new Set() };
+function cardPool(deck){ return GLOSSARY.filter(g => deck === "all" || (TOPIC[g.t] && TOPIC[g.t].group === deck)); }
+function cardCounts(deck){
+  const t = dnum(), C = S.cards || {}, pool = cardPool(deck);
+  return { due:pool.filter(g => C[g.id] && C[g.id].due <= t).length, fresh:pool.filter(g => !C[g.id]).length, learned:pool.filter(g => C[g.id] && C[g.id].box >= CARD_GAP.length).length, total:pool.length };
+}
+function buildDeck(deck){
+  const t = dnum(), C = S.cards || {}, pool = cardPool(deck);
+  const due = shuffle(pool.filter(g => C[g.id] && C[g.id].due <= t && C[g.id].box < CARD_GAP.length));
+  const fresh = shuffle(pool.filter(g => !C[g.id]));
+  let q = due.concat(fresh).slice(0, 15);
+  if (!q.length) q = shuffle(pool.slice()).slice(0, 15);
+  return q.map(g => g.id);
+}
+function startCards(deck){ Object.assign(FC, { deck:deck || FC.deck, i:0, flipped:false, got:0, again:0, done:false, re:new Set() }); FC.q = buildDeck(FC.deck); go("cards"); }
+function rateCard(ok){
+  const id = FC.q[FC.i], t = dnum(); S.cards = S.cards || {};
+  const c = S.cards[id] || { box:-1 };
+  if (ok){ const box = Math.min(c.box + 1, CARD_GAP.length); S.cards[id] = { box, due: box >= CARD_GAP.length ? t + 30 : t + CARD_GAP[box] }; FC.got++; }
+  else { S.cards[id] = { box:-1, due:t }; FC.again++; if (!FC.re.has(id)){ FC.re.add(id); FC.q.push(id); } }
+  save(); FC.i++; FC.flipped = false;
+  if (FC.i >= FC.q.length){ FC.done = true; tone("done"); }
+  renderCards(); const f = $("#fcMain"); if (f) f.focus();
+}
+function renderCards(){
+  if (!FC.q.length && !FC.done) FC.q = buildDeck(FC.deck);
+  const decks = [["all", "All terms"], ["gen", "General"], ["tx", "Texas"]];
+  const cc = cardCounts(FC.deck);
+  const head = `<div class="qtop">
+      <a class="iconbtn" href="#glossary" aria-label="Back to key terms" title="Key terms">${I.x}</a>
+      <div class="grow drill-tally"><b>Flashcards</b><span class="small muted num">${FC.done ? "Set complete" : `Card ${Math.min(FC.i + 1, FC.q.length)} of ${FC.q.length}`}</span></div>
+      ${muteBtnHTML()}
+    </div>
+    <div class="bar" aria-hidden="true"><span style="width:${FC.q.length ? Math.round(FC.i / FC.q.length * 100) : 0}%"></span></div>`;
+  if (FC.done){
+    view.innerHTML = `<div class="stack-lg fc">
+      ${head}
+      <section class="card stack fc-end" style="gap:14px;text-align:center;align-items:center">
+        ${iconTile("sparkles", 3, "lg")}
+        <h1>Set complete</h1>
+        <p class="muted"><b class="num">${FC.got}</b> got it · <b class="num">${FC.again}</b> again</p>
+        <p class="small muted">${cc.due ? `${cc.due} more card${cc.due > 1 ? "s" : ""} due today.` : cc.fresh ? `${cc.fresh} terms you haven't seen yet.` : "Cards you knew will come back in a few days to keep them fresh."}</p>
+        <div class="stack" style="gap:8px;width:100%"><button class="btn btn-primary btn-block" id="fcAgain">Another set</button><a class="btn btn-quiet btn-block" href="#glossary">Back to key terms</a></div>
+      </section>
+    </div>`;
+    $("#fcAgain").onclick = () => startCards(FC.deck); $("#fcAgain").focus();
+    return;
+  }
+  const g = GBY[FC.q[FC.i]], tp = TOPIC[g.t];
+  view.innerHTML = `<div class="stack-lg fc">
+    ${head}
+    <div class="dchips" role="group" aria-label="Which terms">${decks.map(([k, l]) => `<button type="button" class="dchip" data-deck="${k}" aria-pressed="${FC.deck === k}">${l}</button>`).join("")}</div>
+    <p class="small muted num">${cc.due} due · ${cc.fresh} new · ${cc.learned} learned of ${cc.total}</p>
+    <button type="button" class="card fc-card ${FC.flipped ? "is-back" : ""}" id="fcMain" style="${tc(g.t)}" aria-label="${FC.flipped ? esc(g.term + ". " + g.def) : esc(g.term) + ". Show the definition"}">
+      <span class="fc-topic">${ticon(g.t, "sm")}<span>${esc(tp ? tp.title : "")}</span></span>
+      <span class="fc-term">${esc(g.term)}</span>
+      ${FC.flipped ? `<span class="fc-def">${esc(g.def)}</span>` : `<span class="fc-hint">Say the definition to yourself, then tap to check.</span>`}
+    </button>
+    ${FC.flipped ? `<div class="row" style="flex-wrap:wrap;gap:10px">${srcChip(g.s)}<a class="small" style="font-weight:600" href="#topic-${g.t}">Open the lesson</a></div>
+    <div class="fc-rate"><button class="btn btn-quiet" id="fcNo">${IC.refresh}<span>Again</span></button><button class="btn btn-primary" id="fcYes">${I.check}<span>Got it</span></button></div>`
+    : `<button class="btn btn-primary btn-block" id="fcFlip">Show definition</button>`}
+    <p class="small muted fc-keys">Keyboard: Space to flip, 1 for Again, 2 for Got it.</p>
+  </div>`;
+  const flip = () => { if (FC.flipped) return; FC.flipped = true; renderCards(); const y = $("#fcYes"); if (y) y.focus(); };
+  $("#fcMain").onclick = flip; if ($("#fcFlip")) $("#fcFlip").onclick = flip;
+  if ($("#fcYes")){ $("#fcYes").onclick = () => rateCard(true); $("#fcNo").onclick = () => rateCard(false); }
+  view.querySelectorAll("[data-deck]").forEach(b => b.onclick = () => { if (FC.deck === b.dataset.deck) return; startCards(b.dataset.deck); const nb = view.querySelector(`[data-deck="${b.dataset.deck}"]`); if (nb) nb.focus(); });
+}
+document.addEventListener("keydown", e => {
+  if (route().name !== "cards" || e.metaKey || e.ctrlKey || e.altKey || FC.done) return;
+  const tag = (e.target.tagName || "").toLowerCase(); if (tag === "input" || tag === "textarea") return;
+  if (!FC.flipped && (e.key === " " || e.key === "Enter") && (!e.target.closest || !e.target.closest("button:not(#fcMain):not(#fcFlip), a"))){ e.preventDefault(); FC.flipped = true; renderCards(); const y = $("#fcYes"); if (y) y.focus(); }
+  else if (FC.flipped && (e.key === "1" || e.key === "2")){ e.preventDefault(); rateCard(e.key === "2"); }
+});
+
+/* =====================================================================
+   6. STUDY PLAN
+   She picks her exam date and study days. The plan is rebuilt from her
+   real progress every time, so it never says "behind": it just shows
+   today's focus. The last stretch is kept for review and practice exams.
+   ===================================================================== */
+const WD = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const dFromNum = n => { const d = new Date(n * 864e5); return new Date(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()); };
+const isoToNum = iso => { const [y, m, d] = iso.split("-").map(Number); return dnum(new Date(y, m - 1, d, 12)); };
+const numToIso = n => { const d = dFromNum(n); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
+function planUnits(){
+  const out = [];
+  TOPICS.forEach(t => {
+    const unread = t.lessons.map((l, i) => i).filter(i => !S.read[t.id + ":" + i]);
+    for (let k = 0; k < unread.length; k += 2) out.push({ kind:"read", t:t.id, ls:unread.slice(k, k + 2) });
+    const qs = topicQs(t.id), m = qs.filter(q => isMastered(S.stats[q.id])).length;
+    if (qs.length && m / qs.length < 0.8) out.push({ kind:"practice", t:t.id });
+  });
+  return out;
+}
+function buildPlan(){
+  const P = S.plan; if (!P || !P.exam) return null;
+  const today = dnum(), exam = isoToNum(P.exam);
+  if (exam <= today) return { past:true, exam };
+  const days = []; for (let n = today; n < exam; n++) if (P.days.includes(dFromNum(n).getDay())) days.push(n);
+  if (!days.length) return { exam, days:[], sched:[], none:true };
+  const units = planUnits();
+  const reviewN = days.length >= 4 ? Math.max(1, Math.round(days.length * 0.2)) : 0;
+  const learnDays = days.slice(0, days.length - reviewN), revDays = days.slice(days.length - reviewN);
+  const CAP = 4, slots = Math.max(learnDays.length, 1) * CAP;
+  let use = units, trimmed = false;
+  if (units.length > slots){ trimmed = true; const pr = units.filter(u => u.kind === "practice").slice(0, slots), rd = units.filter(u => u.kind === "read").slice(0, slots - pr.length); const keep = new Set(pr.concat(rd)); use = units.filter(u => keep.has(u)); }
+  const per = learnDays.length ? Math.ceil(use.length / learnDays.length) : use.length;
+  const sched = [];
+  learnDays.forEach((n, i) => sched.push({ n, tasks:mergeReads(use.slice(i * per, (i + 1) * per)) }));
+  revDays.forEach((n, i) => sched.push({ n, tasks:[{ kind: i === revDays.length - 1 && i > 0 ? "light" : i % 2 ? "mixed" : "exam" }] }));
+
+  sched.forEach(d => { if (!d.tasks.length) d.tasks = [{ kind:"mixed" }]; });
+  return { exam, days, sched, per, unitsLeft:units.length, trimmed, today };
+}
+function mergeReads(list){
+  const out = [];
+  list.forEach(u => { const prev = out[out.length - 1]; if (u.kind === "read" && prev && prev.kind === "read" && prev.t === u.t) prev.ls = prev.ls.concat(u.ls); else out.push(Object.assign({}, u, u.ls ? { ls:u.ls.slice() } : {})); });
+  return out;
+}
+function taskText(k){
+  if (k.kind === "read"){ const t = TOPIC[k.t]; return { title:t.title, sub: k.ls.length > 1 ? `Read lessons ${k.ls[0] + 1}–${k.ls[k.ls.length - 1] + 1}` : `Read lesson ${k.ls[0] + 1}` }; }
+  if (k.kind === "practice") return { title:TOPIC[k.t].title, sub:"Practice the topic's questions" };
+  if (k.kind === "exam") return { title:"Practice exam", sub:"Full or short: your choice" };
+  if (k.kind === "light") return { title:"Light review", sub:"Due reviews and flashcards. Rest well." };
+  return { title:"Mixed round", sub:"Plus anything due in Review" };
+}
+function taskIcon(k){ return k.t ? ticon(k.t, "sm") : iconTile(k.kind === "exam" ? "target" : k.kind === "light" ? "books" : "shuffle", k.kind === "exam" ? 2 : 4, "sm"); }
+function doTask(k){
+  if (k.kind === "read"){ S.openLesson = { t:k.t, i:k.ls[0] }; save(); go("topic-" + k.t); }
+  else if (k.kind === "practice") startRound(topicQs(k.t).map(q => q.id), k.t, S.prefs.timed);
+  else if (k.kind === "exam") go("exam");
+  else if (k.kind === "light"){ if (srsDue().length) startSrs(); else startCards(); }
+  else { if (srsDue().length) startSrs(); else startMixed(); }
+}
+function planToday(){
+  const p = buildPlan(); if (!p || p.past || p.none) return null;
+  const d = p.sched.find(x => x.n >= p.today); if (!d) return null;
+  return { rest: d.n !== p.today, day:d, plan:p };
+}
+function planTileHTML(){
+  const pt = planToday();
+  if (!S.plan || !S.plan.exam) return `<a class="tile t-week" href="#plan"><span class="tile-head">${iconTile("calendar", 1, "sm")}</span><b class="tile-title">Study plan</b><span class="tile-text small">Add your exam date for a daily focus</span></a>`;
+  if (!pt) return `<a class="tile t-week" href="#plan"><span class="tile-head">${iconTile("calendar", 1, "sm")}</span><b class="tile-title">Study plan</b><span class="tile-text small">${S.plan && buildPlan() && buildPlan().past ? "Exam date passed. Update it?" : "Open your plan"}</span></a>`;
+  const k = pt.day.tasks[0], tt = taskText(k);
+  return `<a class="tile t-week" href="#plan"><span class="tile-head">${iconTile("calendar", 1, "sm")}</span><span class="small muted" style="font-weight:600">${pt.rest ? `Rest day · next ${WD[dFromNum(pt.day.n).getDay()]}` : "Today's focus"}</span><b class="tile-title">${esc(tt.title)}</b><span class="tile-text small">${esc(tt.sub)}${pt.day.tasks.length > 1 ? ` +${pt.day.tasks.length - 1} more` : ""}</span></a>`;
+}
+function renderPlan(){
+  const P = S.plan || { exam:"", days:[1, 2, 3, 4, 5] }, p = buildPlan(), today = dnum();
+  const minIso = numToIso(today + 1);
+  const dayRow = d => {
+    const dt = dFromNum(d.n), isT = d.n === today;
+    return `<li class="pday ${isT ? "today" : ""}"><div class="pdate"><b>${isT ? "Today" : dt.toLocaleDateString(undefined, { weekday:"short" })}</b><span class="num">${dt.toLocaleDateString(undefined, { month:"short", day:"numeric" })}</span></div>
+      <div class="ptasks">${d.tasks.map((k, j) => { const tt = taskText(k); return `<button type="button" class="ptask" data-pt="${d.n}:${j}">${taskIcon(k)}<span class="grow"><b>${esc(tt.title)}</b><small>${esc(tt.sub)}</small></span>${IC.arrow}</button>`; }).join("")}</div></li>`;
+  };
+  let body = "";
+  if (p && p.past) body = `<p class="small muted">That exam date has passed. Pick a new one to rebuild the plan.</p>`;
+  else if (p && p.none) body = `<p class="small muted">No study days before the exam with the days you picked. Add a day or two.</p>`;
+  else if (p){
+    const first = p.sched.slice(0, 7), rest = p.sched.slice(7);
+    body = `<p class="small muted">${p.days.length} study day${p.days.length > 1 ? "s" : ""} before your exam${p.unitsLeft ? `, about ${p.per} short task${p.per > 1 ? "s" : ""} a day` : ""}. The plan updates itself from what you've done, so there's no catching up to do. Do what you can.</p>
+      ${p.trimmed ? `<p class="small plan-note">There's more material than days, so the plan puts topic practice first and keeps each day to a few tasks. Mixed rounds and the practice exam cover the rest quickly.</p>` : ""}
+      <ol class="plist">${first.map(dayRow).join("")}</ol>
+      ${rest.length ? `<details class="navpanel"><summary>Show the rest of the plan (${rest.length} day${rest.length > 1 ? "s" : ""})</summary><ol class="plist">${rest.map(dayRow).join("")}</ol></details>` : ""}`;
+  }
+  view.innerHTML = `<div class="stack-lg">
+    <header class="stack" style="gap:8px"><a href="#home" class="small" style="font-weight:600">← Home</a>
+      <div class="topichead">${iconTile("calendar", 1, "lg")}<div><h1>Study plan</h1><p class="muted">A gentle daily focus that fits the time you have.</p></div></div></header>
+    <section class="card stack" style="gap:16px" aria-label="Plan settings">
+      <div class="stack" style="gap:6px"><label for="pExam"><b>Exam date</b></label><input class="field" type="date" id="pExam" min="${minIso}" value="${esc(P.exam || "")}"></div>
+      <div class="stack" style="gap:8px"><span id="pDaysL"><b>Study days</b></span><div class="week-days pdays" role="group" aria-labelledby="pDaysL">${WD.map((w, i) => `<button type="button" class="wday" data-pd="${i}" aria-pressed="${P.days.includes(i)}" aria-label="${["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][i]}"><span class="wd-num" style="font-size:.86rem">${w}</span></button>`).join("")}</div></div>
+      ${S.plan && S.plan.exam ? `<button class="linkbtn" id="pClear" type="button" style="align-self:flex-start">Remove the plan</button>` : ""}
+    </section>
+    ${S.plan && S.plan.exam ? `<section class="stack" aria-labelledby="pT"><h2 id="pT">Your days</h2>${body}</section>` : `<p class="small muted">Pick your exam date and the days you can study. You'll get one small focus per study day, with the last stretch saved for review and practice exams.</p>`}
+  </div>`;
+  const upd = () => { const ex = $("#pExam").value, days = [...view.querySelectorAll("[data-pd][aria-pressed=true]")].map(b => +b.dataset.pd); if (ex && isoToNum(ex) <= today) return; S.plan = { exam:ex, days:days.length ? days : [1, 2, 3, 4, 5] }; if (!ex) S.plan.exam = ""; save(); };
+  $("#pExam").onchange = () => { upd(); renderPlan(); const i = $("#pExam"); if (i) i.focus(); };
+  view.querySelectorAll("[data-pd]").forEach(b => b.onclick = () => {
+    const on = b.getAttribute("aria-pressed") === "true";
+    if (on && view.querySelectorAll("[data-pd][aria-pressed=true]").length === 1) return announce("Keep at least one study day");
+    b.setAttribute("aria-pressed", String(!on)); upd(); renderPlan(); const nb = view.querySelector(`[data-pd="${b.dataset.pd}"]`); if (nb) nb.focus();
+  });
+  const c = $("#pClear"); if (c) c.onclick = () => { S.plan = null; save(); renderPlan(); toast("Plan removed"); };
+  view.querySelectorAll("[data-pt]").forEach(b => b.onclick = () => { const [n, j] = b.dataset.pt.split(":").map(Number); const d = p.sched.find(x => x.n === n); if (d && d.tasks[j]) doTask(d.tasks[j]); });
+}
+
+/* =====================================================================
+   8. LISTEN MODE
+   Reads a lesson aloud with the device's built-in voice. One paragraph
+   at a time (more reliable on phones), the paragraph being read is
+   highlighted, and a small player sits above the menu.
+   ===================================================================== */
+const TTS = { on:false, paused:false, kind:"lesson", t:null, i:0, code:null, page:0, gen:0, loading:false, parts:[], k:0, voice:null };
+const ttsOK = () => "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+function pickVoice(){
+  if (!ttsOK()) return null;
+  const vs = speechSynthesis.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+  const pref = [/natural/i, /samantha/i, /google us english/i, /aria|jenny|guy/i, /en-us/i];
+  for (const r of pref){ const v = vs.find(x => r.test(x.name) || r.test(x.lang)); if (v) return v; }
+  return vs[0] || null;
+}
+if (ttsOK()){ TTS.voice = pickVoice(); try { speechSynthesis.addEventListener("voiceschanged", () => { TTS.voice = pickVoice(); }); } catch(e) {} }
+function speakable(html){
+  return html.replace(/<\/span>\s*(?=<span class="formula">|<\/span>|$)/g, ". ").replace(/<span class="formula">/g, " ").replace(/<[^>]+>/g, "")
+    .replace(/\s*=\s*/g, " equals ").replace(/½/g, "one half").replace(/:\s*\./g, ":").replace(/\.\s*\./g, ".").replace(/&amp;/g, "&").replace(/&[a-z]+;/g, " ")
+    .replace(/×/g, " times ").replace(/÷/g, " divided by ").replace(/§\s?/g, "section ").replace(/(\d)\s?–\s?(\d)/g, "$1 to $2")
+    .replace(/\bp\.\s?(\d)/g, "page $1").replace(/\bpp\.\s?/g, "pages ").replace(/\s+/g, " ").trim();
+}
+function splitLong(txt){ if (txt.length < 240) return [txt]; const out = []; let cur = ""; txt.split(/(?<=[.;:!?])\s+/).forEach(s => { if ((cur + " " + s).length > 240 && cur){ out.push(cur); cur = s; } else cur = cur ? cur + " " + s : s; }); if (cur) out.push(cur); return out; }
+function lessonParts(t, i){
+  const l = t.lessons[i], parts = [{ p:-1, txt:`Lesson ${i + 1}. ${speakable(l.h)}.` }];
+  l.b.forEach((b, j) => splitLong(speakable(b)).forEach(x => parts.push({ p:j, txt:x })));
+  return parts;
+}
+function ttsStart(tid, i){
+  if (!ttsOK()) return;
+  speechSynthesis.cancel();
+  Object.assign(TTS, { on:true, paused:false, kind:"lesson", loading:false, gen:TTS.gen + 1, t:tid, i, code:null, parts:lessonParts(TOPIC[tid], i), k:0 });
+  const box = view.querySelector(`.lesson[data-i="${i}"]`);
+  if (box && box.dataset.open !== "1") box.querySelector(":scope > button").click();
+  ttsSpeak(); ttsBar(); ttsMark();
+}
+function ttsSpeak(){
+  if (!TTS.on || TTS.paused) return;
+  if (TTS.loading) return;
+  if (TTS.k >= TTS.parts.length){ if (TTS.kind === "book") ttsBookNext(); else ttsEnd(true); return; }
+  const u = new SpeechSynthesisUtterance(TTS.parts[TTS.k].txt);
+  u.rate = (S.prefs.rate || 1); u.lang = "en-US"; if (TTS.voice) u.voice = TTS.voice;
+  const myK = TTS.k;
+  u.onend = () => { if (!TTS.on || TTS.paused || TTS.k !== myK) return; TTS.k++; ttsMark(); ttsSpeak(); };
+  u.onerror = e => { if (e.error === "interrupted" || e.error === "canceled") return; ttsEnd(false); toast("Listening isn't available on this device right now"); };
+  speechSynthesis.speak(u);
+}
+function ttsPauseToggle(){
+  if (!TTS.on) return;
+  TTS.paused = !TTS.paused;
+  if (TTS.paused) speechSynthesis.cancel(); else ttsSpeak();   // cancel + restart the paragraph: more reliable than pause() on phones
+  ttsBar();
+}
+function ttsSkip(d){ if (!TTS.on) return; speechSynthesis.cancel(); const cp = TTS.parts[TTS.k] ? TTS.parts[TTS.k].p : -1; let k = TTS.k;
+  if (d > 0){ while (k < TTS.parts.length && TTS.parts[k].p === cp) k++; } else { while (k > 0 && TTS.parts[k - 1].p === cp) k--; if (k > 0){ const pp = TTS.parts[k - 1].p; k--; while (k > 0 && TTS.parts[k - 1].p === pp) k--; } }
+  TTS.k = Math.max(0, k); TTS.paused = false; ttsMark(); ttsSpeak(); ttsBar(); }
+function ttsRate(){ const rates = [0.8, 1, 1.2, 1.5], r = S.prefs.rate || 1; S.prefs.rate = rates[(rates.indexOf(r) + 1) % rates.length]; save(); if (TTS.on && !TTS.paused){ speechSynthesis.cancel(); ttsSpeak(); } ttsBar(); }
+function ttsEnd(finished){
+  const was = TTS.on, t = TTS.t, i = TTS.i, kind = TTS.kind;
+  TTS.on = false; TTS.paused = false; TTS.loading = false; TTS.gen++; try { speechSynthesis.cancel(); } catch(e) {}
+  ttsMark(); ttsBar();
+  if (kind === "book"){ if (finished && was) toast("You've reached the end of the book"); return; }
+  if (finished && was && t && TOPIC[t] && i + 1 < TOPIC[t].lessons.length && route().name === "topic") toast("Lesson finished", { label:"Next lesson", fn:() => { if (route().name !== "topic" || route().id !== t) go("topic-" + t); setTimeout(() => ttsStart(t, i + 1), 50); } });
+}
+function ttsMark(){
+  document.querySelectorAll(".lbody p.speaking, .lesson.speaking").forEach(e => e.classList.remove("speaking"));
+  const rl = document.getElementById("rdListen"); if (rl) rl.setAttribute("aria-pressed", String(TTS.on && TTS.kind === "book"));
+  if (TTS.kind === "book") return;
+  document.querySelectorAll("[data-listen]").forEach(b => { const on = TTS.on && TTS.t === (b.dataset.lt) && +b.dataset.listen === TTS.i; b.setAttribute("aria-pressed", on); b.querySelector("span").textContent = on ? "Listening…" : "Listen"; });
+  if (!TTS.on) return;
+  const box = view.querySelector(`.lesson[data-i="${TTS.i}"]`); if (!box || route().name !== "topic") return;
+  box.classList.add("speaking");
+  const part = TTS.parts[TTS.k]; if (!part || part.p < 0) return;
+  const p = box.querySelectorAll(".lbody > p")[part.p];
+  if (p){ p.classList.add("speaking"); const r = p.getBoundingClientRect(); if (r.top < 90 || r.bottom > innerHeight - 190) p.scrollIntoView({ block:"center", behavior: document.documentElement.classList.contains("reduce") ? "auto" : "smooth" }); }
+}
+function ttsBar(){
+  let bar = document.getElementById("ttsbar");
+  if (!TTS.on){ if (bar) bar.remove(); document.body.classList.remove("tts-on"); return; }
+  if (!bar){ bar = document.createElement("div"); bar.id = "ttsbar"; bar.className = "ttsbar"; bar.setAttribute("role", "region"); bar.setAttribute("aria-label", "Listening controls"); document.body.appendChild(bar); }
+  document.body.classList.add("tts-on");
+  const book = TTS.kind === "book";
+  const label = TTS.paused ? "Paused" : book ? (TTS.loading ? `Loading page ${TTS.page}…` : `Page ${TTS.page}`) : `Lesson ${TTS.i + 1}`;
+  const title = book ? SOURCES[TTS.code].name : TOPIC[TTS.t].lessons[TTS.i].h;
+  bar.innerHTML = `<span class="tts-wave ${TTS.paused || TTS.loading ? "paused" : ""}" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="tts-t grow"><small>${esc(label)}</small><b>${esc(title)}</b></span>
+    <button type="button" class="tts-b" id="ttsBack" aria-label="Previous paragraph">${IC.skipBack}</button>
+    <button type="button" class="tts-b tts-main" id="ttsPlay" aria-label="${TTS.paused ? "Resume" : "Pause"}">${TTS.paused ? IC.play : IC.pause}</button>
+    <button type="button" class="tts-b" id="ttsFwd" aria-label="Next paragraph">${IC.skipFwd}</button>
+    <button type="button" class="tts-b tts-rate" id="ttsRate" aria-label="Reading speed ${S.prefs.rate || 1} times">${(S.prefs.rate || 1)}×</button>
+    <button type="button" class="tts-b" id="ttsStop" aria-label="Stop listening">${I.x}</button>`;
+  bar.querySelector("#ttsPlay").onclick = ttsPauseToggle;
+  bar.querySelector("#ttsStop").onclick = () => ttsEnd(false);
+  bar.querySelector("#ttsRate").onclick = ttsRate;
+  bar.querySelector("#ttsBack").onclick = () => ttsSkip(-1);
+  bar.querySelector("#ttsFwd").onclick = () => ttsSkip(1);
+}
+document.addEventListener("click", e => { const b = e.target.closest && e.target.closest("[data-listen]"); if (!b) return; e.preventDefault(); if (!ttsOK()){ toast("This browser can't read aloud. Open the app in Chrome or Safari to listen."); return; } const i = +b.dataset.listen, t = b.dataset.lt; if (TTS.on && TTS.t === t && TTS.i === i) ttsEnd(false); else ttsStart(t, i); });
+function listenBtnHTML(t, i){ return `<button type="button" class="listen-btn ${ttsOK() ? "" : "unsupported"}" data-listen="${i}" data-lt="${t.id}" aria-pressed="false">${IC.volume}<span>Listen</span></button>`; }
+/* stop when leaving the topic page, keep going on re-renders of the same topic */
+function ttsAfterRender(r){
+  if (!TTS.on) return;
+  if (TTS.kind === "book"){ if (r.name !== "read" || r.code !== TTS.code) ttsEnd(false); else ttsMark(); return; }
+  if (r.name !== "topic" || r.id !== TTS.t) ttsEnd(false); else ttsMark();
+}
+
+/* --- reading the course books aloud --- */
+async function bookPageParts(code, n){
+  const doc = await getDoc(code), pg = await doc.getPage(n), tc = await pg.getTextContent();
+  const W = pg.view[2] - pg.view[0], lines = []; let cur = "";
+  tc.items.forEach(it => {
+    const s = it.str || "", x = it.transform ? it.transform[4] : 0;
+    if (!(x > W * 0.8 && s.trim().length < 30)) cur += (cur && s && !/\s$/.test(cur) && !/^\s/.test(s) && !/-$/.test(cur) ? " " : "") + s;
+    if (it.hasEOL){ lines.push(cur); cur = ""; }
+  });
+  if (cur) lines.push(cur);
+  const keep = lines.map(x => x.replace(/\s+/g, " ").trim()).filter(x => x && !/^\d{1,3}$/.test(x) && !/copyright\s*©|champions school of real estate/i.test(x) && !/^page \d+$/i.test(x));
+  let text = ""; keep.forEach(x => { text = text ? (/-$/.test(text) ? text.slice(0, -1) + x : text + " " + x) : x; });
+  text = speakable(text.replace(/&/g, "&amp;").replace(/</g, "&lt;"));
+  if (!text) return [{ p:0, txt:`Page ${n} has no text to read.` }];
+  return splitLong(text).map((txt, j) => ({ p:j, txt }));
+}
+async function ttsBookStart(code, page){
+  if (!ttsOK()) return;
+  speechSynthesis.cancel();
+  const gen = TTS.gen + 1;
+  Object.assign(TTS, { on:true, paused:false, kind:"book", loading:true, gen, code, page, t:null, parts:[], k:0 });
+  ttsBar(); ttsMark();
+  let parts;
+  try { parts = await bookPageParts(code, page); } catch(e){ if (TTS.gen === gen){ ttsEnd(false); toast("This page couldn't be read aloud"); } return; }
+  if (TTS.gen !== gen) return;
+  TTS.parts = parts; TTS.loading = false; ttsBar(); ttsSpeak();
+}
+async function ttsBookNext(){
+  const code = TTS.code, next = TTS.page + 1, gen = TTS.gen;
+  let N = 0; try { N = (await getDoc(code)).numPages; } catch(e) {}
+  if (!TTS.on || TTS.code !== code || TTS.gen !== gen) return;
+  if (next > N){ ttsEnd(true); return; }
+  if (READER_HOOK && READER_HOOK.code === code && route().name === "read") READER_HOOK.go(next);   // turns the page; the reader restarts reading there
+  else ttsBookStart(code, next);
+}
+
+/* =====================================================================
+   9. EXAM-DAY CHECKLIST
+   From Pearson VUE's Texas Real Estate Candidate Handbook,
+   September 2026 (#094400, rev. 08/2026).
+   ===================================================================== */
+const HB = { name:"Pearson VUE Texas Real Estate Candidate Handbook, September 2026", url:"https://www.pearsonvue.com/content/dam/VUE/vue/en/documents/publications/094400.pdf" };
+const EXAMDAY = [
+  { id:"before", title:"Before test day", icon:["calendar", 1], items:[
+    { k:"name", t:"Your registered name matches your ID exactly", d:"Pearson VUE asks you to register your legal name as it appears on your government-issued ID." },
+    { k:"change", t:"Need to reschedule? Call at least 48 hours ahead", d:"Pearson VUE: (800) 997-1248. Changes with less notice lose the exam fee." },
+    { k:"year", t:"You're inside your one-year window", d:"You have one year from the date your license application was filed to pass the exam." },
+    { k:"calc", t:"Practice with the calculator you'll bring", d:"Optional. Hand-held, battery or solar, financial calculator with no letter keys. The test center doesn't provide one." } ] },
+  { id:"bring", title:"What to bring", icon:["bookmark", 7], items:[
+    { k:"id1", t:"Primary ID: government-issued, with photo and signature", d:"Current (not expired) and in English. There's no grace period for expired IDs." },
+    { k:"id2", t:"Secondary ID with your signature", d:"Two forms of current signature ID are required. Both names must exactly match your registration." },
+    { k:"calc2", t:"Your calculator (if you use one)", d:"Hand-held, battery or solar, financial, no letter keys." } ] },
+  { id:"arrive", title:"At the test center", icon:["target", 2], items:[
+    { k:"early", t:"Arrive 30 minutes early", d:"Late candidates who didn't reschedule in time aren't admitted and lose the fee." },
+    { k:"items", t:"Leave personal items outside the room", d:"No phones, watches, wallets, bags, coats, books, or notes. Store them where staff tell you or leave them in your car, with devices turned off." },
+    { k:"paper", t:"Don't bring scratch paper", d:"Staff give you note materials. You can't write on them before the exam starts, and they stay at the center." } ] },
+  { id:"exam", title:"The exam itself", icon:["timer", 4], info:true, items:[
+    { t:"National: 85 questions, 150 minutes", d:"80 are scored and 5 are unscored trial questions you can't identify. Passing: 56 of the 80 scored." },
+    { t:"State: 50 questions, 90 minutes", d:"40 are scored and 10 are unscored trial questions. Passing: 28 of the 40 scored." },
+    { t:"240 minutes in total", d:"The clock starts when you first look at a question." },
+    { t:"Your result comes right away", d:"You get a pass or fail score report when you finish, before you leave." } ] },
+  { id:"after", title:"If it doesn't go to plan", icon:["refresh", 6], info:true, items:[
+    { t:"Retake only the portion you didn't pass", d:"Wait 24 hours before scheduling, and pass within one year of your application date." },
+    { t:"After three unsuccessful attempts", d:"Complete 30 more classroom hours for each portion not passed (60 if both) before testing again." },
+    { t:"Missed the exam for a serious reason?", d:"For illness, a death in the family, military duty, or a weather emergency, call Pearson VUE within 14 days to ask for an excused absence." } ] }
+];
+function renderExamday(){
+  const ck = S.examday || {};
+  const total = EXAMDAY.filter(s => !s.info).reduce((a, s) => a + s.items.length, 0);
+  const done = EXAMDAY.filter(s => !s.info).reduce((a, s) => a + s.items.filter(x => ck[x.k]).length, 0);
+  view.innerHTML = `<div class="stack-lg">
+    <header class="stack" style="gap:8px"><a href="#exam" class="small" style="font-weight:600">← Practice Exam</a>
+      <div class="topichead">${iconTile("check", 3, "lg")}<div><h1>Exam-day checklist</h1><p class="muted">Tick things off as you get ready. <span class="num">${done} of ${total}</span> done.</p></div></div>
+      <div class="bar" aria-hidden="true"><span style="width:${Math.round(done / total * 100)}%"></span></div>
+    </header>
+    ${EXAMDAY.map(sec => `<section class="card stack ed-sec" style="gap:12px" aria-labelledby="ed-${sec.id}">
+      <div class="row" style="gap:12px;align-items:center">${iconTile(sec.icon[0], sec.icon[1], "sm")}<h2 id="ed-${sec.id}">${esc(sec.title)}</h2></div>
+      <ul class="ed-list">${sec.items.map(x => sec.info
+        ? `<li class="ed-info"><span class="ed-dot" aria-hidden="true"></span><span><b>${esc(x.t)}</b><small>${esc(x.d)}</small></span></li>`
+        : `<li><label class="ed-check"><input type="checkbox" data-ed="${x.k}" ${ck[x.k] ? "checked" : ""}><span class="ed-box" aria-hidden="true">${I.check}</span><span><b>${esc(x.t)}</b><small>${esc(x.d)}</small></span></label></li>`).join("")}</ul>
+    </section>`).join("")}
+    <section class="card stack" style="gap:10px">
+      <p class="small"><b>Source:</b> <a href="${HB.url}" target="_blank" rel="noopener">${esc(HB.name)}</a> (rev. 08/2026).</p>
+      <p class="small muted">Testing rules can change. Open the handbook again the week before your exam to make sure nothing is new.</p>
+      ${done ? `<button class="linkbtn" id="edReset" type="button" style="align-self:flex-start">Clear all ticks</button>` : ""}
+    </section>
+  </div>`;
+  view.querySelectorAll("[data-ed]").forEach(c => c.onchange = () => { S.examday = S.examday || {}; if (c.checked) S.examday[c.dataset.ed] = true; else delete S.examday[c.dataset.ed]; save(); const k = c.dataset.ed; renderExamday(); const n = view.querySelector(`[data-ed="${k}"]`); if (n) n.focus(); });
+  const r = $("#edReset"); if (r) r.onclick = () => { S.examday = {}; save(); renderExamday(); };
+}
+
+/* =====================================================================
+   COURSE BOOKS
+   Aurely adds the PDF books she already has. They are stored only in
+   this browser (IndexedDB) and opened in a built-in reader (PDF.js).
+   Every source reference in the app ("Principles of Real Estate 2 ·
+   p. 283") opens that page. In these books the printed page number
+   matches the PDF page number.
+   ===================================================================== */
+const PDFJS_URL = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js";
+const PDFJS_WORKER = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+const BOOK_MATCH = [
+  ["POR2", /principles[\s_-]*of[\s_-]*real[\s_-]*estate[\s_-]*(2|ii)(?![a-z0-9])|\bpor[\s_-]*2(?![0-9])/i],
+  ["POR1", /principles[\s_-]*of[\s_-]*real[\s_-]*estate[\s_-]*(1|i)(?![a-z0-9])|\bpor[\s_-]*1(?![0-9])/i],
+  ["PCF",  /promulgated|contract[\s_-]*forms/i],
+  ["CON",  /law[\s_-]*of[\s_-]*contracts|contracts/i],
+  ["AG",   /agency/i],
+  ["FIN",  /finance/i]
+];
+const BOOK_ICON = { POR1:["books", 1], POR2:["books", 6], AG:["users", 3], CON:["pen", 7], PCF:["stamp", 4], FIN:["coins", 2] };
+function guessBook(name){ const n = name.replace(/\.pdf$/i, ""); for (const [c, re] of BOOK_MATCH) if (re.test(n)) return c; return null; }
+
+/* --- storage (IndexedDB) --- */
+let BOOKDB = null;
+function bdb(){
+  if (!BOOKDB) BOOKDB = new Promise((ok, no) => {
+    if (!("indexedDB" in window)) return no(new Error("no-idb"));
+    const r = indexedDB.open("aurely-books", 1);
+    r.onupgradeneeded = () => r.result.createObjectStore("books", { keyPath:"code" });
+    r.onsuccess = () => ok(r.result); r.onerror = () => no(r.error);
+  });
+  return BOOKDB;
+}
+async function idbDo(mode, fn){ const db = await bdb(); return new Promise((ok, no) => { const tx = db.transaction("books", mode), st = tx.objectStore("books"); let res; const rq = fn(st); if (rq) rq.onsuccess = () => { res = rq.result; }; tx.oncomplete = () => ok(res); tx.onerror = () => no(tx.error); tx.onabort = () => no(tx.error); }); }
+const bookPut = rec => idbDo("readwrite", st => st.put(rec));
+const bookGet = code => idbDo("readonly", st => st.get(code));
+const bookDel = code => idbDo("readwrite", st => st.delete(code));
+async function bookMetas(){ const all = await idbDo("readonly", st => st.getAll()) || []; const m = {}; all.forEach(r => m[r.code] = { name:r.name, size:r.size, pages:r.pages || 0, at:r.at }); return m; }
+async function saveBookFile(code, file){
+  const buf = await file.arrayBuffer();
+  const head = new Uint8Array(buf.slice(0, 5)); if (String.fromCharCode(...head) !== "%PDF-") throw new Error("not-pdf");
+  await bookPut({ code, name:file.name, size:file.size, at:Date.now(), data:buf });
+  delete PDFDOCS[code];
+}
+const mb = n => (n / 1048576).toFixed(n > 10485760 ? 0 : 1) + " MB";
+
+/* --- source chips become links to the page --- */
+function srcLinks(s){
+  return s.split(/\s*;\s*/).map(seg => { const m = seg.match(/\b(POR1|POR2|AG|CON|PCF|FIN)\b/), p = seg.match(/pp?\.\s*(\d+)/); return { seg, code: m && m[1], page: p ? +p[1] : 1 }; });
+}
+function srcChipLinked(s){
+  return srcLinks(s).map(x => x.code
+    ? `<span class="src src-link" role="link" tabindex="0" data-read="${x.code}-${x.page}" title="Open in ${esc(SOURCES[x.code].name)}, page ${x.page}">${I.book}<span>${esc(srcLabel(x.seg))}</span></span>`
+    : `<span class="src">${I.book}<span>${esc(srcLabel(x.seg))}</span></span>`).join("");
+}
+let READ_FROM = null;
+function openRead(code, page){ READ_FROM = CUR; go(`read-${code}-${page}`); }
+document.addEventListener("click", e => { const c = e.target.closest && e.target.closest("[data-read]"); if (!c) return; e.preventDefault(); e.stopPropagation(); const [code, page] = c.dataset.read.split("-"); openRead(code, +page); }, true);
+document.addEventListener("keydown", e => { if (e.key !== "Enter" && e.key !== " ") return; const c = e.target.closest && e.target.closest("[data-read]"); if (!c) return; e.preventDefault(); e.stopPropagation(); const [code, page] = c.dataset.read.split("-"); openRead(code, +page); }, true);
+
+/* --- library page --- */
+let BOOK_PENDING = [];   // files we couldn't match to a book by name
+async function renderBooks(){
+  view.innerHTML = `<div class="stack-lg"><header class="stack" style="gap:8px"><a href="#topics" class="small" style="font-weight:600">← Topics</a><div class="topichead">${iconTile("books", 3, "lg")}<div><h1>Course books</h1><p class="muted">Loading…</p></div></div></header></div>`;
+  let metas = {}, ok = true;
+  try { metas = await bookMetas(); } catch(e){ ok = false; }
+  if (route().name !== "books") return;
+  const have = Object.keys(metas).length, used = Object.values(metas).reduce((a, x) => a + x.size, 0);
+  view.innerHTML = `<div class="stack-lg">
+    <header class="stack" style="gap:8px"><a href="#topics" class="small" style="font-weight:600">← Topics</a>
+      <div class="topichead">${iconTile("books", 3, "lg")}<div><h1>Course books</h1><p class="muted">Read the full course books right here. Every page reference in your lessons opens the book at that page.</p></div></div></header>
+    ${!ok ? `<p class="card small">This browser can't store books (private browsing can block it). Try a regular browser window.</p>` : `
+    <section class="card stack" style="gap:12px">
+      <button class="btn btn-primary btn-block" id="bkAdd" style="display:inline-flex;align-items:center;justify-content:center;gap:8px">${IC.upload}<span>${have ? "Add more books" : "Add my course books"}</span></button>
+      <input type="file" id="bkPick" accept="application/pdf,.pdf" multiple hidden>
+      <input type="file" id="bkOne" accept="application/pdf,.pdf" hidden>
+      <p class="small muted">Pick the PDF files you got from your course; you can select several at once. They're saved only on this device and never uploaded.${have ? ` Using ${mb(used)}.` : ""}</p>
+      <div id="bkMsg" aria-live="polite"></div><div id="bkPend"></div>
+    </section>
+    <ul class="books">${Object.entries(SOURCES).map(([c, src]) => { const m = metas[c], ic = BOOK_ICON[c] || ["books", 1], pos = (S.bookPos || {})[c];
+      return `<li class="book ${m ? "has" : ""}">${iconTile(ic[0], ic[1], "sm")}
+        <span class="grow"><b>${esc(src.name)}</b><small>${m ? `Added · ${mb(m.size)}${pos ? ` · last read p. ${pos}` : ""}` : "Not added yet"}</small></span>
+        ${m ? `<button class="btn btn-primary btn-sm" data-bopen="${c}">${pos ? "Resume" : "Open"}</button><button class="iconbtn bk-x" data-bdel="${c}" aria-label="Remove ${esc(src.name)} from this device" title="Remove">${I.x}</button>`
+            : `<button class="btn btn-quiet btn-sm" data-badd="${c}">Add</button>`}</li>`; }).join("")}</ul>
+    <p class="small muted">The books belong to your course provider. Keep them for your own study.</p>`}
+  </div>`;
+  if (!ok) return;
+  const pick = $("#bkPick"), one = $("#bkOne"); let oneCode = null;
+  $("#bkAdd").onclick = () => pick.click();
+  pick.onchange = async () => { const files = [...pick.files]; pick.value = ""; await addFiles(files); };
+  view.querySelectorAll("[data-badd]").forEach(b => b.onclick = () => { oneCode = b.dataset.badd; one.click(); });
+  one.onchange = async () => { const f = one.files[0]; one.value = ""; if (f && oneCode) await addFiles([f], oneCode); };
+  view.querySelectorAll("[data-bopen]").forEach(b => b.onclick = () => openRead(b.dataset.bopen, (S.bookPos || {})[b.dataset.bopen] || 1));
+  view.querySelectorAll("[data-bdel]").forEach(b => b.onclick = () => {
+    const c = b.dataset.bdel, li = b.closest("li");
+    li.insertAdjacentHTML("afterend", `<li class="bk-confirm-row"><span class="small">Remove <b>${esc(SOURCES[c].name)}</b> from this device? You can add it again any time.</span><span class="row" style="gap:8px"><button class="btn btn-primary btn-sm" data-yes>Remove</button><button class="btn btn-quiet btn-sm" data-no>Cancel</button></span></li>`);
+    const row = li.nextElementSibling; row.querySelector("[data-yes]").focus();
+    row.querySelector("[data-no]").onclick = () => row.remove();
+    row.querySelector("[data-yes]").onclick = async () => { await bookDel(c); delete PDFDOCS[c]; toast("Book removed"); renderBooks(); };
+  });
+  if (BOOK_PENDING.length) showPending();
+}
+async function addFiles(files, forced){
+  const msg = $("#bkMsg"); let added = [], bad = [];
+  for (const f of files){
+    if (!/\.pdf$/i.test(f.name) && f.type !== "application/pdf"){ bad.push(f.name); continue; }
+    const code = forced || guessBook(f.name);
+    if (!code){ BOOK_PENDING.push(f); continue; }
+    if (msg) msg.innerHTML = `<p class="small">Saving ${esc(f.name)}…</p>`;
+    try { await saveBookFile(code, f); added.push(SOURCES[code].name); }
+    catch(e){ bad.push(f.name + (e && e.name === "QuotaExceededError" ? " (not enough space)" : "")); }
+  }
+  await renderBooks();
+  const m2 = $("#bkMsg");
+  if (m2) m2.innerHTML = (added.length ? `<p class="small bk-ok">${I.check}<span>Added ${added.map(esc).join(", ")}.</span></p>` : "") + (bad.length ? `<p class="small sync-err">Couldn't add ${bad.map(esc).join(", ")}. Make sure it's the PDF file.</p>` : "");
+  if (added.length) toast(added.length > 1 ? `${added.length} books added` : "Book added");
+}
+function showPending(){
+  const msg = $("#bkPend"); if (!msg || !BOOK_PENDING.length) return;
+  const f = BOOK_PENDING[0];
+  msg.innerHTML = `<div class="bk-confirm"><p class="small">Which book is <b>${esc(f.name)}</b>?</p>
+    <div class="row" style="flex-wrap:wrap;gap:8px"><label class="sr-only" for="bkWhich">Book</label><select class="field" id="bkWhich">${Object.entries(SOURCES).map(([c, s]) => `<option value="${c}">${esc(s.name)}</option>`).join("")}</select>
+    <button class="btn btn-primary btn-sm" id="bkWhichOk">Save</button><button class="btn btn-quiet btn-sm" id="bkWhichSkip">Skip</button></div></div>`;
+  $("#bkWhich").focus();
+  $("#bkWhichOk").onclick = async () => { const c = $("#bkWhich").value; BOOK_PENDING.shift(); await addFiles([f], c); };
+  $("#bkWhichSkip").onclick = () => { BOOK_PENDING.shift(); msg.innerHTML = ""; showPending(); };
+}
+
+/* --- reader --- */
+const PDFDOCS = {};
+let PDFLIB = null, READ_ZOOM = 1, READ_TASK = 0;
+function loadPdfLib(){
+  if (PDFLIB) return PDFLIB;
+  PDFLIB = new Promise((ok, no) => {
+    if (window.pdfjsLib) return ok(window.pdfjsLib);
+    const s = document.createElement("script"); s.src = PDFJS_URL; s.async = true;
+    s.onload = () => { if (!window.pdfjsLib) return no(new Error("pdfjs")); window.pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJS_WORKER; ok(window.pdfjsLib); };
+    s.onerror = () => { PDFLIB = null; no(new Error("pdfjs-load")); };
+    document.head.appendChild(s);
+  });
+  return PDFLIB;
+}
+async function getDoc(code){
+  if (PDFDOCS[code]) return PDFDOCS[code];
+  const rec = await bookGet(code); if (!rec) return null;
+  const lib = await loadPdfLib();
+  PDFDOCS[code] = lib.getDocument({ data:new Uint8Array(rec.data.slice(0)), isEvalSupported:false }).promise;
+  try { return await PDFDOCS[code]; } catch(e){ delete PDFDOCS[code]; throw e; }
+}
+function readRoute(h){ const m = h.match(/^read-(POR1|POR2|AG|CON|PCF|FIN)-(\d+)$/); return m ? { name:"read", code:m[1], page:+m[2] } : null; }
+async function renderRead(r){
+  const code = r.code, src = SOURCES[code], task = ++READ_TASK;
+  const back = READ_FROM && !READ_FROM.startsWith("read-") ? READ_FROM : "books";
+  view.innerHTML = `<div class="stack reader" style="gap:12px">
+    <div class="qtop">
+      <button class="iconbtn" id="rdBack" aria-label="Close the book" title="Close">${I.x}</button>
+      <div class="grow drill-tally"><b class="rd-title">${esc(src.name)}</b><span class="small muted num" id="rdInfo">Page ${r.page}</span></div>
+      <button class="iconbtn" id="rdListen" aria-label="Read this page aloud" aria-pressed="${TTS.on && TTS.kind === "book" && TTS.code === code}" title="Listen">${IC.volume}</button>
+      <button class="iconbtn" id="rdOut" aria-label="Zoom out" title="Zoom out">${IC.minus || "−"}</button>
+      <button class="iconbtn" id="rdIn" aria-label="Zoom in" title="Zoom in">${IC.plus || "+"}</button>
+    </div>
+    <div class="rd-stage" id="rdStage" aria-live="polite"><p class="small muted rd-wait">Opening page ${r.page}…</p></div>
+    <div class="stickynext rd-nav"><button class="btn btn-quiet" id="rdPrev" aria-label="Previous page">${IC.arrow}</button>
+      <label class="rd-go"><span class="sr-only">Go to page</span><input class="field num" id="rdPage" inputmode="numeric" pattern="[0-9]*" value="${r.page}" aria-label="Page number"><span class="small muted num" id="rdOf"></span></label>
+      <button class="btn btn-quiet" id="rdNext" aria-label="Next page">${IC.arrow}</button></div>
+  </div>`;
+  $("#rdBack").onclick = () => go(back);
+  let doc = null;
+  try {
+    const rec = await bookMetas(); if (task !== READ_TASK) return;
+    if (!rec[code]){
+      $("#rdStage").innerHTML = `<div class="card stack rd-empty" style="gap:12px;align-items:flex-start">${iconTile("books", 3, "sm")}<h2>${esc(src.name)} isn't on this device yet</h2><p class="small muted">Add the PDF once and every page reference will open right here, starting with page ${r.page}.</p><button class="btn btn-primary" id="rdAdd">Add this book</button><input type="file" id="rdFile" accept="application/pdf,.pdf" hidden><div id="bkMsg" aria-live="polite"></div></div>`;
+      document.querySelector(".rd-nav").hidden = true; $("#rdOut").hidden = true; $("#rdIn").hidden = true; $("#rdListen").hidden = true;
+      $("#rdAdd").onclick = () => $("#rdFile").click();
+      $("#rdFile").onchange = async () => { const f = $("#rdFile").files[0]; if (!f) return; $("#rdAdd").disabled = true; $("#bkMsg").innerHTML = `<p class="small">Saving…</p>`; try { await saveBookFile(code, f); toast("Book added"); renderRead(r); } catch(e){ $("#rdAdd").disabled = false; $("#bkMsg").innerHTML = `<p class="small sync-err">That file didn't work. Make sure it's the PDF of ${esc(src.name)}.</p>`; } };
+      return;
+    }
+    doc = await getDoc(code);
+  } catch(e){
+    if (task !== READ_TASK) return;
+    $("#rdStage").innerHTML = `<p class="card small">${e && /pdfjs/.test(e.message) ? "The reader needs an internet connection the first time it opens. Check your connection and try again." : "This book couldn't be opened. Try removing it and adding the PDF again."}</p>`;
+    return;
+  }
+  if (task !== READ_TASK || !doc) return;
+  const N = doc.numPages; let page = Math.min(Math.max(1, r.page), N);
+  $("#rdOf").textContent = "of " + N;
+  const draw = async () => {
+    const my = ++READ_TASK; const stage = $("#rdStage"); if (!stage) return;
+    $("#rdPage").value = page; $("#rdInfo").textContent = `Page ${page} of ${N}`;
+    $("#rdPrev").disabled = page <= 1; $("#rdNext").disabled = page >= N;
+    S.bookPos = S.bookPos || {}; S.bookPos[code] = page; save(true);
+    if (TTS.on && TTS.kind === "book" && TTS.code === code && TTS.page !== page) ttsBookStart(code, page);
+    try { if (CUR !== `read-${code}-${page}`){ CUR = `read-${code}-${page}`; history.replaceState(null, "", "#" + CUR); } } catch(e) {}
+    const pg = await doc.getPage(page); if (my !== READ_TASK) return;
+    const base = pg.getViewport({ scale:1 }), w = Math.max(240, stage.clientWidth);
+    const scale = w / base.width * READ_ZOOM, dpr = Math.min(window.devicePixelRatio || 1, 2.5);
+    const vp = pg.getViewport({ scale:scale * dpr });
+    const cv = document.createElement("canvas"); cv.width = Math.floor(vp.width); cv.height = Math.floor(vp.height);
+    cv.style.width = Math.floor(vp.width / dpr) + "px"; cv.style.height = Math.floor(vp.height / dpr) + "px";
+    cv.setAttribute("role", "img"); cv.setAttribute("aria-label", `${src.name}, page ${page}`);
+    await pg.render({ canvasContext:cv.getContext("2d"), viewport:vp }).promise; if (my !== READ_TASK) return;
+    stage.innerHTML = ""; stage.appendChild(cv); stage.scrollLeft = 0;
+  };
+  const goPage = n => { page = Math.min(Math.max(1, n), N); draw(); window.scrollTo(0, 0); };
+  READER_HOOK = { code, go: n => goPage(n) };
+  $("#rdListen").onclick = () => { if (!ttsOK()){ toast("This browser can't read aloud. Open the app in Chrome or Safari to listen."); return; } if (TTS.on && TTS.kind === "book" && TTS.code === code) ttsEnd(false); else ttsBookStart(code, page); };
+  $("#rdPrev").onclick = () => goPage(page - 1);
+  $("#rdNext").onclick = () => goPage(page + 1);
+  $("#rdPage").onchange = () => { const n = parseInt($("#rdPage").value, 10); if (n) goPage(n); else $("#rdPage").value = page; };
+  $("#rdPage").onkeydown = e => { if (e.key === "Enter"){ e.preventDefault(); $("#rdPage").blur(); $("#rdPage").dispatchEvent(new Event("change")); } };
+  $("#rdIn").onclick = () => { READ_ZOOM = Math.min(3, +(READ_ZOOM + 0.5).toFixed(1)); draw(); };
+  $("#rdOut").onclick = () => { READ_ZOOM = Math.max(1, +(READ_ZOOM - 0.5).toFixed(1)); draw(); };
+  let sx = null;
+  $("#rdStage").addEventListener("touchstart", e => { sx = READ_ZOOM === 1 && e.touches.length === 1 ? e.touches[0].clientX : null; }, { passive:true });
+  $("#rdStage").addEventListener("touchend", e => { if (sx === null) return; const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 60) goPage(page + (dx < 0 ? 1 : -1)); sx = null; }, { passive:true });
+  READ_KEYS = e => { if (e.target.tagName === "INPUT") return; if (e.key === "ArrowRight") goPage(page + 1); else if (e.key === "ArrowLeft") goPage(page - 1); };
+  draw();
+}
+let READ_KEYS = null, READER_HOOK = null;
+document.addEventListener("keydown", e => { if (route().name === "read" && READ_KEYS && !e.metaKey && !e.ctrlKey && !e.altKey) READ_KEYS(e); });
+let rdResize = 0;
+window.addEventListener("resize", () => { if (route().name !== "read") return; clearTimeout(rdResize); rdResize = setTimeout(() => render(), 250); });
 
 applyPrefs();
 render();
