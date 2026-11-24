@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Aurely's TREC Study Desk</title>
+<title>TREC Study Desk</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="theme-color" content="#edf1f2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -927,6 +927,37 @@ body.tts-on main{ padding-bottom:110px }
 .reader .iconbtn[aria-pressed="true"]{ background:var(--ink); color:var(--surface) }
 body.tts-on .rd-nav{ bottom:calc(170px + env(safe-area-inset-bottom,0px)) }
 body.tts-on .reader{ padding-bottom:70px }
+
+/* ===== honest practice ===== */
+.recall-card{ display:flex; flex-direction:column; gap:14px; padding:20px; border-radius:24px; border:1.5px dashed color-mix(in srgb, var(--ink) 22%, transparent); background:color-mix(in srgb, var(--k1) 6%, var(--glass)) }
+.recall-card > .stack b{ font-size:1.02rem }
+.recall-ic{ width:42px; height:42px; border-radius:14px; display:grid; place-items:center; background:color-mix(in srgb, var(--k4) 16%, transparent); color:var(--k4) }
+.recall-ic svg{ width:22px; height:22px }
+.recall-card .btn{ min-height:52px }
+.recall-off{ align-self:center; font-size:.86rem }
+.memo{ display:flex; flex-direction:column; gap:8px; padding:12px 14px; border-radius:16px; background:color-mix(in srgb, var(--k4) 12%, transparent) }
+.memo-h{ display:flex; gap:8px; align-items:flex-start; margin:0; font-weight:700 }
+.memo-h svg{ width:18px; height:18px; flex:none; margin-top:2px; color:var(--k4) }
+.memo p{ margin:0 } .memo .btn{ align-self:flex-start }
+.whynot{ display:flex; flex-direction:column; gap:10px; padding:14px; border-radius:16px; border:1.5px solid color-mix(in srgb, var(--k3) 35%, transparent); background:color-mix(in srgb, var(--k3) 7%, transparent) }
+.whynot p{ margin:0 } .whynot .btn{ align-self:flex-start }
+.whynot .row .btn{ align-self:auto }
+.why-ok{ display:flex; gap:8px; align-items:center; color:var(--good); font-weight:600 } .why-ok svg{ width:16px; height:16px; flex:none }
+.retire-note{ display:flex; gap:8px; align-items:flex-start; margin:0 } .retire-note svg{ width:16px; height:16px; flex:none; margin-top:3px; color:var(--good) }
+.retire-note .linkbtn{ font-size:inherit; padding:0 }
+.sure-seg{ flex-wrap:wrap }
+
+.sure-seg{ display:flex; width:100%; flex-wrap:nowrap }
+.sure-seg button{ flex:1 1 0; min-width:0; white-space:normal; line-height:1.2; padding:8px 6px; text-wrap:balance }
+
+.credit{ text-align:center; font-size:.82rem; margin:4px 0 0 }
+.credit a{ color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:10px; display:inline-block }
+.credit a b{ color:var(--ink); font-weight:800 }
+.credit a:hover{ color:var(--ink); text-decoration:underline; text-underline-offset:3px }
+.credit a:focus-visible{ outline:3px solid color-mix(in srgb, var(--k1) 50%, transparent); outline-offset:2px }
+
+.credit .ver{ display:block; font-size:.74rem; color:var(--muted); opacity:.8; margin-top:-4px }
+.rel{ list-style:none; padding:0; margin:8px 0 0; display:flex; flex-direction:column; gap:8px; font-size:.86rem; line-height:1.45 }
 </style>
 </head>
 <body>
@@ -948,7 +979,7 @@ body.tts-on .reader{ padding-bottom:70px }
 </div>
 
 <script>
-/* Study content for Aurely's Texas salesperson exam prep.
+/* Study content for Texas salesperson exam prep.
    Every lesson card and question cites a source course PDF and page.
    In each question, choice 0 is the correct answer (choices are shuffled on screen).
    n[] holds a short note for each choice; the note for the correct answer is unused. */
@@ -2536,6 +2567,26 @@ function confetti(el){
   }
 }
 
+/* ---------- version & release notes (Semantic Versioning: MAJOR.MINOR.PATCH) ---------- */
+const APP_VERSION = "2.0.1", APP_DATE = "2026-11-24";
+const RELEASES = [
+  ["2.0.1", "2026-11-24", "Clearer answer buttons after a question, DF Digital credit, version info in Settings."],
+  ["2.0.0", "2026-11-24", "Honest practice: answer first, \"Why not?\" questions, a too-fast answer check, and retired questions."],
+  ["1.4.0", "2026-11-09", "Course books reader with read-aloud, listen to lessons, exam-day checklist, State section updated to 50 questions."],
+  ["1.3.0", "2026-11-08", "Confidence check, glossary flashcards, study plan, look back at previous answers."],
+  ["1.2.0", "2026-11-08", "Spaced review, backup file, unlimited math drills."],
+  ["1.1.0", "2026-11-08", "New home page: daily challenge, week strip, shortcuts."],
+  ["1.0.0", "2026-11-07", "First release: lessons, practice questions, practice exam, review."]
+];
+function aboutHTML(){
+  const fmt = d => new Date(d + "T12:00:00").toLocaleDateString(undefined, { month:"short", day:"numeric", year:"numeric" });
+  const [cur, ...old] = RELEASES;
+  return `<section class="card stack about" style="gap:10px" aria-labelledby="abT">
+    <div class="row" style="gap:12px;align-items:center">${iconTile("sparkles", 3, "sm")}<div class="grow"><h3 id="abT">About this app</h3><p class="small muted num">Version ${APP_VERSION} · ${fmt(APP_DATE)}</p></div></div>
+    <p class="small"><b>What's new:</b> ${esc(cur[2])}</p>
+    <details class="navpanel"><summary>Earlier versions</summary><ul class="rel">${old.map(r => `<li><b class="num">${r[0]}</b> <span class="muted">· ${fmt(r[1])}</span><br>${esc(r[2])}</li>`).join("")}</ul></details>
+  </section>`;
+}
 /* ---------- storage (best effort) ---------- */
 const KEY = "aurely-trec-study-v1";
 const fresh = () => ({ read:{}, stats:{}, bookmarks:{}, reviewTopics:{}, lastTopic:null, days:{}, prefs:{ sound:false, motion:"system", timed:false, text:"md" }, session:null, lastResult:null, exam:null, examHistory:[], lastExam:null });
@@ -2711,7 +2762,7 @@ function renderHome(){
   const r = 30, circ = 2 * Math.PI * r;
   view.innerHTML = `
   <div class="stack-lg">
-    <div class="greet-row"><div class="greet"><h1>${greeting()}, Aurely</h1><p>A little each day adds up.</p></div><div class="hdr-actions">${themeBtnHTML()}<a class="iconbtn" href="#prefs" aria-label="Settings" title="Settings">${IC.sliders}</a></div></div>
+    <div class="greet-row"><div class="greet"><h1>${greeting()}</h1><p>A little each day adds up.</p></div><div class="hdr-actions">${themeBtnHTML()}<a class="iconbtn" href="#prefs" aria-label="Settings" title="Settings">${IC.sliders}</a></div></div>
 
     <div class="home-grid"><div class="hcol">
     <section class="photohero" aria-label="Your progress">
@@ -2788,7 +2839,8 @@ function renderHome(){
           <div class="tlist">${TOPICS.filter(t => t.group === g).map(topicCard).join("")}</div>
         </div>`).join("")}
     </section>
-    <p class="disclaimer">Practice questions are written from Aurely's course PDFs. They are not official exam questions, and a practice score doesn't predict exam results.</p>
+    <p class="disclaimer">Practice questions are written from the course books. They are not official exam questions, and a practice score doesn't predict exam results.</p>
+    <p class="credit"><a href="https://designforgedigital.com" target="_blank" rel="noopener">Designed and developed by <b>DF Digital</b></a><span class="ver num">v${APP_VERSION}</span></p>
   </div>`;
   $("#cont").onclick = ns.act; $("#cont2").onclick = ns.act;
   $("#mixed").onclick = startMixed; $("#drillGo").onclick = startDrills;
@@ -2853,6 +2905,7 @@ function renderTopic(r){
       <h2>Practice this topic</h2>
       <p class="small muted">${st.total} questions, one at a time, with an explanation after each answer.</p>
       <button class="btn btn-primary btn-block" id="practice">Start practice</button>
+      ${retiredNoteHTML(t)}
       ${t.id === "math" ? `<button class="btn btn-quiet btn-block" id="drills">${IC.calc}<span>Unlimited math drills</span></button>` : ""}
       <div class="row" style="flex-wrap:wrap;justify-content:space-between">
         <button class="linkbtn" id="timed">Start timed practice instead</button>
@@ -2872,7 +2925,8 @@ function renderTopic(r){
     if (!open){ const k = t.id + ":" + box.dataset.i; if (!S.read[k]){ S.read[k] = true; save(); box.classList.add("read"); box.querySelector(".lnum").innerHTML = I.check.replace('aria-hidden="true"','aria-hidden="true" width="16" height="16"'); const st2 = topicStats(t.id); if (st2.read === st2.lessons){ toast("All lessons read. Ready to practice?", { label:"Practice", fn:() => startRound(topicQs(t.id).map(q => q.id), t.id, S.prefs.timed) }); tone("done"); } } }
   });
   if ($("#drills")) $("#drills").onclick = startDrills;
-  $("#practice").onclick = () => startRound(topicQs(t.id).map(q => q.id), t.id, S.prefs.timed);
+  $("#practice").onclick = () => startRound(activeIds(topicQs(t.id).map(q => q.id)), t.id, S.prefs.timed);
+  if ($("#practiceAll")) $("#practiceAll").onclick = () => startRound(topicQs(t.id).map(q => q.id), t.id, S.prefs.timed);
   $("#timed").onclick = () => startRound(topicQs(t.id).map(q => q.id), t.id, true);
   $("#markrev").onclick = () => { if (S.reviewTopics[t.id]) delete S.reviewTopics[t.id]; else S.reviewTopics[t.id] = true; save(); render(); };
 }
@@ -2893,12 +2947,12 @@ function lessonHTML(t, l, i, open){
 function startRound(ids, topicId, timed){
   if (!ids.length) return;
   const qids = shuffle(ids);
-  S.session = { ids:qids, order:qids.map(id => shuffle(QBY[id].c.map((_, k) => k))), i:0, answers:{}, topic:topicId || null, timed:!!timed, limit:qids.length * 75, started:Date.now(), elapsed:0 };
+  S.session = { ids:qids, order:qids.map(id => shuffle(QBY[id].c.map((_, k) => k))), i:0, answers:{}, topic:topicId || null, timed:!!timed, limit:qids.length * 75, started:Date.now(), elapsed:0, recall:recallPref(), reveal:{}, shownAt:{}, why:{} };
   save(); go("quiz");
 }
 function startMixed(){
   const weight = q => { const s = S.stats[q.id]; return !s ? 3 : s.guess ? 3 : s.last ? 1 : 4; };
-  const pool = shuffle(QUESTIONS).sort((a, b) => weight(b) - weight(a)).slice(0, 18);
+  const pool = shuffle(QUESTIONS.filter(q => !isRetired(q.id) || dueCheck(q.id))).sort((a, b) => weight(b) - weight(a)).slice(0, 18);
   startRound(shuffle(pool).slice(0, 10).map(q => q.id), null, S.prefs.timed);
 }
 let timerId = null;
@@ -2920,6 +2974,14 @@ function renderQuiz(){
   const t = TOPIC[q.t];
   const done = ans !== undefined;
   const pct = Math.round((ss.i + (done ? 1 : 0)) / ss.ids.length * 100);
+  const hidden = needsReveal(ss, q, done, peeking);
+  const choicesHTML = () => `<ul class="choices" aria-labelledby="qtext">
+      ${ord.map((k, pos) => {
+        let cls = "", verdict = "";
+        if (done){ if (k === 0){ cls = "is-correct"; verdict = `${I.check}<span>Correct answer</span>`; } else if (k === ans){ cls = "is-wrong"; verdict = `${I.x}<span>Your answer</span>`; } else cls = "dim"; }
+        return `<li><button class="choice ${cls}" data-k="${k}" ${done ? "disabled" : ""} aria-label="${KEYS[pos]}. ${esc(q.c[k])}${done ? (k === 0 ? ". Correct answer" : k === ans ? ". Your answer, incorrect" : "") : ""}"><span class="key">${KEYS[pos]}</span><span class="ctext">${esc(q.c[k])}</span>${verdict ? `<span class="verdict">${verdict}</span>` : ""}</button></li>`;
+      }).join("")}
+    </ul>`;
   view.innerHTML = `<div class="stack-lg">
     <div class="qtop">
         <button class="iconbtn" id="quit" aria-label="Leave practice round" title="Leave round">${I.x}</button>
@@ -2933,26 +2995,21 @@ function renderQuiz(){
       ${peeking ? `<p class="peek-note">${I.check}<span>Your earlier answer. View only, it can't be changed.</span></p>` : ""}
     </div>
     <h1 class="qtext" id="qtext" style="font-family:var(--font-body)">${esc(q.q)}</h1>
-    <ul class="choices" aria-labelledby="qtext">
-      ${ord.map((k, pos) => {
-        let cls = "", verdict = "";
-        if (done){ if (k === 0){ cls = "is-correct"; verdict = `${I.check}<span>Correct answer</span>`; } else if (k === ans){ cls = "is-wrong"; verdict = `${I.x}<span>Your answer</span>`; } else cls = "dim"; }
-        return `<li><button class="choice ${cls}" data-k="${k}" ${done ? "disabled" : ""} aria-label="${KEYS[pos]}. ${esc(q.c[k])}${done ? (k === 0 ? ". Correct answer" : k === ans ? ". Your answer, incorrect" : "") : ""}"><span class="key">${KEYS[pos]}</span><span class="ctext">${esc(q.c[k])}</span>${verdict ? `<span class="verdict">${verdict}</span>` : ""}</button></li>`;
-      }).join("")}
-    </ul>
-    ${done ? feedbackHTML(q, ans, ord) : `<p class="small muted">Choose an answer. You can also press ${ord.map((_, p) => KEYS[p]).join(", ")} on a keyboard.</p>${cur > 0 ? `<button type="button" class="linkbtn prevlink" id="pPrev">${IC.arrow}<span>Previous question</span></button>` : ""}`}
+    ${hidden ? recallHTML(q) : choicesHTML()}
+    ${done ? feedbackHTML(q, ans, ord) : hidden ? "" : `<p class="small muted">Choose an answer. You can also press ${ord.map((_, p) => KEYS[p]).join(", ")} on a keyboard.</p>${cur > 0 ? `<button type="button" class="linkbtn prevlink" id="pPrev">${IC.arrow}<span>Previous question</span></button>` : ""}`}
     ${peeking ? `<div class="stickynext two">${cur > 0 ? `<button class="btn btn-quiet" id="pPrev" aria-label="Previous question">${IC.arrow}<span>Previous</span></button>` : `<span></span>`}<button class="btn btn-primary" id="pNext">${cur + 1 < ss.i ? "Next answered" : `Back to question ${ss.i + 1}`}</button></div>`
       : done ? `<div class="stickynext ${cur > 0 ? "two" : ""}">${cur > 0 ? `<button class="btn btn-quiet" id="pPrev" aria-label="Previous question">${IC.arrow}<span>Previous</span></button>` : ""}<button class="btn btn-primary ${cur > 0 ? "" : "btn-block"}" id="next">${ss.i + 1 < ss.ids.length ? "Next question" : "See results"}</button></div>` : ""}
   </div>`;
   view.querySelectorAll(".choice:not([disabled])").forEach(b => b.onclick = () => answer(+b.dataset.k));
   $("#quit").onclick = () => { stopTimer(); go("home"); };
+  wireHonest(q, ord);
   const pp = $("#pPrev"); if (pp) pp.onclick = () => peekTo(cur - 1);
   const pn = $("#pNext"); if (pn) pn.onclick = () => peekTo(cur + 1 < ss.i ? cur + 1 : null);
   if (done){
     emphasize(view.querySelectorAll(".feedback > p, .others li"));
     linkTerms(view.querySelectorAll(".feedback > p, .others li"), 2);
     if ($("#next")) $("#next").onclick = nextQ;
-    view.querySelectorAll("[data-sure]").forEach(b => b.onclick = () => setSure(q, b.dataset.sure === "1"));
+    view.querySelectorAll("[data-sure]").forEach(b => b.onclick = () => setSure(q, b.dataset.sure));
     $("#bm").onclick = () => { if (S.bookmarks[q.id]) delete S.bookmarks[q.id]; else S.bookmarks[q.id] = true; save(); const on = !!S.bookmarks[q.id]; $("#bm").setAttribute("aria-pressed", on); $("#bm").lastChild.textContent = on ? "Bookmarked" : "Bookmark"; announce(on ? "Question bookmarked" : "Bookmark removed"); };
     $("#rv").onclick = () => { if (S.reviewTopics[q.t]) delete S.reviewTopics[q.t]; else S.reviewTopics[q.t] = true; save(); const on = !!S.reviewTopics[q.t]; $("#rv").setAttribute("aria-pressed", on); $("#rv").lastChild.textContent = on ? "Topic marked for review" : "Mark topic for review"; announce(on ? "Topic marked for review" : "Topic unmarked"); };
   }
@@ -2974,9 +3031,10 @@ function feedbackHTML(q, ans, ord){
   return `<section class="feedback ${good ? "fb-good" : "fb-bad"}" aria-live="polite">
     <div class="fb-head">${good ? I.check : I.x}<span>${good ? ["Correct!", "Nice work!", "Exactly right!", "You got it!"][q.id.length % 4] : "Not quite. Here's why"}</span>${good && (S.session.combo || 0) >= 3 ? `<span class="combo">${IC.flame}${S.session.combo} in a row</span>` : ""}</div>
     ${good && PEEK === null ? sureHTML(q) : ""}
+    ${good ? whyHTML(q, ord) : ""}
     <p>${esc(q.w)}</p>
     ${calcHTML(q)}
-    ${others.length ? `<div class="stack" style="gap:6px"><p class="eyebrow">Why the other choices don't fit</p><ul class="others">${others.map(k => `<li><b>${esc(q.c[k])}</b>: ${esc(q.n[k])}</li>`).join("")}</ul></div>` : ""}
+    ${others.length && !hideOthers(q) ? `<div class="stack" style="gap:6px"><p class="eyebrow">Why the other choices don't fit</p><ul class="others">${others.map(k => `<li><b>${esc(q.c[k])}</b>: ${esc(q.n[k])}</li>`).join("")}</ul></div>` : ""}
     ${q.flag ? `<div class="flag">${I.flag}<span><b>Verify:</b> ${esc(q.flag)}</span></div>` : ""}
     <div class="row" style="flex-wrap:wrap;gap:10px">${srcChip(q.s)}<a class="small" style="font-weight:600" href="#topic-${q.t}">Review the lesson</a></div>
     <div class="tools">
@@ -2992,7 +3050,8 @@ function answer(k){
   ss.answers[q.id] = k;
   const st = S.stats[q.id] || { seen:0, correct:0 };
   const before = topicStats(q.t).pct;
-  st.seen++; if (k === 0) st.correct++; st.last = k === 0; st.guess = false; S.stats[q.id] = st; srsRecord(q.id, k === 0);
+  st.seen++; if (k === 0) st.correct++; st.last = k === 0; st.guess = false; st.weak = null; S.stats[q.id] = st; srsRecord(q.id, k === 0);
+  afterAnswer(q, k, ss.order[ss.i]);
   const dk = todayKey(); S.days[dk] = (S.days[dk] || 0) + 1;
   save();
   ss.combo = k === 0 ? (ss.combo || 0) + 1 : 0;
@@ -3024,6 +3083,7 @@ document.addEventListener("keydown", e => {
   if (e.key === "ArrowLeft" && (PEEK !== null ? PEEK : ss.i) > 0 && !(e.target.closest && e.target.closest("input, [role=progressbar]"))){ e.preventDefault(); peekTo((PEEK !== null ? PEEK : ss.i) - 1); return; }
   if (PEEK !== null){ if (e.key === "ArrowRight" || e.key === "Escape"){ e.preventDefault(); peekTo(e.key === "Escape" ? null : PEEK + 1); } return; }
   const q = QBY[ss.ids[ss.i]], done = ss.answers[q.id] !== undefined;
+  if (needsReveal(ss, q, done, false)){ if ((e.key === "Enter" || e.key === " ") && !(e.target.closest && e.target.closest("button, a"))){ e.preventDefault(); revealChoices(); } return; }
   const key = e.key.toUpperCase();
   let pos = KEYS.indexOf(key); if (pos === -1 && /^[1-5]$/.test(key)) pos = +key - 1;
   if (!done && pos > -1 && pos < ss.order[ss.i].length){ e.preventDefault(); answer(ss.order[ss.i][pos]); }
@@ -3112,6 +3172,8 @@ function renderPrefs(){
     <section class="card">
       <div class="setting wrapline">${iconTile("palette", 2, "sm")}<div class="grow" style="min-width:160px"><h3>Appearance</h3><p class="small muted">"System" follows your device. You can also use the sun/moon button at the top.</p></div>${seg("theme", [["system","System"],["light","Light"],["dark","Dark"]], P.theme || "system", "Appearance")}</div>
       <div class="setting">${iconTile("volume", 4, "sm")}<div class="grow"><h3>Sound effects</h3><p class="small muted">Soft tones after each answer. Off by default.</p></div>${sw("s-sound", P.sound, "Sound effects")}</div>
+      <div class="setting">${iconTile("bulb", 5, "sm")}<div class="grow"><h3>Answer first</h3><p class="small muted">Hide the choices until you've thought of your own answer. Recalling beats recognizing, so this is the honest way to practice.</p></div>${sw("s-recall", S.prefs.recall !== false, "Answer first")}</div>
+      <div class="setting">${iconTile("sparkles", 3, "sm")}<div class="grow"><h3>"Why not?" questions</h3><p class="small muted">After a correct answer to a familiar question, explain to yourself why one wrong choice is wrong.</p></div>${sw("s-whynot", S.prefs.whynot !== false, "Why not questions")}</div>
       <div class="setting">${iconTile("timer", 2, "sm")}<div class="grow"><h3>Timed practice</h3><p class="small muted">Start rounds with a gentle timer (about 75 seconds per question). Untimed is the default.</p></div>${sw("s-timed", P.timed, "Timed practice by default")}</div>
       <div class="setting">${iconTile("eye", 6, "sm")}<div class="grow"><h3>Show the countdown</h3><p class="small muted">When a timer is running, show the time at the top of the screen. You can also tap the timer to hide or show it. It keeps running while hidden.</p></div>${sw("s-showtimer", !P.timerHidden, "Show the countdown")}</div>
       <div class="setting wrapline">${iconTile("motion", 1, "sm")}<div class="grow" style="min-width:160px"><h3>Motion</h3><p class="small muted">"System" follows your device's reduced-motion setting.</p></div>${seg("motion", [["system","System"],["reduce","Reduced"],["full","Full"]], P.motion, "Motion")}</div>
@@ -3123,9 +3185,13 @@ function renderPrefs(){
       <h3>Reset progress</h3><p class="small muted">Clears lessons read, answers, bookmarks, and review marks. If sync is on, your other devices reset too.</p>
       <div id="resetArea"><button class="btn btn-quiet btn-sm" id="reset">Reset progress…</button></div>
     </section>
+    ${aboutHTML()}
+    <p class="credit"><a href="https://designforgedigital.com" target="_blank" rel="noopener">Designed and developed by <b>DF Digital</b></a><span class="ver num">v${APP_VERSION}</span></p>
   </div>`;
   $("#s-sound").onclick = () => { P.sound = !P.sound; save(); applyPrefs(); if (P.sound) tone("good"); renderPrefs(); $("#s-sound").focus(); };
   $("#s-timed").onclick = () => { P.timed = !P.timed; save(); renderPrefs(); $("#s-timed").focus(); };
+  $("#s-recall").onclick = () => { P.recall = P.recall === false; save(); renderPrefs(); $("#s-recall").focus(); };
+  $("#s-whynot").onclick = () => { P.whynot = P.whynot === false; save(); renderPrefs(); $("#s-whynot").focus(); };
   $("#s-showtimer").onclick = () => { P.timerHidden = !P.timerHidden; save(); renderPrefs(); $("#s-showtimer").focus(); };
   view.querySelectorAll("[data-seg]").forEach(b => b.onclick = () => { P[b.dataset.seg] = b.dataset.v; save(); applyPrefs(); renderPrefs(); view.querySelector(`[data-seg="${b.dataset.seg}"][data-v="${b.dataset.v}"]`).focus(); });
   wireBackup();
@@ -3371,7 +3437,7 @@ function renderExamResults(){
         <p class="small">${esc(q.w)}</p>${calcHTML(q)}
         ${q.flag ? `<div class="flag">${I.flag}<span><b>Verify:</b> ${esc(q.flag)}</span></div>` : ""}
         <div class="row" style="flex-wrap:wrap;gap:10px">${srcChip(q.s)}<a class="small" style="font-weight:600" href="#topic-${q.t}">Open lesson: ${esc(TOPIC[q.t].title)}</a></div></div></details>`).join("")}</div></section>` : ""}
-    <p class="disclaimer">Practice exam questions are written from Aurely's course PDFs. They are not official exam questions, and a practice score doesn't predict the real result.</p>
+    <p class="disclaimer">Practice exam questions are written from the course books. They are not official exam questions, and a practice score doesn't predict the real result.</p>
   </div>`;
   if (allAbove) setTimeout(() => confetti($(".resulthead")), 150);
   if (missed.length) $("#pm").onclick = () => startRound(missed.map(x => x.q.id), null, false);
@@ -3872,7 +3938,7 @@ function wireSyncBox(){
 /* backup file */
 function backupData(){ return JSON.stringify({ app:"aurely-trec-study", v:1, exportedAt:new Date().toISOString(), state:S }, null, 1); }
 async function downloadBackup(){
-  const name = "aurely-study-backup-" + new Date().toISOString().slice(0, 10) + ".json", data = backupData();
+  const name = "study-desk-backup-" + new Date().toISOString().slice(0, 10) + ".json", data = backupData();
   try {
     const dl = window.claude && window.claude.use ? await claude.use("downloads") : null;
     if (dl){ await dl.save({ filename:name, data }); toast("Backup saved"); return; }
@@ -4092,27 +4158,46 @@ document.addEventListener("keydown", e => {
    doesn't count as mastered and comes back tomorrow in Review.
    ===================================================================== */
 function isMastered(st){ return !!(st && st.last && !st.guess); }
+/* weak: why a correct answer doesn't count as truly known this time
+   "guess" = guessed, "recog" = needed to see the choices, "memo" = answered too fast
+   on a question seen many times, "why" = couldn't say why a wrong choice is wrong */
+const WEAK_NOTE = {
+  guess:"Good call. It won't count as mastered yet and will come back in Review tomorrow.",
+  recog:"Honest answer. Recognizing it isn't the same as knowing it, so it comes back in Review tomorrow.",
+  memo:"", why:""
+};
 function sureHTML(q){
-  const st = S.stats[q.id] || {}, g = !!st.guess;
+  const st = S.stats[q.id] || {}, ss = S.session || {}, w = st.guess ? (st.weak || "guess") : null;
+  if (w === "memo") return memoHTML(q);
+  const recall = !!(ss.recall && ss.reveal && ss.reveal[q.id]);
+  const opts = recall ? [["1", "Before the choices"], ["recog", "Needed them"], ["guess", "Guessed"]] : [["1", "I knew it"], ["guess", "I guessed"]];
+  const cur = w === "why" ? "1" : (w || "1");
   return `<div class="sure" role="group" aria-labelledby="sureL">
-    <span class="sure-l" id="sureL">How sure were you?</span>
-    <div class="seg sure-seg"><button type="button" data-sure="1" aria-pressed="${!g}">I knew it</button><button type="button" data-sure="0" aria-pressed="${g}">I guessed</button></div>
-    ${g ? `<p class="small sure-note">${IC.refresh}<span>Good call. It won't count as mastered yet and will come back in Review tomorrow.</span></p>` : ""}
+    <span class="sure-l" id="sureL">${recall ? "When did you know the answer?" : "How sure were you?"}</span>
+    <div class="seg sure-seg">${opts.map(([v, l]) => `<button type="button" data-sure="${v}" aria-pressed="${cur === v}">${l}</button>`).join("")}</div>
+    ${w && WEAK_NOTE[w] ? `<p class="small sure-note">${IC.refresh}<span>${WEAK_NOTE[w]}</span></p>` : ""}
   </div>`;
 }
-function setSure(q, knew){
+function setWeak(q, kind){   // kind: null (truly known) or a WEAK key
   const ss = S.session, st = S.stats[q.id]; if (!st) return;
   ss.srsPrev = ss.srsPrev || {};
-  if (!knew && !st.guess){
+  if (kind && !st.guess){
     ss.srsPrev[q.id] = S.srs && S.srs[q.id] ? Object.assign({}, S.srs[q.id]) : null;
-    st.guess = true; S.srs = S.srs || {}; S.srs[q.id] = { box:0, due:dnum() + SRS_GAP[0] };
-  } else if (knew && st.guess){
-    st.guess = false;
+    st.guess = true; st.weak = kind; S.srs = S.srs || {}; S.srs[q.id] = { box:0, due:dnum() + SRS_GAP[0] };
+    if (st.days) st.days = st.days.filter(d => d !== dnum());
+  } else if (kind && st.guess){ st.weak = kind; }
+  else if (!kind && st.guess){
+    st.guess = false; st.weak = null;
     if (q.id in ss.srsPrev){ const p = ss.srsPrev[q.id]; if (p) S.srs[q.id] = p; else delete S.srs[q.id]; }
+    st.days = st.days || []; if (!st.days.includes(dnum())) st.days.push(dnum());
   }
-  save(); renderQuiz();
-  const b = view.querySelector(`[data-sure="${knew ? 1 : 0}"]`); if (b) b.focus();
-  announce(knew ? "Marked as known." : "Marked as a guess. It will come back tomorrow.");
+  save();
+}
+function setSure(q, val){
+  const kind = val === "1" ? null : val === "0" ? "guess" : val;
+  setWeak(q, kind); renderQuiz();
+  const b = view.querySelector(`[data-sure="${val}"]`); if (b) b.focus();
+  announce(!kind ? "Marked as known." : "Noted. It will come back in Review tomorrow.");
 }
 
 /* =====================================================================
@@ -4252,7 +4337,7 @@ function taskText(k){
 function taskIcon(k){ return k.t ? ticon(k.t, "sm") : iconTile(k.kind === "exam" ? "target" : k.kind === "light" ? "books" : "shuffle", k.kind === "exam" ? 2 : 4, "sm"); }
 function doTask(k){
   if (k.kind === "read"){ S.openLesson = { t:k.t, i:k.ls[0] }; save(); go("topic-" + k.t); }
-  else if (k.kind === "practice") startRound(topicQs(k.t).map(q => q.id), k.t, S.prefs.timed);
+  else if (k.kind === "practice") startRound(activeIds(topicQs(k.t).map(q => q.id)), k.t, S.prefs.timed);
   else if (k.kind === "exam") go("exam");
   else if (k.kind === "light"){ if (srsDue().length) startSrs(); else startCards(); }
   else { if (srsDue().length) startSrs(); else startMixed(); }
@@ -4507,7 +4592,7 @@ function renderExamday(){
 
 /* =====================================================================
    COURSE BOOKS
-   Aurely adds the PDF books she already has. They are stored only in
+   The learner adds the PDF books they already have. They are stored only in
    this browser (IndexedDB) and opened in a built-in reader (PDF.js).
    Every source reference in the app ("Principles of Real Estate 2 ·
    p. 283") opens that page. In these books the printed page number
@@ -4726,6 +4811,114 @@ let READ_KEYS = null, READER_HOOK = null;
 document.addEventListener("keydown", e => { if (route().name === "read" && READ_KEYS && !e.metaKey && !e.ctrlKey && !e.altKey) READ_KEYS(e); });
 let rdResize = 0;
 window.addEventListener("resize", () => { if (route().name !== "read") return; clearTimeout(rdResize); rdResize = setTimeout(() => render(), 250); });
+
+/* =====================================================================
+   HONEST PRACTICE: stop memorized answers from passing as knowledge
+   1. Answer first: the choices stay hidden until she has thought of
+      her own answer (recall instead of recognition).
+   2. Why not?: after a correct answer to a familiar question, she
+      explains to herself why one wrong choice is wrong, then checks.
+   3. Memorization alarm + retirement: a very fast answer to a question
+      seen many times doesn't count as mastered; a question answered
+      right on 3 different days retires from regular practice and only
+      returns every 3 weeks as a check.
+   ===================================================================== */
+const RETIRE_DAYS = 3, CHECK_AFTER = 21, MEMO_SEEN = 3;
+const recallPref = () => S.prefs.recall !== false;
+const whyPref = () => S.prefs.whynot !== false;
+
+/* --- retirement --- */
+function isRetired(id){ const st = S.stats[id]; return !!(st && st.last && !st.guess && (st.days || []).length >= RETIRE_DAYS); }
+function dueCheck(id){ const st = S.stats[id]; return st && st.lastAt && (Date.now() - st.lastAt) / 864e5 >= CHECK_AFTER; }
+function activeIds(ids, min = 5){
+  const live = ids.filter(id => !isRetired(id) || dueCheck(id));
+  if (live.length >= min) return live;
+  const extra = ids.filter(id => !live.includes(id)).sort((a, b) => ((S.stats[a] || {}).lastAt || 0) - ((S.stats[b] || {}).lastAt || 0));
+  return live.concat(extra.slice(0, min - live.length));
+}
+function retiredCount(ids){ return ids.filter(isRetired).length; }
+function retiredNoteHTML(t){
+  const ids = topicQs(t.id).map(q => q.id), r = retiredCount(ids); if (!r) return "";
+  return `<p class="small muted retire-note">${I.check}<span><b class="num">${r}</b> question${r > 1 ? "s" : ""} retired after ${RETIRE_DAYS} correct days. They come back every few weeks as a check. <button type="button" class="linkbtn" id="practiceAll">Practice all ${ids.length} instead</button></span></p>`;
+}
+
+/* --- answer first (choices hidden) --- */
+function recallHTML(q){
+  return `<section class="recall-card" aria-label="Answer first">
+    <span class="recall-ic" aria-hidden="true">${IC.bulb}</span>
+    <div class="stack" style="gap:4px"><b>Answer it in your head first</b><span class="small muted">Then show the choices and pick. Knowing it before you see the options is what the real exam rewards.</span></div>
+    <button type="button" class="btn btn-primary btn-block" id="reveal">Show the choices</button>
+    <button type="button" class="linkbtn recall-off" id="recallOff">Show choices right away from now on</button>
+  </section>`;
+}
+function revealChoices(){
+  const ss = S.session, q = QBY[ss.ids[ss.i]]; ss.reveal = ss.reveal || {}; ss.reveal[q.id] = Date.now(); save();
+  renderQuiz(); const c = $(".choice"); if (c) c.focus();
+}
+function needsReveal(ss, q, done, peeking){ return !!(ss.recall && !done && !peeking && !(ss.reveal && ss.reveal[q.id])); }
+
+/* --- memorization alarm --- */
+function memoHTML(q){
+  const st = S.stats[q.id] || {};
+  return `<div class="memo" role="group" aria-labelledby="memoL">
+    <p class="memo-h" id="memoL">${IC.flame}<span>That was very fast for a question you've seen ${st.seen - 1} times.</span></p>
+    <p class="small">It looks memorized, so it won't count as mastered this time and will come back in Review. Next time, read the question to the end before answering.</p>
+    <button type="button" class="btn btn-quiet btn-sm" data-sure="1">I really know this one</button>
+  </div>`;
+}
+function readMs(q){ return 1800 + q.q.split(/\s+/).length * 70; }   // a quick but real read of the question
+
+/* --- why not? --- */
+function whyHTML(q, ord){
+  const ss = S.session, st = S.stats[q.id] || {}, w = (ss.why || {})[q.id];
+  if (!w) return "";
+  const k = w.k;
+  if (w.state === "ask") return `<div class="whynot" role="group" aria-labelledby="whyL">
+    <p class="eyebrow" id="whyL">Why not?</p>
+    <p>Why is <b>"${esc(q.c[k])}"</b> wrong here? Say the reason to yourself, then check.</p>
+    <button type="button" class="btn btn-primary btn-sm" id="whyCheck">Check my reason</button></div>`;
+  return `<div class="whynot done" role="group" aria-labelledby="whyL">
+    <p class="eyebrow" id="whyL">Why not?</p>
+    <p><b>"${esc(q.c[k])}"</b>: ${esc(q.n[k])}</p>
+    ${w.state === "shown" ? `<div class="row" style="flex-wrap:wrap;gap:8px"><span class="small" style="font-weight:600">Did you have the reason?</span><button type="button" class="btn btn-quiet btn-sm" data-why="1">Yes</button><button type="button" class="btn btn-quiet btn-sm" data-why="0">Not really</button></div>`
+      : w.state === "knew" ? `<p class="small why-ok">${I.check}<span>Nice. That's real understanding, not just the answer.</span></p>`
+      : `<p class="small sure-note">${IC.refresh}<span>No problem. It comes back in Review tomorrow so the rule sticks.</span></p>`}
+  </div>`;
+}
+function maybeAskWhy(q, ord){
+  const ss = S.session, st = S.stats[q.id];
+  if (!whyPref() || !st || st.guess || st.seen < 2) return;
+  const wrong = ord.filter(k => k !== 0 && q.n && q.n[k]); if (!wrong.length) return;
+  ss.whyN = (ss.whyN || 0) + 1;
+  if (ss.whyN % 2 === 0 && st.seen < 4) return;       // every other time on fairly new questions; always on very familiar ones
+  ss.why = ss.why || {}; ss.why[q.id] = { k: wrong[Math.floor(Math.random() * wrong.length)], state:"ask" };
+}
+function hideOthers(q){ const w = ((S.session || {}).why || {})[q.id]; return !!(w && (w.state === "ask" || w.state === "shown")); }
+
+/* --- after an answer: timing, retirement days, alarm, why-not --- */
+function afterAnswer(q, k, ord){
+  const ss = S.session, st = S.stats[q.id], now = Date.now(); if (!st) return;
+  st.lastAt = now;
+  if (k !== 0){ st.days = []; st.weak = null; return; }   // a miss restarts the 3-day count
+  const shown = (ss.reveal && ss.reveal[q.id]) || (ss.shownAt && ss.shownAt[q.id]) || now;
+  const fast = !ss.recall && st.seen > MEMO_SEEN && (now - shown) < readMs(q);
+  if (fast){ setWeak(q, "memo"); return; }
+  st.days = st.days || []; if (!st.days.includes(dnum())) st.days.push(dnum());
+  maybeAskWhy(q, ord);
+}
+function wireHonest(q, ord){
+  const ss = S.session;
+  const rv = $("#reveal"); if (rv) rv.onclick = revealChoices;
+  const ro = $("#recallOff"); if (ro) ro.onclick = () => { S.prefs.recall = false; ss.recall = false; save(); renderQuiz(); toast("Choices now show right away. You can switch Answer first back on in Settings."); const c = $(".choice"); if (c) c.focus(); };
+  const wc = $("#whyCheck"); if (wc) wc.onclick = () => { ss.why[q.id].state = "shown"; save(); renderQuiz(); const y = view.querySelector('[data-why="1"]'); if (y) y.focus(); };
+  view.querySelectorAll("[data-why]").forEach(b => b.onclick = () => {
+    const ok = b.dataset.why === "1"; ss.why[q.id].state = ok ? "knew" : "not";
+    if (!ok) setWeak(q, "why"); else save();
+    renderQuiz(); const n = $("#next"); if (n) n.focus();
+  });
+  if (!ss.shownAt) ss.shownAt = {};
+  if (!ss.shownAt[q.id] && !needsReveal(ss, q, ss.answers[q.id] !== undefined, false)) ss.shownAt[q.id] = Date.now();
+}
 
 applyPrefs();
 render();
